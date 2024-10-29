@@ -1,0 +1,1 @@
+node -e "if (!/\|#[0-9]+\|[^ ]+\|.+/.test(process.argv[1])) {console.log('Please follow the commit format \"|#story-id|person2/person1|commit message\"');process.exit(1)}" $(cat $1)
