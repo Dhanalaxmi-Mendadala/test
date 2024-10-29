@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main-header {
+  margin-top: 5px;
+  border: 1px solid rgb(55, 55, 55);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-profile-icon{
+  height: 30px;
+  aspect-ratio: 1;
+  border: 1px solid blue;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
