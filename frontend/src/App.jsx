@@ -1,13 +1,15 @@
 import './App.css';
-import DashBoard from './DashBoard';
-import Header from './Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import WelcomePage from './welcomePage';
 
 function App() {
+
   return (
-    <>
-      <Header />
-      <DashBoard />
-    </>
+    <Router>
+    <Routes>
+      <Route path='/' element={<WelcomePage />} />
+    </Routes>
+  </Router>
   );
 }
 
