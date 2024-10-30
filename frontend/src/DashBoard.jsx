@@ -102,10 +102,9 @@ const storyData = {
 
 const StoryComponent = () => {
   const [storyData, setStoryData] = useState({});
-  let response;
   useEffect(() => {
     async function fetchCoverPage() {
-      response = await fetch('http://localhost:8000/coverImage/cover-image.png');
+      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
 
       setStoryData(storyData => ({
         ...storyData,
