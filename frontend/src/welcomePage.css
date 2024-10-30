@@ -1,0 +1,89 @@
+#welcomeHeader,#welcomeBody{
+    background-color: #F7F4ED;
+
+}
+#welcomeHeader{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: 6px 150px;
+}
+#welcomeHeader h1 {
+    font-size: 30px;
+    cursor: pointer;
+}
+#signin {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+#welcomeBody h2 {
+    font-size: 150px;
+    font-weight: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#welcomeBody p {
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#welcomeBody {
+    padding: 137px;
+    border-bottom: 2px solid grey;
+}
+#welcomeFooter {
+    background-color: #F7F4ED;
+    padding: 30px;
+}
+#welcomeFooter nav {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+#welcomeFooter a {
+    text-decoration: none;
+    color: black;
+}
+.popup {
+    background-color: #fff;
+    padding: 30px;
+    display: flex;
+    height: fit-content;
+    width:fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:2px solid white;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+.signInGitHub {
+border-radius: 20px;
+display: flex;
+border: 2px solid black;
+padding: 8px;
+height: fit-content;
+width: fit-content;
+margin-top: 20px;
+border-radius: 32px;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+}
+.signInGitHub img {
+    height:38px;
+    width: 38px;
+}
+.close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 27px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}

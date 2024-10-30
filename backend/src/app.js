@@ -1,6 +1,7 @@
 const express = require('express');
 const requestLogger = require('morgan');
 const sqlite = require('sqlite3');
+const cors = require('cors');
 const session = require('cookie-session');
 const fileUpload = require('express-fileupload');
 const loginHandler = require('./handlers/loginHandler');
@@ -17,6 +18,14 @@ app.locals = { db, CLIENT_ID, CLIENT_SECRET, SECRET_MSG };
 
 app.use(requestLogger('dev'));
 app.use(express.static('public'));
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,PUT,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(fileUpload());
