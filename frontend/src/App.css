@@ -24,7 +24,9 @@
 .story-component {
   border: 2px solid black;
   display: grid;
-  grid-template-rows: 35px 110px 35px;
+  grid-template-rows: 35px 120px 35px;
+  width: 60%;
+  margin: auto;
 }
 
 .author-details {
@@ -36,9 +38,13 @@
   grid-row: span;
   border: 1px solid blue;
 }
+.story-cover-image{
+  height: 50px;
+  aspect-ratio: 4/3;
+  
+}
 
 .story-meta-data {
-
   grid-row: span;
   border: 1px solid brown;
 }
