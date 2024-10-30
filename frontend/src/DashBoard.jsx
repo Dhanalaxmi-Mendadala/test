@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import Header from "./Header";
+import Header from "./Header"
+import './DashBoard.css'
 
 const storyData = {
   "story": {
