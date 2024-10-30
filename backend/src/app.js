@@ -21,9 +21,10 @@ app.use(express.static('public'));
 app.use(
   cors({
     origin: 'http://localhost:5173',
-    methods: 'GET,PUT,POST,DELETE',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
+    credentials: true,
   })
 );
 app.use(express.json());
