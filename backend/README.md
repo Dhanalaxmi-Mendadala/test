@@ -9,6 +9,7 @@ np# medium backend
 - `CLIENT_SECRET` - used for github oauth
 - `SECRET_MSG` - used for managing session
 - `DB_NAME="database/medium.db"` - Path to the sqlite database
+- `FRONT_END_URL="http://localhost:5173"` - URL to the front end
 
 3. Run `npm run setup-db` to setup the database with a mock data for stories/drafts/claps etc.
 4. Run `npm start` to start the backend
