@@ -24,6 +24,7 @@
     grid-template-rows: 35px 120px 35px;
     width: 60%;
     margin: auto;
+    position: relative;
   }
   
   .author-details {
@@ -34,11 +35,14 @@
   .story-details {
     grid-row: span;
     border: 1px solid blue;
+    position: inherit;
   }
   .story-cover-image{
-    height: 50px;
-    aspect-ratio: 4/3;
-    
+    height: 70px;
+    aspect-ratio: 16/9;
+    position: absolute;
+    right: 10px;
+    top: 20px;
   }
   
   .story-meta-data {
