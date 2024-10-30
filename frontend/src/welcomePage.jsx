@@ -1,9 +1,10 @@
+import fetching from './api.jsx'
 function Header(){
     return (
     <header>
     <h1>Medium</h1>
     <nav>
-      <a>Sign in</a>
+      <a onClick={()=>fetching()}>Sign in</a>
     </nav>
     </header>
     );

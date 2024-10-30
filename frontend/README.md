@@ -10,7 +10,8 @@
 
 We will be using Github OAuth authentication for our app. You might have seen `Login using Google`, we will be using the approach but with github. \
 Means You should provide an option like `Login using github`.\
-In you UI, you should have an option like `Login using Github` with the link pointing to `https://github.com/login/oauth/authorize?client_id={{CLIEND_ID}}` to authenticate with github. \
+In you UI, you should have an option like `Login using Github` with the link pointing to `0
+` to authenticate with github. \
 It will redirect you to the github page to do the login process, once finished you will get the 200 success response.\
 \
 NOTE: Please access the `CLIENT_ID` from the env variable. Please do not commit any environment variables in your code.
