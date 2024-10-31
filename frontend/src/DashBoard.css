@@ -45,3 +45,8 @@
     grid-row: span;
     border: 1px solid brown;
   }
+  .author-avatar{
+    height: 30px;
+    width:30px;
+    border-radius: 50%;
+  }
