@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomePage from './welcomePage';
 import HomePage from './homepage';
 import AddStory from './addstory.jsx';
+import StoryPage from './StoryPage.jsx';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route exact path='/' element={<WelcomePage />} />
           <Route path='/homepage' element={<HomePage/>}></Route>
           <Route path='/homepage/addstory' element={<AddStory/>}/>
+          <Route path='/homepage/storypage' element={<StoryPage/>}/>
         </Routes>
       </Router>
     </>

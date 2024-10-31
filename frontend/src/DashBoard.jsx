@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import './DashBoard.css'
+import { useNavigate } from "react-router-dom"
+
 
 const followAllUsers = async () => {
 `56071561,"anil-muraleedharan","https://avatars2.githubusercontent.com/u/56071561?v=4"
@@ -127,6 +129,7 @@ const storyData = {
 
 const StoryComponent = () => {
   const [storyData, setStoryData] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCoverPage = async () => {
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
@@ -138,9 +141,16 @@ const StoryComponent = () => {
     }
     fetchCoverPage();
   }, []);
-
   return (
-    <div className="story-component">
+    <div className="story-component" onClick={() => {
+      console.log(storyData)
+      navigate('/homepage/storypage', {
+        state : {
+          currentStory : storyData,
+        }
+      })
+    }}>
+    
       <div className="author-details">
         <img src={''} alt="avatar" className="author-avatar" />
         <h4 className="author-name">Naveen Kumar</h4>
