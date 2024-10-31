@@ -1,7 +1,7 @@
 .story-component {
   border: 2px solid black;
   display: grid;
-  grid-template-rows: 35px 120px 35px;
+  grid-template-rows: 45px 130px 45px;
   width: 60%;
   margin: auto;
   position: relative;
@@ -10,12 +10,27 @@
 .author-details {
   grid-row: span;
   border: 1px solid red;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 20px;
 }
 
 .story-details {
   grid-row: span;
   border: 1px solid blue;
   position: inherit;
+  padding-left: 20px;
+}
+.story-title {
+  margin: 10px;
+  font-size: 25px;
+}
+.story-description {
+  font-size: 17px;
+  margin: 10px;
+  max-width: 750px;
+  padding-bottom: 10px;
 }
 
 .story-cover-image {
@@ -25,7 +40,10 @@
   right: 10px;
   top: 20px;
 }
-
+.published-time {
+  margin: 10px;
+  padding-left: 10px;
+}
 .story-meta-data {
   grid-row: span;
   border: 1px solid brown;
@@ -35,4 +53,7 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
+}
+.author-name {
+  font-family: Arial, Helvetica, sans-serif;
 }

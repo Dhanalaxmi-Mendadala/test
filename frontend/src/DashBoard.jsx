@@ -1,6 +1,31 @@
 import { useEffect, useState } from "react"
 import './DashBoard.css'
 
+const followAllUsers = async () => {
+`56071561,"anil-muraleedharan","https://avatars2.githubusercontent.com/u/56071561?v=4"
+58025056,"abhilashkasula","https://avatars0.githubusercontent.com/u/58025056?v=4"
+58025419,"myultimatevision","https://avatars0.githubusercontent.com/u/58025419?v=4"
+58026249,"venkybavisetti","https://avatars2.githubusercontent.com/u/58026249?v=4"
+58026402,"naveen-kumar-vadla","https://avatars3.githubusercontent.com/u/58026402?v=4"
+58028408,"photongupta","https://avatars0.githubusercontent.com/u/58028408?v=4"
+11140683,"techburner","https://avatars.githubusercontent.com/u/11140683?v=4"
+`
+fetch('http://localhost:8000/user/follow', {
+  method: 'POST',
+  headers: {
+     'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    authorId: 58026402,
+  }),
+  credentials: "include",
+})
+.then((data) => data.json())
+.then((data) => {
+  console.log(data)
+})
+}
+
 const storyData = {
   "story": {
     "id": 1,
@@ -118,15 +143,15 @@ const StoryComponent = () => {
     <div className="story-component">
       <div className="author-details">
         <img src={''} alt="avatar" className="author-avatar" />
-        <h6 className="author-name"></h6>
+        <h4 className="author-name">Naveen Kumar</h4>
       </div>
       <div className="story-details">
         <h3 className="story-title">{'something'}</h3>
-        <p className="story-description"></p>
+        <p className="story-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, quisquam. Ducimus rem officia, molestias alias odio inventore repellat magni, possimus vel dolores quae natus quos, quisquam laborum sunt fugit. Culpa?</p>
         <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        <p className="published-time"></p>
+        <p className="published-time">Feb 30😑</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
@@ -135,6 +160,9 @@ const StoryComponent = () => {
 }
 
 const DashBoard = () => {
+useEffect(() => {
+  // followAllUsers()
+}, [])
 
   return (
     <>

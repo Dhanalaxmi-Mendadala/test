@@ -13,11 +13,7 @@ function Header({ click }) {
   return (
     <header id="welcomeHeader">
       <h1>Medium</h1>
-      <h1>Medium</h1>
       <nav>
-        <p id="signin" onClick={clickOpenFunction}>
-          Sign in
-        </p>
         <p id="signin" onClick={clickOpenFunction}>
           Sign in
         </p>
