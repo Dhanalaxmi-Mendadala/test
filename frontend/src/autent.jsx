@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const fetching = async () => {
     const response = await fetch('localhost:8000/isLoggedIn');
     const data = await response.json();
-    return (data.isLoggedIn);
+    return (data.loggedIn);
 }
 
 const Autentication = () => {

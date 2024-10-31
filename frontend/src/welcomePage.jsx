@@ -1,4 +1,5 @@
 import "./welcomePage.css";
+import { useEffect } from "react";
 function Header(){
     return (
     <header id="welcomeHeader">
@@ -38,15 +39,37 @@ function Footer () {
   )
 }
 
+// async function handleLogin () {
+//   const CLIENT_ID = '7c902cf5c0915e0fed2a';
+//   try {
+//     const response = await axios.get(authUrl);
+//     console.log(response)
+//   }
+//   catch {
+//     console.log('Error')
+//   }
+// }
+
 function SignInPage () {
   const CLIENT_ID = '7c902cf5c0915e0fed2a';
-  const someContainer = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const code = queryParams.get("code");
+    
+    console.log(window.location);
+
+    if (code) {
+      window.location.href = "http://localhost:5173/DashBoard";
+    }
+  }, [window.location]);
   return (
     <>
     <div className="popup">
       <p className="close">&times;</p>
       <h2 className= "welcomeBack">Welcome Back.</h2>
-        <div className="signInGitHub"> <img src="/assets/github.png"></img><a href = {someContainer}>Sign in with GitHub</a></div>
+        <div className="signInGitHub"> <img src="/assets/github.png"></img><a href= {authUrl}>Sign in with Github</a></div>
     </div>
     </>
   )

@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react"
+import Header from "./Header"
+import './DashBoard.css'
+
 const storyData = {
   "story": {
     "id": 1,
@@ -98,34 +102,48 @@ const storyData = {
 }
 
 const StoryComponent = () => {
-return (
-  <div className="story-component">
-    <div className="author-details">
-      <img src="" alt="avatar" className="author-avatar" />
-      <h6 className="author-name"></h6>
+  const [storyData, setStoryData] = useState({});
+  useEffect(() => {
+    async function fetchCoverPage() {
+      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
+
+      setStoryData(storyData => ({
+        ...storyData,
+        image: response['url']
+      }))
+    }
+    fetchCoverPage();
+  }, []);
+
+  return (
+    <div className="story-component">
+      <div className="author-details">
+        <img src='' alt="avatar" className="author-avatar" />
+        <h6 className="author-name"></h6>
+      </div>
+      <div className="story-details">
+        <h3 className="story-title"></h3>
+        <p className="story-description"></p>
+        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
+      </div>
+      <div className="story-meta-data">
+        <p className="published-time"></p>
+        <p className="story-claps"></p>
+        <p className="story-responses"></p>
+      </div>
     </div>
-    <div className="story-details">
-      <h3 className="story-title"></h3>
-      <p className="story-description"></p>
-      <img src="" alt="cover-image" className="story-cover-image" />
-    </div>
-    <div className="story-meta-data">
-      <p className="published-time"></p>
-      <p className="story-claps"></p>
-      <p className="story-responses"></p>
-    </div>
-  </div>
-)
+  )
 }
 
 const DashBoard = () => {
 
   return (
     <>
-      <h3>dash boradr</h3>
+      <Header />
+      <h3>dash board</h3>
       <StoryComponent data={storyData} />
     </>
-    )
+  )
 }
 
 export default DashBoard
