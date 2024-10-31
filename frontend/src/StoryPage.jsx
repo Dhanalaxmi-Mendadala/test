@@ -1,6 +1,6 @@
-import React from 'react'
 import { useLocation } from 'react-router-dom'
 import './StoryPage.css'
+import Header from './Header';
 
 const StoryPage = () => {
   const location = useLocation();
@@ -9,14 +9,15 @@ const StoryPage = () => {
   console.log(storyData)
   return (
     <>
+    <Header></Header>
      <main>
     <h1 className='story-title'>Story Title</h1>
     <div className='story-author-details-container'>
         <img className='story-author-image' src= {storyData.image}></img>
-        <div className='story-author-account-info-container'>
+      <div className='story-author-account-info-container'>
         <p className='story-author-name'>Author Name</p>
         <p className='story-author-published'>Published in The Hub Publication</p>
-        </div>
+      </div>
     </div>
     <div className='story-coverpage-container'>
     <img className='story-coverpage' src= {storyData.image}></img>
