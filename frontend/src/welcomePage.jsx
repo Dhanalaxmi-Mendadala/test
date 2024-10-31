@@ -63,7 +63,7 @@ function SignInPage () {
     if (code) {
       window.location.href = "http://localhost:5173/DashBoard";
     }
-  }, [window.location]);
+  }, []);
   return (
     <>
     <div className="popup">
