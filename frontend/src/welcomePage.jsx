@@ -81,7 +81,7 @@ function Footer() {
     </>
   );
 }
-function SignInPage({ click }) {
+function SignInPage({click}) {
   const clickCloseFunction = () => {
     click(false);
   };
