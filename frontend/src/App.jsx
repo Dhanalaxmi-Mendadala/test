@@ -1,18 +1,18 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomePage from './welcomePage';
-import DashBoard from './DashBoard';
-import AuthCallback from './authcallback';
+import HomePage from './homepage';
+import AddStory from './addstory.jsx';
+
 
 function App() {
-
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<WelcomePage />} />
-          <Route path='/DashBoard' element={<DashBoard />} />
-          <Route path='/auth/callback' element={<AuthCallback/>}/>
+          <Route exact path='/' element={<WelcomePage />} />
+          <Route path='/homepage' element={<HomePage/>}></Route>
+          <Route path='/homepage/addstory' element={<AddStory/>}/>
         </Routes>
       </Router>
     </>

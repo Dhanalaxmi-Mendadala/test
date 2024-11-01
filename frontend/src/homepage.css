@@ -1,0 +1,19 @@
+#Homeheader{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: 6px;
+    align-items: center;
+}
+#Homeheader div{
+    display: flex;
+    justify-content: space-between;
+    width: 160px;
+}
+#Homeheader button{
+    background: transparent;
+    padding: 5px;
+    border-radius: 25px;
+    width: 70px;
+    border: 2px solid black;
+}

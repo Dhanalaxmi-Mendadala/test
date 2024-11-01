@@ -3,14 +3,13 @@ async function fetching(){
         const response = await fetch('http://localhost:8000/isLoggedIn',{
           method: 'GET', // HTTP method
           headers: { 'Content-Type': 'json'},
-          mode:'cors'
-    
+          mode:'cors',
+          credentials:"include",
         });
-        console.log("Fetch Successfully");
-        console.log(response);
+
         const data=await response.json();
-      console.log(data);
+        return data.isLoggedIn;
       } catch (error) {
-        console.log(error);
+        return null;
       }};
 export default fetching;
