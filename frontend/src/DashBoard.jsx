@@ -1,3 +1,22 @@
+import { useEffect, useState } from "react"
+import './DashBoard.css'
+
+async function fetching() {
+  try {
+    const response = await fetch('http://localhost:8000/user/dashboard', {
+      method: 'GET', // HTTP method
+      headers: { 'Content-Type': 'json' },
+      mode: 'cors',
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+
 const storyData = {
   "story": {
     "id": 1,
@@ -98,34 +117,62 @@ const storyData = {
 }
 
 const StoryComponent = () => {
-return (
-  <div className="story-component">
-    <div className="author-details">
-      <img src="" alt="avatar" className="author-avatar" />
-      <h6 className="author-name"></h6>
+  const [storyData, setStoryData] = useState({});
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    async function fetchCoverPage() {
+      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
+
+      setStoryData(storyData => ({
+        ...storyData,
+        image: response['url']
+      }))
+    }
+    fetchCoverPage();
+  }, []);
+  useEffect(() => {
+    const getUserData = async () => {
+      const data = await fetching();
+      if (data === null) {
+        setError(true);
+      } else {
+        setUserData(data);
+      }
+    };
+    getUserData();
+  }, []);
+  if (error) {
+    return <h1 style={{ color: "red" }}>Error!404 Page Not FOUND..Connection Issue</h1>
+  }
+  console.log(userData);
+  return (
+    error != true && userData && <div className="story-component">
+      <div className="author-details">
+        <img src={userData.avatar_url} alt="avatar" className="author-avatar" />
+        <h6 className="author-name"></h6>
+      </div>
+      {userData.stories.length != 0 ?<><div className="story-details">
+        <h3 className="story-title">{userData.username}</h3>
+        <p className="story-description"></p>
+        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
+      </div>
+      <div className="story-meta-data">
+        <p className="published-time"></p>
+        <p className="story-claps"></p>
+        <p className="story-responses"></p>
+      </div></>:<h4>Their are no stories,written By {userData.username}</h4>}
     </div>
-    <div className="story-details">
-      <h3 className="story-title"></h3>
-      <p className="story-description"></p>
-      <img src="" alt="cover-image" className="story-cover-image" />
-    </div>
-    <div className="story-meta-data">
-      <p className="published-time"></p>
-      <p className="story-claps"></p>
-      <p className="story-responses"></p>
-    </div>
-  </div>
-)
+  )
 }
 
 const DashBoard = () => {
 
   return (
     <>
-      <h3>dash boradr</h3>
       <StoryComponent data={storyData} />
     </>
-    )
+  )
 }
 
 export default DashBoard
