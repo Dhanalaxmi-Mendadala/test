@@ -18,7 +18,7 @@ function Header() {
   );
 }
 function WelcomePage() {
-  // const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function WelcomePage() {
     return (
       isLoggedIn === false && <div>
         <Header  />
-         <SignInPage ></SignInPage>
+        {clicked&&<SignInPage setClicked={setClicked}></SignInPage>}
         <main id="welcomeBody">
           <h2>
             Human <br /> Stories & Ideas
@@ -69,13 +69,14 @@ function Footer() {
     </>
   )
 }
+
 function SignInPage({click}) {
 
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
-    <div id="signIn">
+    <div id="signIn" onClick={()=>click(false)}>
       <div className="popup">
-        <p className="close" >&times;</p>
+        <p className="close" onClick={()=>click(false)} >&times;</p>
         <h2 className="welcomeBack">Welcome Back.</h2>
         <p className="signInGitHub">
           <img src="/assets/github.png"></img><a href={githubAuthUrl}>Sign in with GitHub</a></p>
@@ -85,5 +86,5 @@ function SignInPage({click}) {
 }
 SignInPage.propTypes={
   click:PropTypes.func.isRequired,
-}
+};
 export default WelcomePage;
