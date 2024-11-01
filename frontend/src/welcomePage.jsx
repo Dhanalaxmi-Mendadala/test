@@ -24,6 +24,9 @@ function Header({ click }) {
 Header.propTypes = {
   click: PropTypes.func.isRequired,
 };
+Header.propTypes = {
+  click: PropTypes.func.isRequired,
+};
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,7 +43,6 @@ function WelcomePage() {
     };
     checkLoginStatus();
   }, []);
-
   if (isLoggedIn) {
     navigate("/homepage");
   }
@@ -81,28 +83,31 @@ function Footer() {
     </>
   );
 }
-function SignInPage({ click }) {
+function SignInPage({click}) {
   const clickCloseFunction = () => {
     click(false);
   };
-
-  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=7c902cf5c0915e0fed2a`;
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
     <div id="signIn" onClick={clickCloseFunction}>
-      <div className="popup">
-        <p className="close" onClick={() => click(false)}>
-          &times;
-        </p>
-        <h2 className="welcomeBack">Welcome Back.</h2>
-        <p className="signInGitHub">
-          <img src="/assets/github.png"></img>
-          <a href={githubAuthUrl}>Sign in with GitHub</a>
-        </p>
+      <div id="signIn" onClick={clickCloseFunction}>
+        <div className="popup">
+          <p className="close" onClick={() => click(false)}>
+            &times;
+          </p>
+          <h2 className="welcomeBack">Welcome Back.</h2>
+          <p className="signInGitHub">
+            <img src="/assets/github.png"></img>
+            <a href={githubAuthUrl}>Sign in with GitHub</a>
+          </p>
+        </div>
       </div>
     </div>
   );
 }
+
 SignInPage.propTypes = {
   click: PropTypes.func.isRequired,
 };
+
 export default WelcomePage;

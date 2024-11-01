@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react"
 import './DashBoard.css'
+import { useNavigate } from "react-router-dom"
 
-async function fetching() {
-  try {
-    const response = await fetch('http://localhost:8000/user/dashboard', {
-      method: 'GET', // HTTP method
-      headers: { 'Content-Type': 'json' },
-      mode: 'cors',
-      credentials: "include",
-    });
 
-    const data = await response.json();
-    console.log(data)
-    return data;
-  } catch {
-    return null;
-  }
-};
+// const followAllUsers = async () => {
+// `56071561,"anil-muraleedharan","https://avatars2.githubusercontent.com/u/56071561?v=4"
+// 58025056,"abhilashkasula","https://avatars0.githubusercontent.com/u/58025056?v=4"
+// 58025419,"myultimatevision","https://avatars0.githubusercontent.com/u/58025419?v=4"
+// 58026249,"venkybavisetti","https://avatars2.githubusercontent.com/u/58026249?v=4"
+// 58026402,"naveen-kumar-vadla","https://avatars3.githubusercontent.com/u/58026402?v=4"
+// 58028408,"photongupta","https://avatars0.githubusercontent.com/u/58028408?v=4"
+// 11140683,"techburner","https://avatars.githubusercontent.com/u/11140683?v=4"
+// `
+// fetch('http://localhost:8000/user/follow', {
+//   method: 'POST',
+//   headers: {
+//      'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     authorId: 58026402,
+//   }),
+//   credentials: "include",
+// })
+// .then((data) => data.json())
+// .then((data) => {
+//   console.log(data)
+// })
+// }
 
 const storyData = {
   "story": {
@@ -119,10 +129,9 @@ const storyData = {
 
 const StoryComponent = () => {
   const [storyData, setStoryData] = useState({});
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
-    async function fetchCoverPage() {
+    const fetchCoverPage = async () => {
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
 
       setStoryData(storyData => ({
@@ -132,42 +141,38 @@ const StoryComponent = () => {
     }
     fetchCoverPage();
   }, []);
-  useEffect(() => {
-    const getUserData = async () => {
-      const data = await fetching();
-      if (data === null) {
-        setError(true);
-      } else {
-        setUserData(data);
-      }
-    };
-    getUserData();
-  }, []);
-  if (error) {
-    return <h1 style={{ color: "red" }}>Error!404 Page Not FOUND..Connection Issue</h1>
-  }
-  console.log(userData);
   return (
-    error != true && userData && <div className="story-component">
+    <div className="story-component" onClick={() => {
+      console.log(storyData)
+      navigate('/homepage/storypage', {
+        state : {
+          currentStory : storyData,
+        }
+      })
+    }}>
+    
       <div className="author-details">
-        <img src={userData.avatar_url} alt="avatar" className="author-avatar" />
-        <h6 className="author-name"></h6>
+        <img src= {'https://avatars3.githubusercontent.com/u/58026402?v=4'} alt="avatar" className="author-avatar" />
+        <h4 className="author-name">Naveen Kumar</h4>
       </div>
-      {userData.stories.length != 0 ?<><div className="story-details">
-        <h3 className="story-title">{userData.username}</h3>
-        <p className="story-description"></p>
+      <div className="story-details">
+       <h3 className="title">Title</h3>
+        <p className="story-description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, dolorum numquam ipsa quibusdam sed, dolores accusamus, perferendis voluptatem minima beatae rem aut nulla! Ea totam quasi deleniti. Ipsam, impedit facilis. Vev dolores quae natus quos, quisquam laborum sunt fugit. Culpa?</p>
         <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        <p className="published-time"></p>
+        <p className="published-time">Feb 30</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
-      </div></>:<h4>Their are no stories,written By {userData.username}</h4>}
+      </div>
     </div>
   )
 }
 
 const DashBoard = () => {
+useEffect(() => {
+  // followAllUsers()
+}, [])
 
   return (
     <>

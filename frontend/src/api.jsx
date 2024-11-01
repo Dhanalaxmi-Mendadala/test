@@ -9,7 +9,7 @@ async function fetching(){
         const data=await response.json();
         console.log(data);
         return data.isLoggedIn;
-      } catch{
+      } catch {
         return null;
       }};
 export default fetching;

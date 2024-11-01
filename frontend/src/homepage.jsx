@@ -1,21 +1,39 @@
-import DashBoard from './DashBoard';
-import { useNavigate } from 'react-router-dom';
-import "./homepage.css";
+import { useState, useEffect } from 'react';
+import DashBoard from './DashBoard'
+import Header from './Header';
+import './homepage.css';
+
+const fetchUseData = async () => {
+  try {
+    const response = await fetch('http://localhost:8000/user/dashboard', {
+      credentials: "include",
+    });
+    const data = await response.json();
+    console.log(data)
+    return data;
+  } catch {
+    return null;
+  }
+};
 function HomePage() {
-    return (<><Header />
-        <DashBoard />
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      const data = await fetchUseData();
+      setUserData(userData => ({
+        ...userData,
+        avatar_url: data['avatar_url']
+      }));
+    };
+
+    getUserData();
+  }, []);
+  return (
+    <>
+      <Header profile={userData['avatar_url']}/>
+      <DashBoard />
     </>
-    )
+  )
 }
-function Header() {
-    const navigate=useNavigate();
-    return (<div id="Homeheader">
-        <h1>Medium</h1>
-        <div>
-        <button onClick={()=>navigate('/homepage/addstory')}>Write</button>
-        <h3>Profile</h3>
-        </div>
-    </div>
-    );
-}
+
 export default HomePage;
