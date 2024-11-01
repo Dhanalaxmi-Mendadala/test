@@ -1,40 +1,80 @@
-import "../assets/writeANewStory.css";
-// import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import "./writeANewStory.css";
+import EditorJS from '@editorjs/editorjs';
+import Header from '@editorjs/header';
+import Delimiter from '@editorjs/delimiter';
+import saveDraft from './saveDraft';
+import PropTypes from 'prop-types'
 
-function WriteANewStory () {
+const EditorComponent = ({setEditorData}) => {
+    const editorRef = useRef(null);
+    let editor = null;
+    useEffect(() => {
+       if(!editor) {
+         editor = new EditorJS({
+            placeholder: 'Tell youur story ...',
+            holder: editorRef.current,
+            autofocus: true,
+            tools: {
+                header: {
+                    class: Header,
+                    inlineToolbar: true,
+                    config: {
+                        level: 1,
+                    },
+                },
+                paragraph: {
+                    inlineToolbar: true,
+                    config: {
+                        placeholder: 'Tell your story ...',
+                        level: 1,
+                    },
+                },
+                delimiter: Delimiter,
+            },
+            onReady: () => {
+                console.log('Editor is ready to use');
+            },
+            onChange: async () => {
+                const content = await editor.save();
+                console.log(content);
+                setEditorData(content);
+            },
+        }); }
+
+        return () => {
+            if (editor && typeof editor.destroy === 'function') {
+                editor.destroy().catch(error => console.error('ERROR editor cleanup', error));
+            }
+        };
+    }, [setEditorData]);
+
+    return (
+        <div
+            ref={editorRef}
+            id="editorjs"
+            style={{ border: '1px solid #ccc', padding: '10px' }}
+        />
+    );
+};EditorComponent.propTypes= {
+    setEditorData:PropTypes.func.isRequired,
+}
+const WriteAStory = () => {
+    const [editorData, setEditorData] = useState(null);
+    const [title, setTitle] = useState(null);
     return (
         <>
-        <Header/>
-        {/* <DynamicParagraphs/> */}
-        <Body/>
+        <div id='writeHeader'>
+            <h1>Medium</h1>
+            <div>
+            <button onClick={()=> saveDraft(editorData,title)} id='saveDraft'>Save Draft</button>
+            <button id='publish'>Publish</button>
+            </div>
+            </div>
+            <input placeholder='Title' onChange={(e)=>{setTitle(e.target.value)}}/>
+            <EditorComponent setEditorData={setEditorData}/>
         </>
-    )
+    );
 };
 
-function Body () {
-    return (<div  id="storySpaces">
-        <section >
-        <input className="title" placeholder="Title"></input> <br/>
-        <textarea className="story" placeholder="Tell your story ..."></textarea>
-        </section>
-        </div>)
-}
-
-function Header() {
-    return (<header id="header">
-        <div id="leftDiv">
-          <h1>  <a href="#" id="headerTitle">Medium</a> </h1>
-          <p>Draft in IDIOT</p>
-        </div>
-        <div id="rightDiv">   
-        </div>
-    </header>)
-}
-
-
-
-
-
-// module.exports = {Body, DynamicParagraphs};
-
-export default WriteANewStory;
+export default WriteAStory;

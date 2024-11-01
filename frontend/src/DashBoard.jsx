@@ -11,6 +11,7 @@ async function fetching() {
     });
 
     const data = await response.json();
+    console.log(data)
     return data;
   } catch {
     return null;
