@@ -8,7 +8,7 @@ const fetching = async () => {
     });
     const data = await response.json();
     return data;
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -150,16 +150,16 @@ const StoryComponent = () => {
         <h6 className="author-name"></h6>
       </div>
       {/* {userData.stories.length != 0 ? <> */}
-        <div className="story-details">
-          <h3 className="story-title">{userData.username}</h3>
-          <p className="story-description"></p>
-          <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
-        </div>
-        <div className="story-meta-data">
-          <p className="published-time"></p>
-          <p className="story-claps"></p>
-          <p className="story-responses"></p>
-        </div>
+      <div className="story-details">
+        <h3 className="story-title">{userData.username}</h3>
+        <p className="story-description"></p>
+        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
+      </div>
+      <div className="story-meta-data">
+        <p className="published-time"></p>
+        <p className="story-claps"></p>
+        <p className="story-responses"></p>
+      </div>
       {/* </> */}
     </div>
   )

@@ -2,19 +2,27 @@ import { useState } from "react";
 import "./welcomePage.css";
 import { useEffect } from "react";
 import fetching from "./api";
+import CLIENT_ID from "../clientInfo.jsx";
 import { useNavigate } from "react-router-dom";
-
-function Header(props) {
+import PropTypes from "prop-types";
+function Header({ click }) {
+  const clickOpenFunction = () => {
+    click(true);
+  };
   return (
     <header id="welcomeHeader">
-      <h1 >Medium</h1>
+      <h1>Medium</h1>
       <nav>
-        <p id="signin" onClick={() => props.click(true)}>Sign in</p>
+        <p id="signin" onClick={clickOpenFunction}>
+          Sign in
+        </p>
       </nav>
     </header>
-
   );
 }
+Header.propTypes = {
+  click: PropTypes.func.isRequired,
+};
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,26 +39,30 @@ function WelcomePage() {
     };
     checkLoginStatus();
   }, []);
-
   if (isLoggedIn) {
     navigate("/homepage");
   }
   if (error) {
-    return <h1 style={{ color: "red" }}>Error!404 Page Not FOUND..Connection Issue</h1>
-  }
-  else {
     return (
-      isLoggedIn === false && <div>
-        <Header click={setClicked} />
-        {clicked && <SignInPage click={setClicked}></SignInPage>}
-        <main id="welcomeBody">
-          <h2>
-            Human <br /> Stories & Ideas
-          </h2>
-          <p>A place to read, write, and deepen your understanding</p>
-        </main>
-        <Footer></Footer>
-      </div>
+      <h1 style={{ color: "red" }}>
+        Error!404 Page Not FOUND..Connection Issue
+      </h1>
+    );
+  } else {
+    return (
+      isLoggedIn === false && (
+        <div>
+          <Header click={setClicked} />
+          {clicked && <SignInPage click={setClicked}></SignInPage>}
+          <main id="welcomeBody">
+            <h2>
+              Human <br /> Stories & Ideas
+            </h2>
+            <p>A place to read, write, and deepen your understanding</p>
+          </main>
+          <Footer></Footer>
+        </div>
+      )
     );
   }
 }
@@ -65,21 +77,29 @@ function Footer() {
         </nav>
       </footer>
     </>
-  )
+  );
 }
 function SignInPage({ click }) {
-
+  const clickCloseFunction = () => {
+    click(false);
+  };
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
-    <div id="signIn" onClick={() => click(false)}>
+    <div id="signIn" onClick={clickCloseFunction}>
       <div className="popup">
-        <p className="close" onClick={() => click(false)}>&times;</p>
+        <p className="close" onClick={() => click(false)}>
+          &times;
+        </p>
         <h2 className="welcomeBack">Welcome Back.</h2>
         <p className="signInGitHub">
-          <img src="/assets/github.png"></img><a href={githubAuthUrl}>Sign in with GitHub</a></p>
+          <img src="/assets/github.png"></img>
+          <a href={githubAuthUrl}>Sign in with GitHub</a>
+        </p>
       </div>
     </div>
-  )
+  );
 }
-
+SignInPage.propTypes = {
+  click: PropTypes.func.isRequired,
+};
 export default WelcomePage;
