@@ -5,12 +5,12 @@ import fetching from "./api";
 import CLIENT_ID from "../clientInfo";
 import { useNavigate } from "react-router-dom";
 
-function Header(props) {
+function Header() {
   return (
     <header id="welcomeHeader">
       <h1 >Medium</h1>
       <nav>
-        <p id="signin" onClick={() => props.click(true)}>Sign in</p>
+        <p id="signin">Sign in</p>
       </nav>
     </header>
 
@@ -68,13 +68,13 @@ function Footer() {
     </>
   )
 }
-function SignInPage({ click }) {
+function SignInPage() {
 
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
-    <div id="signIn" onClick={() => click(false)}>
+    <div id="signIn">
       <div className="popup">
-        <p className="close" onClick={() => click(false)}>&times;</p>
+        <p className="close">&times;</p>
         <h2 className="welcomeBack">Welcome Back.</h2>
         <p className="signInGitHub">
           <img src="/assets/github.png"></img><a href={githubAuthUrl}>Sign in with GitHub</a></p>
