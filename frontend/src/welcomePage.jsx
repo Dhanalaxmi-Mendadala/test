@@ -3,9 +3,9 @@ import "./welcomePage.css";
 import { useEffect } from "react";
 import fetching from "./api";
 import CLIENT_ID from "../clientInfo.jsx";
-import CLIENT_ID from "../clientInfo.jsx";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+
 function Header({ click }) {
   const clickOpenFunction = () => {
     click(true);
@@ -58,25 +58,6 @@ function WelcomePage() {
     );
   } else {
     return (
-      <h1 style={{ color: "red" }}>
-        Error!404 Page Not FOUND..Connection Issue
-      </h1>
-    );
-  } else {
-    return (
-      isLoggedIn === false && (
-        <div>
-          <Header click={setClicked} />
-          {clicked && <SignInPage click={setClicked}></SignInPage>}
-          <main id="welcomeBody">
-            <h2>
-              Human <br /> Stories & Ideas
-            </h2>
-            <p>A place to read, write, and deepen your understanding</p>
-          </main>
-          <Footer></Footer>
-        </div>
-      )
       isLoggedIn === false && (
         <div>
           <Header click={setClicked} />
@@ -105,7 +86,6 @@ function Footer() {
       </footer>
     </>
   );
-  );
 }
 function SignInPage({ click }) {
   const clickCloseFunction = () => {
@@ -114,31 +94,24 @@ function SignInPage({ click }) {
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
     <div id="signIn" onClick={clickCloseFunction}>
-    <div id="signIn" onClick={clickCloseFunction}>
-      <div className="popup">
-        <p className="close" onClick={() => click(false)}>
-          &times;
-        </p>
-        <p className="close" onClick={() => click(false)}>
-          &times;
-        </p>
-        <h2 className="welcomeBack">Welcome Back.</h2>
-        <p className="signInGitHub">
-          <img src="/assets/github.png"></img>
-          <a href={githubAuthUrl}>Sign in with GitHub</a>
-        </p>
-          <img src="/assets/github.png"></img>
-          <a href={githubAuthUrl}>Sign in with GitHub</a>
-        </p>
+      <div id="signIn" onClick={clickCloseFunction}>
+        <div className="popup">
+          <p className="close" onClick={() => click(false)}>
+            &times;
+          </p>
+          <h2 className="welcomeBack">Welcome Back.</h2>
+          <p className="signInGitHub">
+            <img src="/assets/github.png"></img>
+            <a href={githubAuthUrl}>Sign in with GitHub</a>
+          </p>
+        </div>
       </div>
     </div>
   );
-  );
 }
+
 SignInPage.propTypes = {
   click: PropTypes.func.isRequired,
 };
-SignInPage.propTypes = {
-  click: PropTypes.func.isRequired,
-};
+
 export default WelcomePage;
