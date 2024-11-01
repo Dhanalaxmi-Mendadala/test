@@ -3,21 +3,22 @@ import "./welcomePage.css";
 import { useEffect } from "react";
 import fetching from "./api";
 import CLIENT_ID from "../clientInfo";
+import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 
-function Header(props) {
+function Header() {
   return (
     <header id="welcomeHeader">
       <h1 >Medium</h1>
       <nav>
-        <p id="signin" onClick={() => props.click(true)}>Sign in</p>
+        <p id="signin">Sign in</p>
       </nav>
     </header>
 
   );
 }
 function WelcomePage() {
-  const [clicked, setClicked] = useState(false);
+  // const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -42,8 +43,8 @@ function WelcomePage() {
   else {
     return (
       isLoggedIn === false && <div>
-        <Header click={setClicked} />
-        {clicked && <SignInPage click={setClicked}></SignInPage>}
+        <Header  />
+         <SignInPage ></SignInPage>
         <main id="welcomeBody">
           <h2>
             Human <br /> Stories & Ideas
@@ -68,13 +69,13 @@ function Footer() {
     </>
   )
 }
-function SignInPage({ click }) {
+function SignInPage({click}) {
 
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
-    <div id="signIn" onClick={() => click(false)}>
+    <div id="signIn">
       <div className="popup">
-        <p className="close" onClick={() => click(false)}>&times;</p>
+        <p className="close" >&times;</p>
         <h2 className="welcomeBack">Welcome Back.</h2>
         <p className="signInGitHub">
           <img src="/assets/github.png"></img><a href={githubAuthUrl}>Sign in with GitHub</a></p>
@@ -82,5 +83,7 @@ function SignInPage({ click }) {
     </div>
   )
 }
-
+SignInPage.propTypes={
+  click:PropTypes.func.isRequired,
+}
 export default WelcomePage;
