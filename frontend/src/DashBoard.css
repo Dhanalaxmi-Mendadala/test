@@ -1,51 +1,38 @@
+.story-component {
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: 35px 120px 35px;
+  width: 60%;
+  margin: auto;
+  position: relative;
+}
 
+.author-details {
+  grid-row: span;
+  border: 1px solid red;
+}
 
-.main-header {
-    margin-top: 5px;
-    border: 1px solid rgb(55, 55, 55);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .user-profile-icon {
-    height: 30px;
-    aspect-ratio: 1;
-    border: 1px solid blue;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-  }
-  
-  .story-component {
-    border: 2px solid black;
-    display: grid;
-    grid-template-rows: 35px 120px 35px;
-    width: 60%;
-    margin: auto;
-    position: relative;
-  }
-  
-  .author-details {
-    grid-row: span;
-    border: 1px solid red;
-  }
-  
-  .story-details {
-    grid-row: span;
-    border: 1px solid blue;
-    position: inherit;
-  }
-  .story-cover-image{
-    height: 70px;
-    aspect-ratio: 16/9;
-    position: absolute;
-    right: 10px;
-    top: 20px;
-  }
-  
-  .story-meta-data {
-    grid-row: span;
-    border: 1px solid brown;
-  }
+.story-details {
+  grid-row: span;
+  border: 1px solid blue;
+  position: inherit;
+}
+
+.story-cover-image {
+  height: 70px;
+  aspect-ratio: 16/9;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
+
+.story-meta-data {
+  grid-row: span;
+  border: 1px solid brown;
+}
+
+.author-avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
