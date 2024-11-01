@@ -10,20 +10,27 @@ const Database = require('./db/database');
 const userRouter = require('./routes/userRouter');
 const storyRouter = require('./routes/storyRouter');
 const handler = require('./handlers/commonHandler');
-const { DB_NAME, CLIENT_ID, CLIENT_SECRET, SECRET_MSG } = require('../config');
+const {
+  DB_NAME,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  SECRET_MSG,
+  FRONT_END_URL,
+} = require('../config');
 
 const app = express();
 const db = new Database(new sqlite.Database(DB_NAME));
-app.locals = { db, CLIENT_ID, CLIENT_SECRET, SECRET_MSG };
+app.locals = { db, CLIENT_ID, CLIENT_SECRET, SECRET_MSG, FRONT_END_URL };
 
 app.use(requestLogger('dev'));
 app.use(express.static('public'));
 app.use(
   cors({
-    origin: 'http://localhost:5173',
-    methods: 'GET,PUT,POST,DELETE',
+    origin: FRONT_END_URL,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
+    credentials: true,
   })
 );
 app.use(express.json());
