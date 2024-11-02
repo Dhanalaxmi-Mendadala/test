@@ -9,29 +9,26 @@ const fetchUseData = async () => {
       credentials: "include",
     });
     const data = await response.json();
-    console.log(data)
     return data;
   } catch {
     return null;
   }
 };
-function HomePage() {
+
+const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserData = async () => {
-      const data = await fetchUseData();
-      setUserData(userData => ({
-        ...userData,
-        avatar_url: data['avatar_url']
-      }));
+      const data = await fetchUseData()
+      setUserData(data);
     };
-
     getUserData();
   }, []);
+  
   return (
     <>
-      <Header profile={userData['avatar_url']}/>
-      <DashBoard />
+      <Header profile={userData['avatar_url']} />
+      <DashBoard stories={userData['stories']} />
     </>
   )
 }
