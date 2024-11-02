@@ -9,7 +9,6 @@ const fetchUseData = async () => {
       credentials: "include"
     });
     const data = await response.json();
-    console.log(data, 'while fetching')
     return data;
   } catch {
     return null;
@@ -25,7 +24,6 @@ const HomePage = () => {
     };
     getUserData();
   }, []);
-console.log(userData, 'at home page')
   return (
     <>
       <Header profile={userData['avatar_url']} />

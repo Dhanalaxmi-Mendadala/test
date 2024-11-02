@@ -27,10 +27,8 @@ const StoryComponent = ({ currentStory }) => {
     fetchCoverPage(currentStory['']);
   }, []);
 
-  console.log(storyData, 'st story', currentStory);
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
-  console.log(storyDescription)
 
   return (
     <div className="story-component" onClick={() => {
@@ -67,7 +65,6 @@ StoryComponent.propTypes = {
 
 
 const DashBoard = ({ stories }) => {
-  console.log('happy', stories)
   return (
     <div className="user-dashboard">
       {stories ? stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
