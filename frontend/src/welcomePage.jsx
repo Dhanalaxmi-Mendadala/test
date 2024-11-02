@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./welcomePage.css";
+import "./css/welcomePage.css";
 import { useEffect } from "react";
 import fetching from "./api";
 // import CLIENT_ID from "../clientInfo.jsx";
@@ -87,7 +87,7 @@ function SignInPage({click}) {
   const clickCloseFunction = () => {
     click(false);
   };
-  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=7c902cf5c0915e0fed2a`;
   return (
     <div id="signIn" onClick={clickCloseFunction}>
       <div id="signIn" onClick={clickCloseFunction}>

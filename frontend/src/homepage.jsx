@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import DashBoard from './DashBoard'
 import Header from './Header';
-import './homepage.css';
+import './css/homepage.css';
 
 const fetchUseData = async () => {
   try {

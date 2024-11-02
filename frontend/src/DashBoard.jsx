@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import './DashBoard.css'
+import './css/DashBoard.css'
 import { useNavigate } from "react-router-dom"
 
 

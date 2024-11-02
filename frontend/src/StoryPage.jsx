@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import './StoryPage.css'
+import './css/StoryPage.css'
 import Header from './Header';
 
 const StoryPage = () => {

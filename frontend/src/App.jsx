@@ -1,6 +1,5 @@
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './homepage';
 import WelcomePage from './welcomePage';
 import HomePage from './homepage';
 import AddStory from './addstory.jsx';
