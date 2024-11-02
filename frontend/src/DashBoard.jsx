@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import './css/DashBoard.css'
 
-const generateTimeDifference = (timeStamp) => {
-  const present = new Date(timeStamp)
-  const month = present.getMonth() + 1;
-  const date = present.getDate();
-  return month + '-' + date;
-};
+// const generateTimeDifference = (timeStamp) => {
+//   const present = new Date(timeStamp)
+//   const month = present.getMonth() + 1;
+//   const date = present.getDate();
+//   return month + '-' + date;
+// };
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
