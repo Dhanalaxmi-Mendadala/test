@@ -6,22 +6,61 @@
     top: 0px;
     padding: 10px;
     align-items: center;
+    z-index: 1;
+    background-color: white;
 }
+
 #publish {
     background-color: lightgreen;
-    color: white;
+    color: rgb(28, 24, 24);
     width: 80px;
+    border: none;
     border-radius: 25px;
+    padding: 10px;
+    letter-spacing: 0.5px;
+    position: fixed;
+    bottom: 20px;
+    right: 5%;
 }
+
 #writeHeader div {
     width: 190px;
     display: flex;
     justify-content: space-between;
 }
+
 #saveDraft {
     background: transparent;
     padding: 5px;
     width: 100px;
     outline: none;
     border: 0px;
+}
+
+.editor-component {
+    border: 1px solid blue;
+    width: 100%;
+}
+
+.editorTitle {
+    border: none;
+    width: 75%;
+    height: 100px;
+    font-size: xx-large;
+    padding-left: 15%;
+    font-family: sans-serif;
+    outline: none;
+    margin-top: 20px;
+    box-sizing: border-box;
+    word-break: break-all;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.editorTitle:hover {
+    outline: none;
+}
+
+.editor {
+    z-index: -1;
 }
