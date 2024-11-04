@@ -5,7 +5,7 @@ import fetching from "./api";
 // import CLIENT_ID from "../clientInfo.jsx";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-// const CLIENT_ID = '7c902cf5c0915e0fed2a';
+const CLIENT_ID = '7c902cf5c0915e0fed2a';
 function Header({ click }) {
   const clickOpenFunction = () => {
     click(true);
