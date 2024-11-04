@@ -24,7 +24,9 @@
 .story-component {
   border: 2px solid black;
   display: grid;
-  grid-template-rows: 35px 110px 35px;
+  grid-template-rows: 35px 130px 35px;
+  width: 60%;
+  margin: auto;
 }
 
 .author-details {
