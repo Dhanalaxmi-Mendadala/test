@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import {useState } from 'react';
 import './css/ProfileMenu.css'; // Import CSS for styling
 import author from "../assets/author.jpeg";
 import logout from "../assets/logout.jpeg";
 import story from "../assets/story.jpeg";
+import  PropTypes from 'prop-types';
+ProfileMenu.propTypes={
+  profile:PropTypes.string.isRequired,
+  username:PropTypes.string.isRequired
+}
 const ProfileMenu = ({profile,username}) => {
   const [isOpen, setIsOpen] = useState(false);
-
+   console.log(profile,username)
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -33,6 +38,11 @@ const ProfileMenu = ({profile,username}) => {
     </div>
   );
 };
+DropdownItem.propTypes={
+  img:PropTypes.string.isRequired,
+  path:PropTypes.string.isRequired,
+  name:PropTypes.string.isRequired,
+}
 function DropdownItem(props){
   return (
     <div className="dropdownItem">

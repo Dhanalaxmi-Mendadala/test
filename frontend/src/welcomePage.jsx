@@ -83,7 +83,7 @@ function Footer() {
   );
 }
 function SignInPage({ click }) {
-  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=7c902cf5c0915e0fed2a`;
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
   return (
     <div id="signIn" onClick={() => click(false)}>
       <div className="popup">
