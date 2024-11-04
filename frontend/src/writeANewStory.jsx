@@ -46,7 +46,7 @@ const EditorComponent = ({ setEditorData }) => {
     }
     return () => {
       if (editor && typeof editor.destroy === 'function') {
-        editor.destroy().catch(error => console.error('ERROR editor cleanup', error));
+        editor.destroy()
       }
     };
   }, [setEditorData]);
@@ -68,12 +68,10 @@ const WriteAStory = () => {
   return (
     <>
       <div id='writeHeader'>
-        <h1>Medium</h1>
         <div>
           <button onClick={() => saveDraft(editorData, title)} id='saveDraft'>Save Draft</button>
           <button id='publish'>Publish</button>
         </div>
-        <ProfileMenu/>
       </div>
       <div className="editor-component">
         <textarea placeholder='Title' className='editorTitle' onChange={(e) => { setTitle(e.target.value) }} />

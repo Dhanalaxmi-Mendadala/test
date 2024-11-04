@@ -5,6 +5,7 @@ import logout from "../assets/logout.jpeg";
 import story from "../assets/story.jpeg";
 import PropTypes from "prop-types";
 import { UserInfo } from "./homepage";
+import { Link } from "react-router-dom";
 
 const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +39,9 @@ const ProfileMenu = () => {
               {userName || "Guest"}
             </a>
           </div>
-          <DropdownItem img={author} path="/homepage/profile" name="Profile" />
+          <Link to = 'profile'>
+          <DropdownItem img={author} name="Profile" />
+          </Link>
           <DropdownItem
             img={story}
             path="/homepage/yourStories"

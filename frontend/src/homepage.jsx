@@ -1,15 +1,16 @@
 import { useState, useEffect, createContext } from "react";
 import Header from "./Header";
 import "./css/homepage.css";
+import { Outlet } from "react-router-dom";
 
-const UserInfo = createContext(null);
+export const UserInfo = createContext(null);
 const fetchUseData = async () => {
   try {
     const response = await fetch("http://localhost:8000/user/dashboard", {
       credentials: "include",
     });
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     return data;
   } catch {
     return null;
@@ -32,10 +33,9 @@ const HomePage = () => {
     <>
       <UserInfo.Provider value={userData}>
         <Header />
-        {/* <DashBoard stories={userData["stories"]} /> */}
+        <Outlet />
       </UserInfo.Provider>
     </>
   );
 };
-export default HomePage
-export {UserInfo};
+export default HomePage;
