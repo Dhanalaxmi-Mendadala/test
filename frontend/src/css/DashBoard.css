@@ -1,13 +1,20 @@
 .story-component {
-  border: 2px solid grey;
+  border: 0.01px solid grey;
   display: grid;
   grid-template-rows: 45px 130px 45px;
   width: 60%;
   margin: auto;
   position: relative;
-  box-shadow: 10px 10px 5px grey;
   cursor: pointer;
+  margin-bottom: 40px;
 }
+
+.story-component:hover {
+  transform: scale(1.005);
+  box-shadow: 5px 5px 5px grey;
+
+}
+
 .author-details {
   grid-row: span;
   display: flex;
@@ -15,21 +22,25 @@
   align-items: center;
   padding-left: 20px;
 }
+
 .story-details {
   grid-row: span;
   position: inherit;
   padding-left: 20px;
   overflow: hidden;
 }
+
 .story-title {
   margin: 10px;
 }
+
 .story-description {
   font-size: 17px;
   margin: 10px;
   max-width: 70%;
   padding-bottom: 10px;
 }
+
 .story-cover-image {
   height: 70px;
   aspect-ratio: 16/9;
@@ -37,10 +48,12 @@
   right: 10px;
   top: 20px;
 }
+
 .published-time {
   margin: 10px;
   padding-left: 20px;
 }
+
 .story-meta-data {
   grid-row: span;
 }
@@ -50,13 +63,18 @@
   width: 30px;
   border-radius: 50%;
 }
+
 .author-name {
   font-family: Arial, Helvetica, sans-serif;
-}
-.author-name {
   padding-left: 10px;
 }
+
+.author-name::first-letter {
+  text-transform: capitalize;
+}
+
 .title {
   font-size: xx-large;
   padding-left: 8px;
+  font-family: sans-serif;
 }
