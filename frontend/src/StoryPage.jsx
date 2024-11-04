@@ -22,9 +22,9 @@ const StoryContent = ({ contentData }) => {
     </div>
   )
 }
-// StoryContent.propTypes = {
-//   contentData: PropTypes.object.isRequired
-// }
+StoryContent.propTypes = {
+  contentData: PropTypes.object.isRequired
+}
 
 const StoryPage = () => {
   const location = useLocation();

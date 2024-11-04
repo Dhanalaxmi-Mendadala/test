@@ -97,8 +97,8 @@ function SignInPage({ click }) {
   );
 }
 
-// SignInPage.propTypes = {
-//   click: PropTypes.func.isRequired,
-// };
+SignInPage.propTypes = {
+  click: PropTypes.func.isRequired,
+};
 
 export default WelcomePage;

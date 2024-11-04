@@ -15,7 +15,6 @@ const StoryComponent = ({ currentStory }) => {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchCoverPage = async () => {
-
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
       setStoryData(storyData => ({
         ...storyData,
@@ -59,9 +58,9 @@ const StoryComponent = ({ currentStory }) => {
   )
 }
 
-// StoryComponent.propTypes = {
-//   currentStory: PropTypes.object.isRequired
-// }
+StoryComponent.propTypes = {
+  currentStory: PropTypes.object.isRequired
+}
 
 
 const DashBoard = ({ stories }) => {
@@ -73,9 +72,9 @@ const DashBoard = ({ stories }) => {
   )
 }
 
-// DashBoard.propTypes = {
-//   stories: PropTypes.object.isRequired
-// }
+DashBoard.propTypes = {
+  stories: PropTypes.object.isRequired
+}
 
 export default DashBoard
 // app -|
