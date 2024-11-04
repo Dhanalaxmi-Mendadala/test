@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react';
 import { UserInfo } from './homepage'
 
 function Profile() {
     const userData = useContext(UserInfo);
     console.log(userData)
   return (
-    <div>Profile</div>
+    <div>
+        <p>{userData.username}</p>
+    </div>
   )
 }
 

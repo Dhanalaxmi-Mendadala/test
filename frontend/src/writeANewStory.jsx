@@ -5,7 +5,6 @@ import Delimiter from '@editorjs/delimiter';
 import saveDraft from './saveDraft';
 import PropTypes from 'prop-types'
 import "./css/writeANewStory.css";
-import ProfileMenu from './profileDropDown';
 
 
 const EditorComponent = ({ setEditorData }) => {

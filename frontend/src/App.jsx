@@ -6,6 +6,7 @@ import StoryPage from "./StoryPage.jsx";
 import WriteAStory from "./writeANewStory.jsx";
 import DashBoard from "./DashBoard.jsx";
 import Profile from "./profile.jsx";
+import YourStories from "./YourStories.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="addstory" element={<WriteAStory />} />
             <Route path="storypage" element={<StoryPage />} />
             <Route path="profile" element= {<Profile />} />
+            <Route path="yourstories" element= {<YourStories />} />
           </Route>
         </Routes>
       </Router>

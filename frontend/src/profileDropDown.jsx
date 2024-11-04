@@ -42,11 +42,13 @@ const ProfileMenu = () => {
           <Link to = 'profile'>
           <DropdownItem img={author} name="Profile" />
           </Link>
-          <DropdownItem
+         <Link to = 'yourstories'>
+         <DropdownItem
             img={story}
             path="/homepage/yourStories"
             name="Your Stories"
           />
+         </Link>
           <DropdownItem img={logout} path="/logout" name="Logout" />
         </div>
       )}
