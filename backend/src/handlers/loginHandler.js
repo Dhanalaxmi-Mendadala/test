@@ -49,7 +49,7 @@ const handleLogin = (req, res) => {
     .then(access_token => fetchUserDetails(req, res, access_token))
     .then(userData => storeUserDetails(req, res, userData))
     .then(userData => updateSessionWithUserDetails(req, res, userData))
-    .then(() => res.status(StatusCodes.ACCEPTED).json({ status: 'success' }));
+    .then(() => res.redirect(req.app.locals.FRONT_END_URL));
 };
 
 const handlerIsLoggedIn = (req, res) => {

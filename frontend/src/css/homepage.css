@@ -1,0 +1,29 @@
+.main-header {
+    margin-top: 5px;
+    border: 1px solid rgb(55, 55, 55);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.main-header button {
+    position: absolute;
+    background: transparent;
+    right: 15%;
+    padding: 5px 0 3px 0;
+    border-radius: 25px;
+    width: 50px;
+    font-size: small;
+    border: 2px solid black;
+}
+
+.user-profile-icon {
+    height: 33px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    cursor: pointer;
+}

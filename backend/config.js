@@ -3,5 +3,5 @@ module.exports = {
   CLIENT_ID: process.env.CLIENT_ID,
   CLIENT_SECRET: process.env.CLIENT_SECRET,
   SECRET_MSG: process.env.SECRET_MSG,
-  FRONT_END_URL: process.env.FRONT_END_URL
+  FRONT_END_URL: process.env.FRONT_END_URL,
 };

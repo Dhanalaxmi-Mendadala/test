@@ -1,137 +1,57 @@
-import PropTypes from 'prop-types';
-const dashBoardData = [
-  {
-    "id": 1,
-    "title": "9 Ways to Build Virality into your Product",
-    "content": [
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "header",
-        "data": {
-          "text": "Workspace",
-          "level": 2
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "delimiter",
-        "data": {}
-      },
-      {
-        "type": "header",
-        "data": {
-          "text": "Workspace",
-          "level": 2
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      }
-    ],
-    "published_at": "2020-07-22 20:13:19",
-    "author": "abhilashkasula",
-    "author_id": 58025056,
-    "tags": [
-      "technology",
-      "maths",
-      "science",
-      "thriller",
-      "sci-fi"
-    ]
-  },
-  {
-    "id": 3,
-    "title": "9 Ways to Build Virality into your Product",
-    "content": [
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "header",
-        "data": {
-          "text": "Workspace",
-          "level": 2
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      },
-      {
-        "type": "delimiter",
-        "data": {}
-      },
-      {
-        "type": "header",
-        "data": {
-          "text": "Workspace",
-          "level": 2
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-        }
-      }
-    ],
-    "published_at": "2020-07-22 20:13:19",
-    "author": "anil-muraleedharan",
-    "author_id": 56071561,
-    "tags": [
-      "comic"
-    ]
-  }
-]
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import PropTypes from 'prop-types'
+import './css/DashBoard.css'
 
- StoryComponent.propTypes = {
-   recentStory:PropTypes.object.isRequired,
- }
-const StoryComponent = ({ recentStory }) => {
-  console.log(recentStory, null);
+// const generateTimeDifference = (timeStamp) => {
+//   const present = new Date(timeStamp)
+//   const month = present.getMonth() + 1;
+//   const date = present.getDate();
+//   return month + '-' + date;
+// };
+
+const StoryComponent = ({ currentStory }) => {
+  const [storyData, setStoryData] = useState({});
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchCoverPage = async () => {
+
+      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
+      setStoryData(storyData => ({
+        ...storyData,
+        image: response['url'],
+      }));
+    };
+    setStoryData(currentStory);
+    // setStoryData({ ...storyData, publishedTime: generateTimeDifference(storyData.published_at) })
+    fetchCoverPage(currentStory['']);
+  }, []);
+
+
+  const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
+
   return (
-    <div className="story-component">
+    <div className="story-component" onClick={() => {
+      navigate('/homepage/storypage', {
+        state: {
+          currentStory: storyData,
+        }
+      })
+    }}>
+
       <div className="author-details">
-        <img src="" alt="avatar" className="author-avatar" />
-        <h6 className="author-name">{recentStory['author']}</h6>
+        <img src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`} alt="avatar" className="author-avatar" />
+        <h4 className="author-name">{storyData.author || 'Author'}</h4>
       </div>
       <div className="story-details">
-        <h3 className="story-title">{recentStory['title']}</h3>
-        <p className="story-description">{recentStory['content'][0]['data']['text']}</p>
-        <img src="" alt="cover-image" className="story-cover-image" />
+        <h3 className="title">{storyData.title || 'Title'}</h3>
+        <p className="story-description">
+          {storyDescription || 'Story decription'}
+        </p>
+        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        <p className="published-time"></p>
+        <p className="published-time">{storyData.publishedTime}</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
@@ -139,17 +59,31 @@ const StoryComponent = ({ recentStory }) => {
   )
 }
 
-const DashBoard = () => {
-console.log(dashBoardData)
+StoryComponent.propTypes = {
+  currentStory: PropTypes.object.isRequired
+}
+
+
+const DashBoard = ({ stories }) => {
   return (
-    <>
-      <h3>dash boradr</h3>
-      {
-        dashBoardData.map((recentStory,i) =>
-          <StoryComponent data={recentStory} key={i} />)
-      }
-    </>
+    <div className="user-dashboard">
+      {stories ? stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
+        : <div className="error-message">Please follow Authors to see the stories</div>}
+    </div>
   )
 }
 
+DashBoard.propTypes = {
+  stories: PropTypes.object.isRequired
+}
+
 export default DashBoard
+
+
+
+// app -|
+//      welcomePage -|
+//                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|
+//                        DashBoard -|                                                             profileIcon
+//                               multipleStories -| #onclick
+//                                              StoryPage
