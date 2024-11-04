@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
-import Header from "./Header";
 import "./css/yourStories.css"
 import getStories from "./getStoriesApi";
+import PropTypes from 'prop-types'
 function YourStories(){
  const [stories, setStoriesData] = useState(false);
  const [error, setError] = useState(false);
@@ -36,6 +36,11 @@ function Drafts({drafts}){
       </div>}
   </div>)
 }
+
+Drafts.propTypes = {
+    drafts: PropTypes.array.isRequired
+}
+
 function Publish({published}){
   return (<div>
    { published.length===0?<p>Please publish your drafts</p>:<div>
@@ -43,6 +48,11 @@ function Publish({published}){
       </div>}
   </div>)
 }
+
+Publish.propTypes = {
+    published: PropTypes.array.isRequired
+}
+
 function Stories({stories}){
   const [currentPage,setCurrentPage]=useState('draft');
   return (
@@ -59,4 +69,9 @@ function Stories({stories}){
       </div>
       );
 }
+
+Stories.propTypes = {
+    stories: PropTypes.array.isRequired
+}
+
 export default YourStories;
