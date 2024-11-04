@@ -5,6 +5,7 @@ import Delimiter from '@editorjs/delimiter';
 import saveDraft from './saveDraft';
 import PropTypes from 'prop-types'
 import "./css/writeANewStory.css";
+import ProfileMenu from './profileDropDown';
 
 const EditorComponent = ({ setEditorData }) => {
   const editorRef = useRef(null);
@@ -71,6 +72,7 @@ const WriteAStory = () => {
           <button onClick={() => saveDraft(editorData, title)} id='saveDraft'>Save Draft</button>
           <button id='publish'>Publish</button>
         </div>
+        <ProfileMenu/>
       </div>
       <div className="editor-component">
         <textarea placeholder='Title' className='editorTitle' onChange={(e) => { setTitle(e.target.value) }} />

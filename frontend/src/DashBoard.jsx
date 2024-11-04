@@ -73,7 +73,7 @@ const DashBoard = ({ stories }) => {
 }
 
 DashBoard.propTypes = {
-  stories: PropTypes.object.isRequired
+  stories: PropTypes.array.isRequired
 }
 
 export default DashBoard
