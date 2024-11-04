@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext } from "react";
-import DashBoard from "./DashBoard";
 import Header from "./Header";
 import "./css/homepage.css";
 
@@ -10,12 +9,12 @@ const fetchUseData = async () => {
       credentials: "include",
     });
     const data = await response.json();
+    console.log(data)
     return data;
   } catch {
     return null;
   }
 };
-
 const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
@@ -33,8 +32,7 @@ const HomePage = () => {
     <>
       <UserInfo.Provider value={userData}>
         <Header />
-        
-        <DashBoard stories={userData["stories"]} />
+        {/* <DashBoard stories={userData["stories"]} /> */}
       </UserInfo.Provider>
     </>
   );

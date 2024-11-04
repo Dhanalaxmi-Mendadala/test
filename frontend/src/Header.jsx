@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import PropTypes from 'prop-types';
 import ProfileMenu from "./profileDropDown";
+
 const Header = () => {
   const navigate = useNavigate();
   return (
@@ -10,9 +10,6 @@ const Header = () => {
       <ProfileMenu />
     </header>
   )
-}
-Header.propTypes = {
-  profile:PropTypes.string.isRequired,
 }
 
 export default Header

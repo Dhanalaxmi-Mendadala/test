@@ -50,11 +50,6 @@ const ProfileMenu = () => {
     </div>
   );
 };
-DropdownItem.propTypes = {
-  img: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
 function DropdownItem(props) {
   return (
     <div className="dropdownItem">
@@ -65,4 +60,9 @@ function DropdownItem(props) {
     </div>
   );
 }
+DropdownItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 export default ProfileMenu;

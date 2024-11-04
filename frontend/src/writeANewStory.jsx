@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import "./css/writeANewStory.css";
 import ProfileMenu from './profileDropDown';
 
+
 const EditorComponent = ({ setEditorData }) => {
   const editorRef = useRef(null);
   let editor = null;
