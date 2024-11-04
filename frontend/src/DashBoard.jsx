@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const dashBoardData = [
   {
     "id": 1,
@@ -113,6 +114,9 @@ const dashBoardData = [
   }
 ]
 
+ StoryComponent.propTypes = {
+   recentStory:PropTypes.object.isRequired,
+ }
 const StoryComponent = ({ recentStory }) => {
   console.log(recentStory, null);
   return (
