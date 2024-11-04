@@ -11,8 +11,8 @@ const Header = ({profile}) => {
     </header>
   )
 }
-Header.propTypes = {
-  profile:PropTypes.object.isRequired,
-}
+// Header.propTypes = {
+//   profile:PropTypes.object.isRequired,
+// }
 
 export default Header

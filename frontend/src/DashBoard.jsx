@@ -59,9 +59,9 @@ const StoryComponent = ({ currentStory }) => {
   )
 }
 
-StoryComponent.propTypes = {
-  currentStory: PropTypes.object.isRequired
-}
+// StoryComponent.propTypes = {
+//   currentStory: PropTypes.object.isRequired
+// }
 
 
 const DashBoard = ({ stories }) => {
@@ -73,14 +73,11 @@ const DashBoard = ({ stories }) => {
   )
 }
 
-DashBoard.propTypes = {
-  stories: PropTypes.object.isRequired
-}
+// DashBoard.propTypes = {
+//   stories: PropTypes.object.isRequired
+// }
 
 export default DashBoard
-
-
-
 // app -|
 //      welcomePage -|
 //                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|
