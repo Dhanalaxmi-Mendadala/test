@@ -20,9 +20,8 @@ const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserData = async () => {
-      const data = await fetchUseData();
-      setUserData(data);
-      console.log(data);
+     const data = await fetchUseData();
+      setUserData(data||{})
     };
     getUserData();
   }, []);
