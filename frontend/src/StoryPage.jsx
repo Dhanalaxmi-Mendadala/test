@@ -47,7 +47,6 @@ const StoryPage = () => {
         <img className='story-coverpage' src={storyData.image}></img>
       </div>
       <div className='story-content-container'>
-        {/* <p className='story-content'></p> */}
         <StoryContent contentData={storyData.content} className='story-content' />
       </div>
     </main> : <p>Error</p>
