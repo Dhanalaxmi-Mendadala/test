@@ -3,7 +3,7 @@ import "./css/yourStories.css"
 import getStories from "./getStoriesApi";
 import PropTypes from 'prop-types'
 
-function YourStories() {
+function YourStories({stories}) {
   const [stories, setStories] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -194,6 +194,7 @@ const STORIES = {
 
 function Stories({ stories }) {
   const [currentPage, setCurrentPage] = useState('draft');
+  console.log(stories)
   return (
     <div id="yourStories">
       <h1>Your Stories</h1>
@@ -209,8 +210,8 @@ function Stories({ stories }) {
   );
 }
 
-// Stories.propTypes = {
-//   stories: PropTypes.array.isRequired
-// }
+Stories.propTypes = {
+  stories: PropTypes.array.isRequired
+}
 
 export default YourStories;
