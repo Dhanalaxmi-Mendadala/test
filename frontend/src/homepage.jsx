@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import DashBoard from './DashBoard';
 import Header from './Header';
 import './css/homepage.css';
-// import './myprofile';
+import MyProfile from './myprofile';
 
 const fetchUseData = async () => {
   try {
@@ -18,19 +18,23 @@ const fetchUseData = async () => {
 
 const HomePage = () => {
   const [userData, setUserData] = useState({});
+
   useEffect(() => {
     const getUserData = async () => {
       const data = await fetchUseData();
       setUserData(data);
+      console.log(data);
     };
     getUserData();
   }, []);
+  if(userData===null||Object.keys(userData).length===0){
+    return <div>Error in fetching</div>
+  }
   return (
     <>
       <Header profile={userData['avatar_url']} />
       <DashBoard stories={userData['stories']} />
+      <MyProfile/>
     </>
-  )
-}
-
+  )}
 export default HomePage;

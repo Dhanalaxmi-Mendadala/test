@@ -44,3 +44,32 @@
   grid-row: span;
   border: 1px solid brown;
 }
+
+/* src/App.css */
+.profile {
+  text-align: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-header img {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-stats {
+  margin-top: 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}

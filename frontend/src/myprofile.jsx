@@ -1,39 +1,63 @@
-import './myprofile.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const userData = {
-  username: 'revantha',
-  followersCount: 150,
-  followingCount: 200,
-  followers: ['abhi', 'naveen', 'akram', 'gouri'],
-};
+const Profile = () => {
+  const [user, setUser] = useState({});
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
 
-const MyProfile = () => {
+  useEffect(() => {
+    // Fetch user profile
+    axios.get('/api/user/profile').then(response => {
+      setUser(response.data);
+    });
+
+    // Fetch followers and following
+    axios.get('/api/user/followers').then(response => {
+      setFollowers(response.data);
+    });
+
+    axios.get('/api/user/following').then(response => {
+      setFollowing(response.data);
+    });
+  }, []);
+
   return (
-    <div className="profile-container">
-      <div className="profile-content">
-        <div className="user-info">
-          <div className="user-icon"></div>
-          <h2 className="username">{userData.username}</h2>
+    <div className="profile">
+      <div className="profile-header">
+        <img src={user.profileIcon} alt="Profile" style={{ height: '100px', width: '100px' }} />
+        <h2>{user.username}</h2>
+      </div>
+      <div className="profile-stats">
+        <div>
+          <button onClick={() => setShowFollowers(!showFollowers)}>
+            Followers: {followers.length}
+          </button>
+          {showFollowers && (
+            <ul>
+              {followers.map(follower => (
+                <li key={follower.id}>{follower.name}</li>
+              ))}
+            </ul>
+          )}
         </div>
-        <div className="follower-info">
-          <p>
-            <strong>Followers:</strong> {userData.followersCount}
-          </p>
-          <p>
-            <strong>Following:</strong> {userData.followingCount}
-          </p>
-        </div>
-        <div className="followers-list">
-          <h3>Followers List:</h3>
-          <ul>
-            {userData.followers.map((follower, index) => (
-              <li key={index}>{follower}</li>
-            ))}
-          </ul>
+        <div>
+          <button onClick={() => setShowFollowing(!showFollowing)}>
+            Following: {following.length}
+          </button>
+          {showFollowing && (
+            <ul>
+              {following.map(follow => (
+                <li key={follow.id}>{follow.name}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default MyProfile;
+export default Profile;

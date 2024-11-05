@@ -2,14 +2,13 @@ const saveDraft = (story, storyTitle) => {
   // const storyContent = story.blocks.map(content => {
   //   return { type: content.type, data: content.data }
   // })
-  console.log(story);
   console.log(storyTitle);
 
-//   const object = {
-//     storyId: 1,
-//     title: storyTitle,
-//     content: storyContent,
-//   };
+  // const object = {
+  //   storyId: 1,
+  //   title: storyTitle,
+  //   content: storyContent,
+  // };
 }
 
 // async function putStory(story) {
