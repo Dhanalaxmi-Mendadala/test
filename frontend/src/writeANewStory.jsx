@@ -6,6 +6,7 @@ import saveDraft from './saveDraft';
 import PropTypes from 'prop-types'
 import "./css/writeANewStory.css";
 
+
 const EditorComponent = ({ setEditorData }) => {
   const editorRef = useRef(null);
   let editor = null;
@@ -44,7 +45,7 @@ const EditorComponent = ({ setEditorData }) => {
     }
     return () => {
       if (editor && typeof editor.destroy === 'function') {
-        editor.destroy().catch(error => console.error('ERROR editor cleanup', error));
+        editor.destroy()
       }
     };
   }, [setEditorData]);
@@ -66,7 +67,6 @@ const WriteAStory = () => {
   return (
     <>
       <div id='writeHeader'>
-        <h1>Medium</h1>
         <div>
           <button onClick={() => saveDraft(editorData, title)} id='saveDraft'>Save Draft</button>
           <button id='publish'>Publish</button>

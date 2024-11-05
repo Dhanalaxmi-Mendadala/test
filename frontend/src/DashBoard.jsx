@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import './css/DashBoard.css'
-
-// const generateTimeDifference = (timeStamp) => {
-//   const present = new Date(timeStamp)
-//   const month = present.getMonth() + 1;
-//   const date = present.getDate();
-//   return month + '-' + date;
-// };
+import { UserInfo } from "./homepage"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     const fetchCoverPage = async () => {
-
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
       setStoryData(storyData => ({
         ...storyData,
@@ -23,10 +16,8 @@ const StoryComponent = ({ currentStory }) => {
       }));
     };
     setStoryData(currentStory);
-    // setStoryData({ ...storyData, publishedTime: generateTimeDifference(storyData.published_at) })
     fetchCoverPage(currentStory['']);
   }, []);
-
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
 
@@ -64,23 +55,23 @@ StoryComponent.propTypes = {
 }
 
 
-const DashBoard = ({ stories }) => {
+const DashBoard = () => {
+  const someContext = useContext(UserInfo);
+  console.log(someContext)
+
+  const stories = someContext['stories']
+
   return (
-    <div className="user-dashboard">
-      {stories ? stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
-        : <div className="error-message">Please follow Authors to see the stories</div>}
-    </div>
+    stories.length!==0 ? <div className="user-dashboard">
+      {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
+       }
+    </div> : <div>Please follow Authors to see the stories</div>
   )
 }
 
-DashBoard.propTypes = {
-  stories: PropTypes.object.isRequired
-}
+
 
 export default DashBoard
-
-
-
 // app -|
 //      welcomePage -|
 //                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|
