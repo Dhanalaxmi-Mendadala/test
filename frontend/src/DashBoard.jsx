@@ -58,9 +58,9 @@ const StoryComponent = ({ currentStory }) => {
   )
 }
 
-StoryComponent.propTypes = {
-  currentStory: PropTypes.object.isRequired
-}
+// StoryComponent.propTypes = {
+//   currentStory: PropTypes.object.isRequired
+// }
 
 
 const DashBoard = ({ stories }) => {
