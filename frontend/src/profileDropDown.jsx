@@ -4,7 +4,7 @@ import author from "../assets/author.jpeg";
 import logout from "../assets/logout.jpeg";
 import story from "../assets/story.jpeg";
 import  PropTypes from 'prop-types';
-const ProfileMenu = ({profile,username}) => {
+const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);

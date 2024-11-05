@@ -1,59 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+async function fetching() {
+  try {
+    const response = await fetch('http://localhost:8000/user/profile/58025056', {
+      method: 'GET',
+      headers: { 'Content-Type': 'json' },
+      mode: 'cors',
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    return null;
+  }
+};
 
 const Profile = () => {
-  const [user, setUser] = useState({});
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
-  const [showFollowers, setShowFollowers] = useState(false);
-  const [showFollowing, setShowFollowing] = useState(false);
-
-  useEffect(() => {
-    // Fetch user profile
-    axios.get('/api/user/profile').then(response => {
-      setUser(response.data);
-    });
-
-    // Fetch followers and following
-    axios.get('/api/user/followers').then(response => {
-      setFollowers(response.data);
-    });
-
-    axios.get('/api/user/following').then(response => {
-      setFollowing(response.data);
-    });
-  }, []);
+  useEffect (() => {
+    const getprofile = async () => {
+      const data = await fetching();
+      console.log(data);
+    };
+    getprofile();
+  },[]);
 
   return (
     <div className="profile">
       <div className="profile-header">
-        <img src={user.profileIcon} alt="Profile" style={{ height: '100px', width: '100px' }} />
-        <h2>{user.username}</h2>
+        <img src ="" alt="Profile" style={{ height: '100px', width: '100px' }} />
+        <h2></h2>
       </div>
       <div className="profile-stats">
         <div>
-          <button onClick={() => setShowFollowers(!showFollowers)}>
-            Followers: {followers.length}
+          <button>
+            Followers:
           </button>
-          {showFollowers && (
-            <ul>
-              {followers.map(follower => (
-                <li key={follower.id}>{follower.name}</li>
-              ))}
-            </ul>
-          )}
         </div>
         <div>
-          <button onClick={() => setShowFollowing(!showFollowing)}>
-            Following: {following.length}
+          <button>
+            Following:
           </button>
-          {showFollowing && (
-            <ul>
-              {following.map(follow => (
-                <li key={follow.id}>{follow.name}</li>
-              ))}
-            </ul>
-          )}
         </div>
       </div>
     </div>
