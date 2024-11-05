@@ -63,9 +63,11 @@ StoryComponent.propTypes = {
 }
 
 
-const DashBoard = ({ stories }) => {
+const DashBoard = () => {
   const someContext = useContext(UserInfo);
   console.log(someContext)
+
+  const stories = someContext['stories']
 
   return (
     <div className="user-dashboard">
@@ -75,9 +77,6 @@ const DashBoard = ({ stories }) => {
   )
 }
 
-DashBoard.propTypes = {
-  stories: PropTypes.array.isRequired
-}
 
 
 export default DashBoard

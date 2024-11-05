@@ -7,12 +7,14 @@ const Header = () => {
   console.log(location, "heheee😀");
   return (
     <header className="main-header">
-      <h1 className="title">Medium</h1>
-      {location.pathname !== "/homepage/addstory" && (
-        <button onClick={() => navigate("/homepage/addstory")}>Write</button>
-      )}
+      <h1 className="title" onClick={() => navigate("/homepage")}> Medium</h1>
+      {
+        location.pathname !== "/homepage/addstory" && (
+          <button onClick={() => navigate("/homepage/addstory")}>Write</button>
+        )
+      }
       <ProfileMenu />
-    </header>
+    </header >
   );
 };
 

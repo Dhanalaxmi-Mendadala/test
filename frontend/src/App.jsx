@@ -16,11 +16,11 @@ function App() {
           <Route exact path="/" element={<WelcomePage />} />
 
           <Route path="/homepage" element={<HomePage />}>
-            <Route  element={<DashBoard />} />
+            <Route index element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />
             <Route path="storypage" element={<StoryPage />} />
-            <Route path="profile" element= {<Profile />} />
-            <Route path="yourstories" element= {<YourStories />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="yourstories" element={<YourStories />} />
           </Route>
         </Routes>
       </Router>
