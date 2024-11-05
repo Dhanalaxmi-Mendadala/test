@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import './css/DashBoard.css'
+import { UserInfo } from "./homepage"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     const fetchCoverPage = async () => {
-
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
       setStoryData(storyData => ({
         ...storyData,
@@ -18,7 +18,6 @@ const StoryComponent = ({ currentStory }) => {
     setStoryData(currentStory);
     fetchCoverPage(currentStory['']);
   }, []);
-
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
 
@@ -56,10 +55,19 @@ StoryComponent.propTypes = {
 }
 
 
+<<<<<<< HEAD
 const DashBoard = ({ stories }) => {
   if(!stories){
     return <div>Error</div>
   }
+=======
+const DashBoard = () => {
+  const someContext = useContext(UserInfo);
+  console.log(someContext)
+
+  const stories = someContext['stories']
+
+>>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224
   return (
     stories.length!==0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
@@ -68,9 +76,16 @@ const DashBoard = ({ stories }) => {
   )
 }
 
-DashBoard.propTypes = {
-  stories: PropTypes.array.isRequired
-}
+
 
 export default DashBoard
+<<<<<<< HEAD
 
+=======
+// app -|
+//      welcomePage -|
+//                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|
+//                        DashBoard -|                                                             profileIcon
+//                               multipleStories -| #onclick
+//                                              StoryPage
+>>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224
