@@ -20,19 +20,16 @@ const HomePage = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const data = await fetchUseData();
-      setUserData(data);
-      console.log(data);
+     const data = await fetchUseData();
+      setUserData(data||{})
     };
     getUserData();
   }, []);
-  if(userData===null||Object.keys(userData).length===0){
-    return <div>Error in fetching</div>
-  }
+
   return (
-    <>
-      <Header profile={userData['avatar_url']} />
+    userData?<>
+      <Header profile={userData['avatar_url']||'./assets'} username={userData['username']||"default"}/>
       <DashBoard stories={userData['stories']} />
-    </>
+    </>:<div>Error in fetching</div>
   )}
 export default HomePage;

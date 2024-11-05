@@ -4,13 +4,10 @@ import author from "../assets/author.jpeg";
 import logout from "../assets/logout.jpeg";
 import story from "../assets/story.jpeg";
 import  PropTypes from 'prop-types';
-ProfileMenu.propTypes={
-  profile:PropTypes.string.isRequired,
-  username:PropTypes.string.isRequired
-}
+
 const ProfileMenu = ({profile,username}) => {
   const [isOpen, setIsOpen] = useState(false);
-   console.log(profile,username)
+   console.log(profile,username);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -18,7 +15,7 @@ const ProfileMenu = ({profile,username}) => {
   return (
     <div className="profile-menu">
       <img 
-        src="../assets/github.png"
+        src={profile}
         alt="Profile" 
         className="profile-icon" 
         onClick={toggleMenu} 
@@ -26,8 +23,8 @@ const ProfileMenu = ({profile,username}) => {
       {isOpen && (
         <div className="outer" onClick={toggleMenu} >
         <div className="dropdown-menu" >
-          <div id="profile"><img className="profile-icon" src="../assets/github.png"/>
-          <a href="/profile">GitHub</a>
+          <div id="profile"><img className="profile-icon" src={profile}/>
+          <a href="/profile">{username}</a>
           </div>
           <DropdownItem img={author} path="/homepage/author" name="Authors"/>
           <DropdownItem img={story} path="/homepage/yourStories" name="Your Stories"/>
@@ -38,6 +35,10 @@ const ProfileMenu = ({profile,username}) => {
     </div>
   );
 };
+ProfileMenu.propTypes={
+  profile:PropTypes.string.isRequired,
+  username:PropTypes.string.isRequired
+}
 DropdownItem.propTypes={
   img:PropTypes.string.isRequired,
   path:PropTypes.string.isRequired,

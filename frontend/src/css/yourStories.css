@@ -1,0 +1,21 @@
+#yourStories nav{
+    display: flex;
+    column-gap: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px solid #ccc;
+}
+#yourStories nav a:hover{
+    color:black;
+}
+
+#yourStories h1{
+    font-size: 50px;
+    padding: 2px;
+    border-bottom: 1px solid #ccc;
+}
+#yourStories nav a{
+    font-size: 18px;
+    color:#c2b7b7;
+    cursor:pointer;
+    margin: 6px;
+}
