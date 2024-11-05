@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" element={<WelcomePage />} />
 
           <Route path="/homepage" element={<HomePage />}>
-            <Route  element={<DashBoard />} />
+            <Route path="dashboard" element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />
             <Route path="storypage" element={<StoryPage />} />
             <Route path="profile" element= {<Profile />} />
