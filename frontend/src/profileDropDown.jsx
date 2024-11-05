@@ -35,7 +35,7 @@ const ProfileMenu = () => {
               className="profile-icon"
               src={profileUrl || "../assets/github.png"}
             />
-            <a href="/profile" className="profile-name">
+            <a href="/homepage/profile" className="profile-name">
               {userName || "Guest"}
             </a>
           </div>
