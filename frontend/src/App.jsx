@@ -14,8 +14,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route exact path="/" element={<WelcomePage />} />
-
+          <Route path="/" element={<WelcomePage />} />
           <Route path="/homepage" element={<HomePage />}>
             <Route index element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />
