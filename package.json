@@ -15,5 +15,10 @@
     "frontend"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@editorjs/editorjs": "^2.30.6",
+    "dotenv": "^16.4.5",
+    "react-router-dom": "^6.27.0"
+  }
 }
