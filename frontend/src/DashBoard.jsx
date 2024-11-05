@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import './css/DashBoard.css'
+import { UserInfo } from "./homepage"
 
 // const generateTimeDifference = (timeStamp) => {
 //   const present = new Date(timeStamp)
@@ -15,7 +16,6 @@ const StoryComponent = ({ currentStory }) => {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchCoverPage = async () => {
-
       const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
       setStoryData(storyData => ({
         ...storyData,
@@ -26,7 +26,6 @@ const StoryComponent = ({ currentStory }) => {
     // setStoryData({ ...storyData, publishedTime: generateTimeDifference(storyData.published_at) })
     fetchCoverPage(currentStory['']);
   }, []);
-
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
 
@@ -65,6 +64,9 @@ StoryComponent.propTypes = {
 
 
 const DashBoard = ({ stories }) => {
+  const someContext = useContext(UserInfo);
+  console.log(someContext)
+
   return (
     <div className="user-dashboard">
       {stories ? stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
@@ -74,13 +76,11 @@ const DashBoard = ({ stories }) => {
 }
 
 DashBoard.propTypes = {
-  stories: PropTypes.object.isRequired
+  stories: PropTypes.array.isRequired
 }
 
+
 export default DashBoard
-
-
-
 // app -|
 //      welcomePage -|
 //                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|

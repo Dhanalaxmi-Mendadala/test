@@ -1,18 +1,19 @@
-import { useNavigate } from "react-router-dom"
-import PropTypes from 'prop-types';
+import { useLocation, useNavigate } from "react-router-dom";
+import ProfileMenu from "./profileDropDown";
 
-const Header = ({profile}) => {
+const Header = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  console.log(location, "heheee😀");
   return (
     <header className="main-header">
       <h1 className="title">Medium</h1>
-      <button onClick={() => navigate('/homepage/addstory')}>Write</button>
-      <img className="user-profile-icon" src={profile} alt="user-profile" />
+      {location.pathname !== "/homepage/addstory" && (
+        <button onClick={() => navigate("/homepage/addstory")}>Write</button>
+      )}
+      <ProfileMenu />
     </header>
-  )
-}
-Header.propTypes = {
-  profile:PropTypes.object.isRequired,
-}
+  );
+};
 
-export default Header
+export default Header;

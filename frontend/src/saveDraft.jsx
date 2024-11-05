@@ -1,15 +1,15 @@
 const saveDraft = (story, storyTitle) => {
-  const storyContent = story.blocks.map(content => {
-    console.log(storyContent, storyTitle)
-    return { type: content.type, data: content.data }
-  })
+  // const storyContent = story.blocks.map(content => {
+  //   return { type: content.type, data: content.data }
+  // })
+  console.log(storyTitle);
 
-//   const object = {
-//     storyId: 1,
-//     title: storyTitle,
-//     content: storyContent,
-//   };
-// }
+  // const object = {
+  //   storyId: 1,
+  //   title: storyTitle,
+  //   content: storyContent,
+  // };
+}
 
 // async function putStory(story) {
 //   try {
@@ -26,6 +26,6 @@ const saveDraft = (story, storyTitle) => {
 //   } catch {
 //     return null;
 //   }
-};
+// };
 
 export default saveDraft;
