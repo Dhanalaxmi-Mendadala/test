@@ -39,7 +39,7 @@ const populateMockData = dbPath => {
 
     data.forEach(line => {
       const sql = `INSERT INTO ${table}${headerStr} VALUES (${line})`;
-      console.log('.');
+      console.log(sql);
       db.serialize(() => db.run(sql, errorHandler));
     });
     console.log(`finished populating data into ${table} table\n`);
