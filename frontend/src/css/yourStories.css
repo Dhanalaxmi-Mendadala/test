@@ -1,11 +1,12 @@
-#yourStories nav{
+#yourStories nav {
     display: flex;
     column-gap: 28px;
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 1px solid #ccc;
 }
-#yourStories nav a:hover{
-    color:black;
+
+#yourStories nav a:hover {
+    color: black;
 }
 
 #yourStories h1 {
@@ -16,24 +17,42 @@
 
 #yourStories nav a {
     font-size: 18px;
-    color:#c2b7b7;
-    cursor:pointer;
+    color: #c2b7b7;
+    cursor: pointer;
     margin: 6px;
 }
 
 .drafts-container {
-    border: 1px solid red;
     padding: 30px 0 0 50px;
 }
 
 .all-drafts-unit {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.draft-unit{
-width: 400px;
-border: 2px solid black;
+.draft-unit {
+    width: 400px;
+    display: inherit;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.draft-unit:hover{
+    background-color: #b7b6b633;
+}
+
+.draft-title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: large;
+}
+
+.edit-draft-button {
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
