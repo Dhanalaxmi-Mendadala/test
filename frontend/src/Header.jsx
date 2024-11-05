@@ -4,7 +4,6 @@ import ProfileMenu from "./profileDropDown";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location, "heheee😀");
   return (
     <header className="main-header">
       <h1 className="title">Medium</h1>
