@@ -34,10 +34,12 @@ const Profile = () => {
         <img src={userData['avatar_url']} alt="Profile" className='user-avatar' style={{ height: '100px', width: '100px' }} />
         <h2 className="user-name">{userData['username']}</h2>
       </div>
-      <div className="profile-stats">
-        <p className="followers">Followers :{userData['followers'].length}</p>
-        <p className="following">Following :{userData['following'].length}</p>
-      </div>
+      {(userData['followers'] && userData['following']) &&
+        <div className="profile-stats">
+          <p className="followers">Followers :{userData['followers'].length}</p>
+          <p className="following">Following :{userData['following'].length}</p>
+        </div>
+      }
     </div>
   );
 };
