@@ -1,0 +1,78 @@
+main {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 75%;
+  margin: auto;
+}
+
+.story-title {
+  font-size: 45px;
+  line-height: 52px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+.story-coverpage-container {
+  display: flex;
+  justify-content: start;
+}
+
+.story-coverpage {
+  height: 200px;
+  padding: 10px;
+  width: inherit;
+}
+
+.story-content-container {
+  margin-top: 50px;
+  font-size: large;
+}
+
+.story-author-details-container {
+  display: flex;
+  font-size: large;
+  width: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -50px;
+  text-transform: capitalize;
+  position: relative;
+  right: 30%;
+}
+
+.story-author-image {
+  height: 50px;
+  border-radius: 50%;
+}
+/*
+.story-author-account-info-container {
+  margin-left: 10px;
+  margin-top: 5px;
+} */
+
+.story-content {
+  width: inherit;
+}
+
+.content-paragraph,
+.content-header,
+.content-delimiter {
+  margin: 20px;
+  content: paragraph;
+  line-height: 25px;
+  font-size: larger;
+}
+
+.content-paragraph::first-letter {
+  text-transform: capitalize;
+}
+
+.content-paragraph {
+  font-family: sans;
+}
