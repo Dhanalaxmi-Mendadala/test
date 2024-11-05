@@ -25,16 +25,6 @@ const HomePage = () => {
     };
     getUserData();
   }, []);
-<<<<<<< HEAD
-
-  return (
-    userData?<>
-      <Header profile={userData['avatar_url']||'./assets'} username={userData['username']||"default"}/>
-      <DashBoard stories={userData['stories']} />
-    </>:<div>Error in fetching</div>
-  )}
-export default HomePage;
-=======
   if (userData === null || Object.keys(userData).length === 0) {
     return <div>Error in fetching</div>;
   }
@@ -48,4 +38,3 @@ export default HomePage;
   );
 };
 export default HomePage;
->>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224

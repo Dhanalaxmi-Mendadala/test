@@ -24,12 +24,6 @@ function Header({ click }) {
 Header.propTypes = {
   click: PropTypes.func.isRequired,
 };
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

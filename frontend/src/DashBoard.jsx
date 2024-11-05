@@ -55,19 +55,12 @@ StoryComponent.propTypes = {
 }
 
 
-<<<<<<< HEAD
-const DashBoard = ({ stories }) => {
-  if(!stories){
-    return <div>Error</div>
-  }
-=======
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   console.log(someContext)
 
   const stories = someContext['stories']
 
->>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224
   return (
     stories.length!==0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
@@ -79,13 +72,9 @@ const DashBoard = () => {
 
 
 export default DashBoard
-<<<<<<< HEAD
-
-=======
 // app -|
 //      welcomePage -|
 //                 HomePage -|   /user/dashboard - userId, avatar, manam follows, dashboard stories  -|
 //                        DashBoard -|                                                             profileIcon
 //                               multipleStories -| #onclick
 //                                              StoryPage
->>>>>>> 1b16f82f49a539545e26c4c9b0147ba1cd139224
