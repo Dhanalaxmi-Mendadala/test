@@ -3,7 +3,7 @@ import "./css/yourStories.css"
 import getStories from "./getStoriesApi";
 import PropTypes from 'prop-types'
 
-function YourStories({stories}) {
+function YourStories() {
   const [stories, setStories] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
