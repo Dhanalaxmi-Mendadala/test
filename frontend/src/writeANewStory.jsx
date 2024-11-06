@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef, useState } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import Delimiter from '@editorjs/delimiter';
