@@ -66,7 +66,7 @@ const WriteAStory = () => {
   const [editorData, setEditorData] = useState(null);
   const [title, setTitle] = useState(null);
   const userInfo = useContext(UserInfo);
-
+  console.log(editorData, title);
   return (
     <>
       <div id='writeHeader'>
