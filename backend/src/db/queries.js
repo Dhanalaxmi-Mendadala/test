@@ -129,6 +129,7 @@ const followingStories = userId =>
     t2.published_at,
     t2.cover_image_name coverImageName,
     t3.username author,
+    t3.avatar_url author_avatar_url,
     t3.id authorId
   FROM stories t1 
   JOIN published_stories t2 ON t1.id = t2.story_id 
@@ -146,6 +147,7 @@ const myStories = userId =>
     t2.published_at,
     t2.cover_image_name coverImageName,
     t3.username author,
+    t3.avatar_url author_avatar_url,
     t3.id authorId
   FROM stories t1 
   JOIN published_stories t2 ON t1.id = t2.story_id 
