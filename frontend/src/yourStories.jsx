@@ -16,6 +16,7 @@ function YourStories() {
       } else {
         setStoriesData(data);
         setLoading(false);
+        console.log(stories,"Fetched Success");
       }
     };
     getStoriesData();
@@ -50,123 +51,6 @@ function Drafts({ drafts }) {
 Drafts.propTypes = {
   drafts: PropTypes.array.isRequired
 }
-
-const STORIES = {
-  "drafts": [
-    {
-      "id": 3,
-      "title": "9 Ways to Build Virality into your Product",
-      "content": [
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "header",
-          "data": {
-            "text": "Workspace",
-            "level": 2
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "delimiter",
-          "data": {}
-        },
-        {
-          "type": "header",
-          "data": {
-            "text": "Workspace",
-            "level": 2
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        }
-      ],
-      "published_at": null,
-      "author": "abhilashkasula",
-      "author_id": 58025056,
-      "tags": []
-    }
-  ],
-  "published": [
-    {
-      "id": 1,
-      "title": "9 Ways to Build Virality into your Product",
-      "content": [
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "header",
-          "data": {
-            "text": "Workspace",
-            "level": 2
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        },
-        {
-          "type": "delimiter",
-          "data": {}
-        },
-        {
-          "type": "header",
-          "data": {
-            "text": "Workspace",
-            "level": 2
-          }
-        },
-        {
-          "type": "paragraph",
-          "data": {
-            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
-          }
-        }
-      ],
-      "published_at": "2020-07-22 20:13:19",
-      "author": "abhilashkasula",
-      "author_id": 58025056,
-      "tags": [
-        "technology",
-        "maths",
-        "science",
-        "thriller",
-        "sci-fi"
-      ]
-    }
-  ]
-};
 
 function Publish({ published }) {
   const navigator = useNavigate();
