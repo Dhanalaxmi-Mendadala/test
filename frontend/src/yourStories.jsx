@@ -87,8 +87,8 @@ function Stories({ stories }) {
         <a className="publish" onClick={() => setCurrentPage("publish")}>Published</a>
       </nav>
       {
-        currentPage === "draft" && <Drafts drafts={STORIES.drafts} /> ||
-        currentPage === "publish" && <Publish published={STORIES.published} />
+        currentPage === "draft" && <Drafts drafts={stories.drafts} /> ||
+        currentPage === "publish" && <Publish published={stories.published} />
       }
     </div>
   );
