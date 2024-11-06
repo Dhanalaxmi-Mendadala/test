@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect, useContext, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
@@ -6,10 +6,13 @@ import saveDraft from "./saveDraft";
 import PropTypes from "prop-types";
 import "./css/writeANewStory.css";
 import { UserInfo } from "./homepage";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { publishStory } from "./publishStory";
 
 const EditorComponent = (props) => {
   const editorRef = useRef(null);
+  const [currentDraft, setCurrentDraft] = useState(null);
+  const [clicked, setClicked] = useState(false);
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
@@ -39,7 +42,10 @@ const EditorComponent = (props) => {
           },
           delimiter: Delimiter,
         },
-
+        onChange: async () => {
+          const content = await editor.save();
+          setCurrentDraft(content);
+        },
         onReady: () => {
           console.log("Editor is ready to use");
         },
@@ -47,34 +53,61 @@ const EditorComponent = (props) => {
     }
     return () => {
       if (editor && typeof editor.destroy === "function") {
-        try {
-          const getHeaderData = async () => {
-            const content = await editor.save();
-            const firstHeader = content.blocks.find(
-              (block) => block.type === "header"
-            );
-            if (firstHeader) {
-              saveDraft(props.storyId, firstHeader.data.text, content.blocks);
-            } else {
-              saveDraft(props.storyId, 'Untitled Story', content.blocks);
-            }
-            editor.destroy();
-            console.log("Unmounted successfully");
-          };
-          getHeaderData();
-        } catch (error) {
-          console.error("Error during unmount:", error);
+        if (clicked) {
+          try {
+            const getHeaderData = async () => {
+              const content = await editor.save();
+              const firstHeader = content.blocks.find(
+                (block) => block.type === "header"
+              );
+              if (firstHeader) {
+                saveDraft(props.storyId, firstHeader.data.text, content.blocks);
+              } else {
+                saveDraft(props.storyId, 'Untitled Story', content.blocks);
+              }
+              console.log("Unmounted successfully");
+            };
+            getHeaderData();
+          } catch (error) {
+            console.error("Error during unmount:", error);
+          }
         }
+        editor.destroy();
       }
     };
   }, [props.storyId]);
 
+  const navigatior = useNavigate();
+
+  const handlePublish = async (draftId) => {
+    if (draftId) {
+      publishStory(draftId)
+        .then(navigatior('/homepage/yourstories'));
+    } else {
+      const firstHeader = currentDraft.blocks.find(
+        (block) => block.type === "header"
+      );
+      let storyId = (firstHeader) ?
+        await saveDraft(props.storyId, firstHeader.data.text, currentDraft.blocks) :
+        await saveDraft(props.storyId, 'Untitled Story', currentDraft.blocks);
+      await publishStory(storyId)
+      navigatior('/homepage/yourstories');
+    }
+  }
+
   return (
-    <div
-      ref={editorRef}
-      id="editorjs"
-      style={{ border: "1px solid #ccc", padding: "10px" }}
-    />
+    <>
+      <div
+        ref={editorRef}
+        id="editorjs"
+        style={{ border: "1px solid #ccc", padding: "10px" }}
+      />
+
+      <button id="publish" onClick={() => {
+        setClicked(true)
+        handlePublish(props.storyId)
+      }}>Publish</button>
+    </>
   );
 };
 EditorComponent.propTypes = {
@@ -86,7 +119,6 @@ const WriteAStory = () => {
 
   const userData = useContext(UserInfo);
   const location = useLocation();
-  console.log(location.state)
   const id = location.state.id;
   const content = location.state.content;
   return (
@@ -94,7 +126,6 @@ const WriteAStory = () => {
       <div id="writeHeader">
         <div>Draft in {userData["username"]}</div>
         <div>
-          <button id="publish">Publish</button>
         </div>
       </div>
       <div className="editor-component">

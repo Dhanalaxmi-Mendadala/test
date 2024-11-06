@@ -18,7 +18,8 @@ const saveDraft = async (id, storyTitle, story) => {
     title: storyTitle,
     content: story,
   };
-   await putStory(object);
+  const response = await putStory(object);
+  return response.storyId;
 }
 
 
