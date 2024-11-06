@@ -53,7 +53,7 @@ const EditorComponent = (props) => {
     }
     return () => {
       if (editor && typeof editor.destroy === "function") {
-        if (clicked) {
+        if (clicked === false) {
           try {
             const getHeaderData = async () => {
               const content = await editor.save();
