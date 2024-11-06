@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import "./css/yourStories.css"
 import getStories from "./getStoriesApi"
 import PropTypes from 'prop-types'
+import { publishStory } from "./publishStory"
 
 function YourStories() {
   const [stories, setStoriesData] = useState(false);
@@ -16,7 +17,6 @@ function YourStories() {
       } else {
         setStoriesData(data);
         setLoading(false);
-        console.log(data, 'completed fetching')
       }
     };
     getStoriesData();
@@ -36,19 +36,32 @@ function YourStories() {
 
 function Drafts({ drafts }) {
   const navigator = useNavigate();
+  useEffect(() => { }
+    , [drafts]);
+
   return (<div className="drafts-container">
     {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
       <div className='all-drafts-unit'>{
         drafts.map((draft, i) =>
-          <div className="draft-unit" key={i} onClick={() => {
-            navigator('/homepage/storypage', {
-              state: {
-                currentStory: draft,
-              }
-            })
-          }}>
-            <p className="draft-title">{draft['title']}</p>
-            <button className="edit-draft-button">EDIT</button>
+          <div className="draft-unit" key={i} >
+            <p className="draft-title" onClick={() => {
+              navigator('/homepage/storypage', {
+                state: {
+                  currentStory: draft,
+                }
+              })
+            }}>{draft['title']}</p>
+            <button className="edit-draft-button" onClick={() =>
+              navigator("/homepage/addstory", {
+                state: {
+                  id: draft['id'],
+                  content: draft['content']
+                }
+              })}>EDIT</button>
+            <button className="publish-button" onClick={() => {
+              publishStory(draft['id'])
+                .then(navigator('/homepage/yourstories'))
+            }}>PUBLISH</button>
           </div>
         )
       }
@@ -85,7 +98,6 @@ Publish.propTypes = {
 
 function Stories({ stories }) {
   const [currentPage, setCurrentPage] = useState('draft');
-  console.log(stories)
   return (
     <div id="yourStories">
       <h1>Your Stories</h1>
