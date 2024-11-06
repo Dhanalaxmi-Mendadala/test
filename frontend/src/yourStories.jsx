@@ -60,7 +60,7 @@ function Drafts({ drafts }) {
               })}>EDIT</button>
             <button className="publish-button" onClick={() => {
               publishStory(draft['id'])
-                .then(navigator('/homepage/yourstories'))
+                .then(window.location.reload())
             }}>PUBLISH</button>
           </div>
         )
