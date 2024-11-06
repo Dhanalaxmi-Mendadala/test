@@ -55,16 +55,13 @@
   align-items: center;
   justify-content: center;
 }
-
 .profile-header img {
   border-radius: 50%;
   margin-right: 20px;
 }
-
 .profile-stats {
   margin-top: 20px;
 }
-
 button {
   cursor: pointer;
 }
