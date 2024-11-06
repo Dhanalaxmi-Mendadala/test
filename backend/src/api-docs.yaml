@@ -484,6 +484,7 @@ paths:
                       published_at: '2020-07-22 20:13:19'
                       author: abhilashkasula
                       author_id: 58025056
+                      author_avatar_url: https://avatars0.githubusercontent.com/u/58025056?v=4
                       tags:
                         - technology
                         - maths
@@ -534,6 +535,7 @@ paths:
                       published_at: '2020-07-22 20:13:19'
                       author: anil-muraleedharan
                       author_id: 56071561
+                      author_avatar_url: https://avatars0.githubusercontent.com/u/56071561?v=4
                       tags:
                         - comic
         401:
