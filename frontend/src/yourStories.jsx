@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { publishStory } from "./publishStory"
 
 function YourStories() {
-  const [stories, setStoriesData] = useState(false);
+  const [stories, setStories] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -15,7 +15,7 @@ function YourStories() {
       if (data === null) {
         setError(true);
       } else {
-        setStoriesData(data);
+        setStories(data);
         setLoading(false);
       }
     };
