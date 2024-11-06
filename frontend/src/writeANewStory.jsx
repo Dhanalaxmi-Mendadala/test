@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useContext } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
@@ -73,7 +73,7 @@ const EditorComponent = (props) => {
         }
       }
     };
-  }, [props.id]);
+  }, [props.storyId]);
 
   return (
     <div
@@ -84,11 +84,11 @@ const EditorComponent = (props) => {
   );
 };
 EditorComponent.propTypes = {
-  setEditorData: PropTypes.func.isRequired,
+  storyId: PropTypes.number.isRequired,
 };
 
 const WriteAStory = () => {
-  const [title, setTitle] = useState(null);
+
   const userData = useContext(UserInfo);
   const location = useLocation();
   const id = location.state.id;
@@ -101,7 +101,7 @@ const WriteAStory = () => {
         </div>
       </div>
       <div className="editor-component">
-        <EditorComponent className="editor" storyTitle={title} storyId={id} />
+        <EditorComponent className="editor" storyId={id} />
       </div>
     </>
   );
