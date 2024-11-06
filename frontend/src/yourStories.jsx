@@ -36,6 +36,7 @@ function YourStories() {
 
 function Drafts({ drafts }) {
   const navigator = useNavigate();
+  console.log(drafts, 'recieved')
   return (<div className="drafts-container">
     {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
       <div className='all-drafts-unit'>{
@@ -48,7 +49,13 @@ function Drafts({ drafts }) {
             })
           }}>
             <p className="draft-title">{draft['title']}</p>
-            <button className="edit-draft-button">EDIT</button>
+            <button className="edit-draft-button" onClick={() =>
+              navigator("/homepage/addstory", {
+                state: {
+                  id: draft['id'],
+                  content: draft['content']
+                }
+              })}>EDIT</button>
           </div>
         )
       }

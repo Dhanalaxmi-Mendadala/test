@@ -13,13 +13,7 @@ const EditorComponent = (props) => {
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
-    blocks: [
-      { type: "header", data: { text: "", level: 1 }, placeholder: "Title" },
-      {
-        type: "paragraph",
-        data: { text: "", level: 3, placeholder: "Tell  Story" },
-      },
-    ],
+    blocks: props['initialData']
   };
   useEffect(() => {
     if (!editor) {
@@ -60,9 +54,9 @@ const EditorComponent = (props) => {
               (block) => block.type === "header"
             );
             if (firstHeader) {
-              saveDraft(props.storyId,firstHeader.data.text, content.blocks);
+              saveDraft(props.storyId, firstHeader.data.text, content.blocks);
             } else {
-              saveDraft(props.storyId,'Untitled Story', content.blocks);
+              saveDraft(props.storyId, 'Untitled Story', content.blocks);
             }
             editor.destroy();
             console.log("Unmounted successfully");
@@ -85,6 +79,7 @@ const EditorComponent = (props) => {
 };
 EditorComponent.propTypes = {
   storyId: PropTypes.number.isRequired,
+  initialData: PropTypes.array.isRequired
 };
 
 const WriteAStory = () => {
@@ -93,6 +88,7 @@ const WriteAStory = () => {
   const location = useLocation();
   console.log(location.state)
   const id = location.state.id;
+  const content = location.state.content;
   return (
     <>
       <div id="writeHeader">
@@ -102,7 +98,7 @@ const WriteAStory = () => {
         </div>
       </div>
       <div className="editor-component">
-        <EditorComponent className="editor" storyId={id} />
+        <EditorComponent className="editor" storyId={id} initialData={content} />
       </div>
     </>
   );
