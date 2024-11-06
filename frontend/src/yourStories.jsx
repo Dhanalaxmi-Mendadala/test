@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import "./css/yourStories.css"
 import getStories from "./getStoriesApi"
 import PropTypes from 'prop-types'
@@ -168,17 +169,24 @@ const STORIES = {
 };
 
 function Publish({ published }) {
+  const navigator = useNavigate();
   return (<div className="published-container">
     {published.length === 0 ? <p>No published yet,please pulish a story</p> :
-      <div className='all-published-unit'>{
+      <div className='all-published-unit' > {
         published.map((aStory, i) =>
-          <div className="a-story-unit" key={i}>
+          <div className="a-story-unit" key={i} onClick={() => {
+            navigator('/homepage/storypage', {
+              state: {
+                currentStory: aStory,
+              }
+            })
+          }}>
             <p className="a-story-title">{aStory['title']}</p>
           </div>
         )
       }
       </div>}
-  </div>)
+  </div >)
 }
 Publish.propTypes = {
   published: PropTypes.array.isRequired
