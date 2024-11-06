@@ -4,6 +4,7 @@ async function fetching() {
       method: 'GET',
       headers: { 'Content-Type': 'json' },
       mode: 'cors',
+      credentials:'include'
     });
     const data = await response.json();
     return data.isLoggedIn;

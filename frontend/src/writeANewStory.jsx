@@ -1,82 +1,109 @@
-import { useRef, useEffect, useState } from 'react';
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import Delimiter from '@editorjs/delimiter';
-import saveDraft from './saveDraft';
-import PropTypes from 'prop-types'
+import { useRef, useEffect, useState, useContext } from "react";
+import EditorJS from "@editorjs/editorjs";
+import Header from "@editorjs/header";
+import Delimiter from "@editorjs/delimiter";
+import saveDraft from "./saveDraft";
+import PropTypes from "prop-types";
 import "./css/writeANewStory.css";
+import { UserInfo } from "./homepage";
+import { useLocation } from "react-router-dom";
 
-
-const EditorComponent = ({ setEditorData }) => {
+const EditorComponent = (props) => {
   const editorRef = useRef(null);
   let editor = null;
+  const initialData = {
+    time: new Date().getTime(),
+    blocks: [
+      { type: "header", data: { text: "", level: 1 }, placeholder: "Title" },
+      {
+        type: "paragraph",
+        data: { text: "", level: 3, placeholder: "Tell  Story" },
+      },
+    ],
+  };
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
-        placeholder: 'Tell your story ...',
-        holder: editorRef.current,
-        autofocus: true,
+        holder: "editorjs",
+        data: initialData,
+        autofocus: "true",
         tools: {
           header: {
             class: Header,
             inlineToolbar: true,
             config: {
               level: 1,
+              placeholder: "Title",
             },
           },
           paragraph: {
             inlineToolbar: true,
             config: {
-              placeholder: 'Tell your story ...',
               level: 1,
+              placeholder: "Tell your Story",
             },
           },
           delimiter: Delimiter,
         },
+
         onReady: () => {
-          console.log('Editor is ready to use');
-        },
-        onChange: async () => {
-          const content = await editor.save();
-          console.log(content);
-          setEditorData(content);
+          console.log("Editor is ready to use");
         },
       });
     }
     return () => {
-      if (editor && typeof editor.destroy === 'function') {
-        editor.destroy()
+      if (editor && typeof editor.destroy === "function") {
+        try {
+          const getHeaderData = async () => {
+            const content = await editor.save();
+            const firstHeader = content.blocks.find(
+              (block) => block.type === "header"
+            );
+            if (firstHeader) {
+              saveDraft(props.storyId,firstHeader.data.text, content.blocks);
+            } else {
+              saveDraft(props.storyId,'Untitled Story', content.blocks);
+            }
+            editor.destroy();
+            console.log("Unmounted successfully");
+          };
+          getHeaderData();
+        } catch (error) {
+          console.error("Error during unmount:", error);
+        }
       }
     };
-  }, [setEditorData]);
+  }, [props.id]);
 
   return (
     <div
       ref={editorRef}
       id="editorjs"
-      style={{ border: '1px solid #ccc', padding: '10px' }}
+      style={{ border: "1px solid #ccc", padding: "10px" }}
     />
   );
-}; EditorComponent.propTypes = {
+};
+EditorComponent.propTypes = {
   setEditorData: PropTypes.func.isRequired,
-}
+};
 
 const WriteAStory = () => {
-  const [editorData, setEditorData] = useState(null);
   const [title, setTitle] = useState(null);
+  const userData = useContext(UserInfo);
+  const location = useLocation();
+  const id = location.state.id;
   return (
     <>
-      <div id='writeHeader'>
+      <div id="writeHeader">
+        <div>Draft in {userData["username"]}</div>
         <div>
-          <button onClick={() => saveDraft(editorData, title)} id='saveDraft'>Save Draft</button>
-          <button id='publish'>Publish</button>
+          <button id="publish">Publish</button>
         </div>
       </div>
       <div className="editor-component">
-        <textarea placeholder='Title' className='editorTitle' onChange={(e) => { setTitle(e.target.value) }} />
-
-        <EditorComponent className='editor' setEditorData={setEditorData} />
-      </div></>
+        <EditorComponent className="editor" storyTitle={title} storyId={id} />
+      </div>
+    </>
   );
 };
 

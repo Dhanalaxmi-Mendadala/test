@@ -12,7 +12,7 @@ function Header({ click }) {
     <header id="welcomeHeader">
       <h1>Medium</h1>
       <nav>
-        <p id="signin" onClick={click(true)}>
+        <p id="signin" onClick={() => click(true)}>
           Signin
         </p>
       </nav>
@@ -24,11 +24,11 @@ function Header({ click }) {
 Header.propTypes = {
   click: PropTypes.func.isRequired,
 };
+
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(false);
-  const [loading,setLoading]=useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -36,38 +36,42 @@ function WelcomePage() {
       if (status === null) {
         setError(true);
       } else {
-        setLoading(false);
+        console.log(status);
         setIsLoggedIn(status);
+        console.log(isLoggedIn);
       }
     };
     checkLoginStatus();
   }, []);
-  
+
   if (error) {
     return (
       <h1 style={{ color: "red" }}>
         Error!404 Page Not FOUND..Connection Issue
       </h1>
-    );}
-    if (isLoggedIn) {
-      navigate("/homepage");
-    }
+    );
+  }
+  if (isLoggedIn) {
+    console.log(isLoggedIn);
+    navigate('/homepage');
+  }
+  else {
     return (
-      (!isLoggedIn||loading===false) && (
         <div>
-          <Header click={setClicked} isLoggedIn={isLoggedIn} />
+          <Header click={setClicked} />
           {clicked && <SignInPage click={setClicked}></SignInPage>}
           <main id="welcomeBody">
             <h2>
+              {isLoggedIn}
               Human <br /> Stories & Ideas
               <p>A place to read, write, and deepen your understanding</p>
             </h2>
           </main>
           <Footer></Footer>
         </div>
-      )
     );
   }
+}
 
 function Footer() {
   return (
