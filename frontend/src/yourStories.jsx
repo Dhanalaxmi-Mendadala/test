@@ -1,11 +1,13 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import "./css/yourStories.css"
-import getStories from "./getStoriesApi";
+import getStories from "./getStoriesApi"
 import PropTypes from 'prop-types'
-function YourStories(){
- const [stories, setStoriesData] = useState(false);
- const [error, setError] = useState(false);
- const [loading, setLoading] = useState(true);
+
+function YourStories() {
+  const [stories, setStoriesData] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getStoriesData = async () => {
       const data = await getStories();
@@ -18,60 +20,197 @@ function YourStories(){
     };
     getStoriesData();
   }, []);
-  if(error){
+
+  if (error) {
     return (<div className="error">Error!Page not found,Page not found</div>);
   }
-  if(!loading){
-   return (
-    <>
-    <Stories stories={stories}/>
-    </>
-   )
+  if (!loading) {
+    return (
+      <>
+        <Stories stories={stories} />
+      </>
+    )
   }
 };
-function Drafts({drafts}){
-  return (<div>
-    {drafts.length===0?<p>No Drafts yet,please created</p>:<div>
-      all drafts
+
+function Drafts({ drafts }) {
+  return (<div className="drafts-container">
+    {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
+      <div className='all-drafts-unit'>{
+        drafts.map((draft, i) =>
+          <div className="draft-unit" key={i}>
+            <p className="draft-title">{draft['title']}</p>
+            <button className="edit-draft-button">EDIT</button>
+          </div>
+        )
+      }
       </div>}
   </div>)
 }
-
 Drafts.propTypes = {
-    drafts: PropTypes.array.isRequired
+  drafts: PropTypes.array.isRequired
 }
 
-function Publish({published}){
-  return (<div>
-   { published.length===0?<p>Please publish your drafts</p>:<div>
-      all Published drafts
+const STORIES = {
+  "drafts": [
+    {
+      "id": 3,
+      "title": "9 Ways to Build Virality into your Product",
+      "content": [
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "header",
+          "data": {
+            "text": "Workspace",
+            "level": 2
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "delimiter",
+          "data": {}
+        },
+        {
+          "type": "header",
+          "data": {
+            "text": "Workspace",
+            "level": 2
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        }
+      ],
+      "published_at": null,
+      "author": "abhilashkasula",
+      "author_id": 58025056,
+      "tags": []
+    }
+  ],
+  "published": [
+    {
+      "id": 1,
+      "title": "9 Ways to Build Virality into your Product",
+      "content": [
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "I am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "header",
+          "data": {
+            "text": "Workspace",
+            "level": 2
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        },
+        {
+          "type": "delimiter",
+          "data": {}
+        },
+        {
+          "type": "header",
+          "data": {
+            "text": "Workspace",
+            "level": 2
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "am a computer science student with a passion for design and all things aesthetic. I am also a minimalist and love keeping things extremely simple. I thought it would be nice to document my current computer setup and share how I organize my digital workspace."
+          }
+        }
+      ],
+      "published_at": "2020-07-22 20:13:19",
+      "author": "abhilashkasula",
+      "author_id": 58025056,
+      "tags": [
+        "technology",
+        "maths",
+        "science",
+        "thriller",
+        "sci-fi"
+      ]
+    }
+  ]
+};
+
+function Publish({ published }) {
+  const navigator = useNavigate();
+  return (<div className="published-container">
+    {published.length === 0 ? <p>No published yet,please pulish a story</p> :
+      <div className='all-published-unit' > {
+        published.map((aStory, i) =>
+          <div className="a-story-unit" key={i} onClick={() => {
+            navigator('/homepage/storypage', {
+              state: {
+                currentStory: aStory,
+              }
+            })
+          }}>
+            <p className="a-story-title">{aStory['title']}</p>
+          </div>
+        )
+      }
       </div>}
-  </div>)
+  </div >)
 }
-
 Publish.propTypes = {
-    published: PropTypes.array.isRequired
+  published: PropTypes.array.isRequired
 }
 
-function Stories({stories}){
-  const [currentPage,setCurrentPage]=useState('draft');
+function Stories({ stories }) {
+  const [currentPage, setCurrentPage] = useState('draft');
+  console.log(stories)
   return (
-<div id="yourStories">
+    <div id="yourStories">
       <h1>Your Stories</h1>
       <nav>
-        <a className="draft"  onClick={()=>setCurrentPage("draft")}>Drafts</a>
-        <a className="publish" onClick={()=>setCurrentPage("publish")}>Published</a>
+        <a className="draft" onClick={() => setCurrentPage("draft")}>Drafts</a>
+        <a className="publish" onClick={() => setCurrentPage("publish")}>Published</a>
       </nav>
       {
-        currentPage==="draft"&&<Drafts drafts={stories.drafts}/>||
-        currentPage==="publish"&&<Publish published={stories.published}/>
+        currentPage === "draft" && <Drafts drafts={STORIES.drafts} /> ||
+        currentPage === "publish" && <Publish published={STORIES.published} />
       }
-      </div>
-      );
+    </div>
+  );
 }
-
 Stories.propTypes = {
-    stories: PropTypes.array.isRequired
+  stories: PropTypes.array.isRequired
 }
 
 export default YourStories;

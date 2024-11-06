@@ -7,6 +7,7 @@ async function fetching() {
       credentials:'include'
     });
     const data = await response.json();
+    console.log(data,'121323e2')
     return data.isLoggedIn;
   } catch {
     return null;

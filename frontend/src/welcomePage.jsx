@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function Header({ click }) {
-
   return (
     <header id="welcomeHeader">
       <h1>Medium</h1>
@@ -19,8 +18,6 @@ function Header({ click }) {
     </header>
   );
 }
-
-
 Header.propTypes = {
   click: PropTypes.func.isRequired,
 };
@@ -43,7 +40,6 @@ function WelcomePage() {
     };
     checkLoginStatus();
   }, []);
-
   if (error) {
     return (
       <h1 style={{ color: "red" }}>
@@ -64,8 +60,8 @@ function WelcomePage() {
             <h2>
               {isLoggedIn}
               Human <br /> Stories & Ideas
-              <p>A place to read, write, and deepen your understanding</p>
             </h2>
+            <p>A place to read, write, and deepen your understanding</p>
           </main>
           <Footer></Footer>
         </div>
@@ -104,7 +100,6 @@ function SignInPage({ click }) {
     </div>
   );
 }
-
 SignInPage.propTypes = {
   click: PropTypes.func.isRequired,
 };
