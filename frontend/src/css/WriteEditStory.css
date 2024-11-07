@@ -1,13 +1,15 @@
 #writeHeader {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     position: sticky;
     top: 0px;
     padding: 10px;
     align-items: center;
-    z-index: 1;
+    z-index: 0;
+    position: sticky;
+    top:100px;
     background-color: white;
+    height: 0px;
 }
 
 #publish {
@@ -19,16 +21,17 @@
     padding: 10px;
     letter-spacing: 0.5px;
     position: absolute;
-    top: -90px;
-    right: 5%;
+    top: -200px;
+    right: 30%;
     z-index: 3;
 }
 
-#writeHeader div {
+/* #writeHeader div {
     width: 190px;
     display: flex;
+    background-color: white;
     justify-content: space-between;
-}
+} */
 
 #saveDraft {
     background: transparent;
@@ -39,16 +42,15 @@
 }
 
 .editor-component {
-    border: 1px solid blue;
     width: 100%;
-    margin-top:50px;
+    margin-top:5px;
     object-fit: cover;
     position: relative;
     box-sizing: content-box;
     height: fit-content;
 }
 
-.editorTitle {
+/* .editorTitle {
     border: none;
     width: 75%;
     height: 100px;
@@ -61,15 +63,18 @@
     word-break: break-all;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-}
+} */
 
-.editorTitle:hover {
+/* .editorTitle:hover {
     outline: none;
-}
+} */
 
 #editorjs{
     width:inherit;
     box-sizing: border-box;
     position: relative;
     margin-top: 150px;
+    z-index:0;
+    padding: 0px;
+    outline: none;
 }

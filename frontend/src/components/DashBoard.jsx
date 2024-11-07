@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
-import './css/DashBoard.css'
-import { UserInfo } from "./homepage"
+import '../css/DashBoard.css'
+import { UserInfo } from "./Home"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
@@ -16,14 +16,14 @@ const StoryComponent = ({ currentStory }) => {
       }));
     };
     setStoryData(currentStory);
-    fetchCoverPage(currentStory['']);
+    fetchCoverPage();
   }, []);
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
 
   return (
     <div className="story-component" onClick={() => {
-      navigate('/homepage/storypage', {
+      navigate('/storypage', {
         state: {
           currentStory: storyData,
         }
@@ -63,7 +63,7 @@ const DashBoard = () => {
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
       }
-    </div> : <div>Please follow Authors to see the stories</div>
+    </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )
 }
 

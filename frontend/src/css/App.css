@@ -15,7 +15,6 @@
 .user-profile-icon {
   height: 30px;
   aspect-ratio: 1;
-  border: 1px solid blue;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
@@ -29,21 +28,7 @@
   margin: auto;
 }
 
-.author-details {
-  grid-row: span;
-  border: 1px solid red;
-}
 
-.story-details {
-  grid-row: span;
-  border: 1px solid blue;
-}
-
-.story-meta-data {
-
-  grid-row: span;
-  border: 1px solid brown;
-}
 
 /* src/App.css */
 .profile {
