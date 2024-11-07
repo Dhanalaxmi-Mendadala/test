@@ -10,7 +10,7 @@ const Header = () => {
       <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
       {
         location.pathname !== "/addstory" && (
-          <button onClick={() => navigate("/addstory", {
+          <button className="write-button" onClick={() => navigate("/addstory", {
             state: {
               id: null,
               content: [

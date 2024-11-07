@@ -22,12 +22,15 @@
 }
 
 .author-details {
+  padding-bottom: 10px;
+  padding-top: 10px;
   grid-row: span;
   display: flex;
   justify-content: start;
   align-items: center;
   padding-left: 20px;
   border-bottom:1px solid gray ;
+  height: 30px;
 }
 
 .story-details {
@@ -36,47 +39,66 @@
   padding-left: 20px;
   overflow: hidden;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  /* font-size: small; */
 }
 
 .story-title {
   margin: 10px;
-  font-size: small;
+  font-size: 25px;
+  width: 700px;
+  line-height: 35px;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .story-description {
   font-size: 16px;
-  margin: 10px;
+  margin-top: 24px;
+  margin-left: 13px;
   max-width: 70%;
-  padding-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-details::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
 }
 
 .story-cover-image {
-  height: 70px;
-  aspect-ratio: 16/9;
+  height: 80px;
   position: absolute;
   right: 10px;
-  top: 20px;
+  top: 40px;
 }
 
 .published-time {
+  font-weight: lighter;
   margin: 10px;
   padding-left: 20px;
 }
 
 .story-meta-data {
   grid-row: span;
+  color: rgba(0, 0, 0, 0.574);
+  /* border-top: 1px solid grey; */
+  margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .author-avatar {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
+  padding: 10px 5px 10px 0px;
   border-radius: 50%;
 }
 
 .author-name {
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 10px;
+  padding-left: 4px;
 }
 
 .author-name::first-letter {

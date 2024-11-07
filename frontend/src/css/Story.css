@@ -8,6 +8,10 @@ main {
   width: 75%;
   margin: auto;
 }
+.main-title {
+  margin-bottom: 10px;
+  padding: 10px;
+}
 
 .story-title {
   font-size: 45px;
@@ -28,6 +32,7 @@ main {
 }
 
 .story-content-container {
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 50px;
   font-size: large;
 }
@@ -74,4 +79,8 @@ justify-content: left;
 
 .content-paragraph {
   font-family: sans;
+}
+.story-author-account-info-container .story-author-name {
+  margin-left: 10px;
+  font-size: 16px;
 }

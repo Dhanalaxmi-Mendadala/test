@@ -51,6 +51,7 @@ const EditorComponent = (props) => {
         },
       });
     }
+
     return () => {
       if (editor && typeof editor.destroy === "function") {
       
