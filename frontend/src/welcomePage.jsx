@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./css/welcomePage.css";
 import { useEffect } from "react";
 import fetching from "./api";
-import CLIENT_ID from "../clientInfo.jsx";
+import CLIENT_ID from "./clientInfo.jsx";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
