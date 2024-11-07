@@ -1,82 +1,137 @@
-import { useRef, useEffect, useState } from 'react';
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import Delimiter from '@editorjs/delimiter';
-import saveDraft from './saveDraft';
-import PropTypes from 'prop-types'
+import { useRef, useEffect, useContext, useState } from "react";
+import EditorJS from "@editorjs/editorjs";
+import Header from "@editorjs/header";
+import Delimiter from "@editorjs/delimiter";
+import saveDraft from "./saveDraft";
+import PropTypes from "prop-types";
 import "./css/writeANewStory.css";
+import { UserInfo } from "./homepage";
+import { useLocation, useNavigate } from "react-router-dom";
+import { publishStory } from "./publishStory";
 
-
-const EditorComponent = ({ setEditorData }) => {
+const EditorComponent = (props) => {
   const editorRef = useRef(null);
+  const [currentDraft, setCurrentDraft] = useState(null);
+  const [clicked, setClicked] = useState(false);
   let editor = null;
+  const initialData = {
+    time: new Date().getTime(),
+    blocks: props['initialData']
+  };
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
-        placeholder: 'Tell your story ...',
-        holder: editorRef.current,
-        autofocus: true,
+        holder: "editorjs",
+        data: initialData,
+        autofocus: "true",
         tools: {
           header: {
             class: Header,
             inlineToolbar: true,
             config: {
               level: 1,
+              placeholder: "Title",
             },
           },
           paragraph: {
             inlineToolbar: true,
             config: {
-              placeholder: 'Tell your story ...',
               level: 1,
+              placeholder: "Tell your Story",
             },
           },
           delimiter: Delimiter,
         },
-        onReady: () => {
-          console.log('Editor is ready to use');
-        },
         onChange: async () => {
           const content = await editor.save();
-          console.log(content);
-          setEditorData(content);
+          setCurrentDraft(content);
+        },
+        onReady: () => {
+          console.log("Editor is ready to use");
         },
       });
     }
     return () => {
-      if (editor && typeof editor.destroy === 'function') {
-        editor.destroy()
+      if (editor && typeof editor.destroy === "function") {
+        if (clicked === false) {
+          try {
+            const getHeaderData = async () => {
+              const content = await editor.save();
+              const firstHeader = content.blocks.find(
+                (block) => block.type === "header"
+              );
+              if (firstHeader) {
+                saveDraft(props.storyId, firstHeader.data.text, content.blocks);
+              } else {
+                saveDraft(props.storyId, 'Untitled Story', content.blocks);
+              }
+              console.log("Unmounted successfully");
+            };
+            getHeaderData();
+          } catch (error) {
+            console.error("Error during unmount:", error);
+          }
+        }
+        editor.destroy();
       }
     };
-  }, [setEditorData]);
+  }, [props.storyId]);
 
-  return (
-    <div
-      ref={editorRef}
-      id="editorjs"
-      style={{ border: '1px solid #ccc', padding: '10px' }}
-    />
-  );
-}; EditorComponent.propTypes = {
-  setEditorData: PropTypes.func.isRequired,
-}
+  const navigatior = useNavigate();
 
-const WriteAStory = () => {
-  const [editorData, setEditorData] = useState(null);
-  const [title, setTitle] = useState(null);
+  const handlePublish = async (draftId) => {
+    if (draftId) {
+      publishStory(draftId)
+        .then(navigatior('/homepage/yourstories'));
+    } else {
+      const firstHeader = currentDraft.blocks.find(
+        (block) => block.type === "header"
+      );
+      let storyId = (firstHeader) ?
+        await saveDraft(props.storyId, firstHeader.data.text, currentDraft.blocks) :
+        await saveDraft(props.storyId, 'Untitled Story', currentDraft.blocks);
+      await publishStory(storyId)
+      navigatior('/homepage/yourstories');
+    }
+  }
+
   return (
     <>
-      <div id='writeHeader'>
+      <div
+        ref={editorRef}
+        id="editorjs"
+        style={{ border: "1px solid #ccc", padding: "10px" }}
+      />
+
+      <button id="publish" onClick={() => {
+        setClicked(true)
+        handlePublish(props.storyId)
+      }}>Publish</button>
+    </>
+  );
+};
+EditorComponent.propTypes = {
+  storyId: PropTypes.number.isRequired,
+  initialData: PropTypes.array.isRequired
+};
+
+const WriteAStory = () => {
+
+  const userData = useContext(UserInfo);
+  const location = useLocation();
+  const id = location.state.id;
+  const content = location.state.content;
+  return (
+    <>
+      <div id="writeHeader">
+        <div>Draft in {userData["username"]}</div>
         <div>
-          <button onClick={() => saveDraft(editorData, title)} id='saveDraft'>Save Draft</button>
-          <button id='publish'>Publish</button>
         </div>
       </div>
       <div className="editor-component">
-        <textarea placeholder='Title' className='editorTitle' onChange={(e) => { setTitle(e.target.value) }} />
-
-        <EditorComponent className='editor' setEditorData={setEditorData} />
-      </div></>
+        <EditorComponent className="editor" storyId={id} initialData={content} />
+      </div>
+    </>
   );
 };
 

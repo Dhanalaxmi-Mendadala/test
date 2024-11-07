@@ -18,9 +18,10 @@
     border-radius: 25px;
     padding: 10px;
     letter-spacing: 0.5px;
-    position: fixed;
-    bottom: 20px;
+    position: absolute;
+    top: -90px;
     right: 5%;
+    z-index: 3;
 }
 
 #writeHeader div {
@@ -40,6 +41,11 @@
 .editor-component {
     border: 1px solid blue;
     width: 100%;
+    margin-top:50px;
+    object-fit: cover;
+    position: relative;
+    box-sizing: content-box;
+    height: fit-content;
 }
 
 .editorTitle {
@@ -50,7 +56,7 @@
     padding-left: 15%;
     font-family: sans-serif;
     outline: none;
-    margin-top: 20px;
+    margin-top: 150px;
     box-sizing: border-box;
     word-break: break-all;
     white-space: pre-wrap;
@@ -61,6 +67,9 @@
     outline: none;
 }
 
-.editor {
-    z-index: -1;
+#editorjs{
+    width:inherit;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 150px;
 }

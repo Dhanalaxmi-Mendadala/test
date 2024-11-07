@@ -35,20 +35,20 @@ const ProfileMenu = () => {
               className="profile-icon"
               src={profileUrl || "../assets/github.png"}
             />
-            <a href="/profile" className="profile-name">
+            <Link to="profile" className="profile-name">
               {userName || "Guest"}
-            </a>
+            </Link>
           </div>
-          <Link to = 'profile'>
-          <DropdownItem img={author} name="Profile" />
+          <Link to='profile'>
+            <DropdownItem img={author} name="Profile" path="profile" />
           </Link>
-         <Link to = 'yourstories'>
-         <DropdownItem
-            img={story}
-            path="/homepage/yourStories"
-            name="Your Stories"
-          />
-         </Link>
+          <Link to='yourstories'>
+            <DropdownItem
+              img={story}
+              path="yourStories"
+              name="Your Stories"
+            />
+          </Link>
           <DropdownItem img={logout} path="/logout" name="Logout" />
         </div>
       )}
@@ -59,9 +59,9 @@ function DropdownItem(props) {
   return (
     <div className="dropdownItem">
       <img src={props.img} className="profile-icon drop-down-icon" />
-      <a href={props.path} className="drop-down-nav-name">
+      <Link to={props.path} className="drop-down-nav-name">
         {props.name}
-      </a>
+      </Link>
     </div>
   );
 }
