@@ -19,16 +19,23 @@
 }
 #welcomeBody h2 {
     font-size: 150px;
+    height: fit-content;
     font-weight: normal;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-#welcomeBody p {
-    font-size: 22px;
+#welcomeBody h2 p {
+    font-size: 25px;
+    height: fit-content;
+    font-weight: normal;
+    padding-left: 5px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 #welcomeBody {
-    padding: 137px;
+    height: fit-content;
+    width: inherit;
     border-bottom: 2px solid grey;
+    padding: 80px 80px 80px 0px;
 }
 #welcomeFooter {
     background-color: #F7F4ED;

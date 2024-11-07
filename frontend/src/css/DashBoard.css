@@ -8,6 +8,11 @@
   cursor: pointer;
   margin-bottom: 40px;
 }
+#Authors{
+  width: 500px;
+  margin: auto;
+  font-size: 40px;
+}
 
 .story-component:hover {
   transform: scale(1.005);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const StoryContent = ({ contentData }) => {
   return (
-    <div>
+    <>
       {contentData.map((block, index) => {
         switch (block.type) {
           case 'paragraph':
@@ -12,13 +12,13 @@ const StoryContent = ({ contentData }) => {
           case 'header':
             return <h2 key={index} className='content-header'>{block.data.text}</h2>
           case 'delimiter':
-            return <hr key={index} className='content-delimiter'/>;
+            return <hr key={index} className='content-delimiter' />;
           default:
             return null;
         }
       })
       }
-    </div>
+    </>
   )
 }
 
@@ -47,6 +47,7 @@ const StoryPage = () => {
         <img className='story-coverpage' src={storyData.image}></img>
       </div>
       <div className='story-content-container'>
+        {/* <p className='story-content'></p> */}
         <StoryContent contentData={storyData.content} className='story-content' />
       </div>
     </main> : <p>Error</p>
