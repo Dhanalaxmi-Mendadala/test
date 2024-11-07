@@ -40,7 +40,7 @@ function Drafts({ drafts }) {
     , [drafts]);
 
   return (<div className="drafts-container">
-    {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
+    {drafts.length === 0 ? <p>No Drafts yet,please Write a story</p> :
       <div className='all-drafts-unit'>{
         drafts.map((draft, i) =>
           <div className="draft-unit" key={i} >
@@ -75,7 +75,7 @@ Drafts.propTypes = {
 function Publish({ published }) {
   const navigator = useNavigate();
   return (<div className="published-container">
-    {published.length === 0 ? <p>No published yet,please pulish a story</p> :
+    {published.length === 0 ? <p>No published Stories yet,please publish a story</p> :
       <div className='all-published-unit' > {
         published.map((aStory, i) =>
           <div className="a-story-unit" key={i} onClick={() => {

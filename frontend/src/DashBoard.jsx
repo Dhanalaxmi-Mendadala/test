@@ -63,7 +63,7 @@ const DashBoard = () => {
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
       }
-    </div> : <div>Please follow Authors to see the stories</div>
+    </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )
 }
 

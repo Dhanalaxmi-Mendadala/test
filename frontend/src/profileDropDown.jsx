@@ -49,7 +49,11 @@ const ProfileMenu = () => {
               name="Your Stories"
             />
           </Link>
-          <DropdownItem img={logout} path="/logout" name="Logout" />
+          <DropdownItem
+              img={logout}
+              path="logout"
+              name="Your Stories"
+            />
         </div>
       )}
     </div>

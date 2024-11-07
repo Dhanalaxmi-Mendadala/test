@@ -47,11 +47,11 @@ function WelcomePage() {
       </h1>
     );
   }
-  if (isLoggedIn) {
+  if (isLoggedIn === true) {
     console.log(isLoggedIn);
     navigate('/homepage');
   }
-  else {
+  
     return (
         <div>
           <Header click={setClicked} />
@@ -66,7 +66,6 @@ function WelcomePage() {
           <Footer></Footer>
         </div>
     );
-  }
 }
 
 function Footer() {

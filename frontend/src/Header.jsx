@@ -4,9 +4,9 @@ import ProfileMenu from "./profileDropDown";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location, "heheee😀");
+
   return (
-    <header className="main-header">
+    <header className="main-header" style={{position:'sticky',top:'0px',zIndex:'1',backgroundColor:'white'}}>
       <h1 className="title" onClick={() => navigate("/homepage")}> Medium</h1>
       {
         location.pathname !== "/homepage/addstory" && (

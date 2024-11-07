@@ -25,20 +25,20 @@
 }
 
 .draft {
-    color: rgb(239, 143, 143);
+    color: grey;
     text-align: right;
 }
 
 .publish {
-    color: lightgreen;
+    color: grey;
 }
 
 .publish:hover {
-    color: green;
+    color: black;
 }
 
 .draft:hover {
-    color: red;
+    color: black;
 }
 
 .drafts-container,
@@ -55,12 +55,13 @@
 
 .draft-unit,
 .a-story-unit {
-    width: 400px;
+    width: 600px;
     display: inherit;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #ebe9e9fc;
+    background-color: #eaeaeafc;
+    border-bottom:1px solid black ;
 }
 
 .draft-unit:hover,
@@ -78,7 +79,7 @@
 .edit-draft-button,
 .publish-button {
     padding: 5px 5px 3px 5px;
-    background-color: red;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 5px;

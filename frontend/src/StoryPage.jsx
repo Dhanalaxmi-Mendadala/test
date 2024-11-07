@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const StoryContent = ({ contentData }) => {
   return (
-    <div>
+    <>
       {contentData.map((block, index) => {
         switch (block.type) {
           case 'paragraph':
@@ -18,7 +18,7 @@ const StoryContent = ({ contentData }) => {
         }
       })
       }
-    </div>
+    </>
   )
 }
 
@@ -37,9 +37,9 @@ const StoryPage = () => {
         storyData ? <main>
           <h1 className='story-title'>{storyData.title || 'Title'}</h1>
           <div className='story-author-details-container'>
-            <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId || 172028165}?v=4`}></img>
+            <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId }?v=4`}></img>
             <div className='story-author-account-info-container'>
-              <p className='story-author-name'>{storyData.author || 'Siddhu83'}</p>
+              <p className='story-author-name'>{storyData.author}</p>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>
