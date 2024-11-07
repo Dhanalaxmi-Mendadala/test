@@ -12,6 +12,7 @@
     position: sticky;
     top:100px;
     background-color: white;
+    height: 0px;
 }
 
 #publish {
@@ -28,12 +29,12 @@
     z-index: 3;
 }
 
-#writeHeader div {
+/* #writeHeader div {
     width: 190px;
     display: flex;
     background-color: white;
     justify-content: space-between;
-}
+} */
 
 #saveDraft {
     background: transparent;
@@ -52,7 +53,7 @@
     height: fit-content;
 }
 
-.editorTitle {
+/* .editorTitle {
     border: none;
     width: 75%;
     height: 50px;
@@ -65,13 +66,11 @@
     word-break: break-all;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    resize: none;
-    /* border: 1px black solid; */
-}
+} */
 
-.editorTitle:hover {
+/* .editorTitle:hover {
     outline: none;
-}
+} */
 
 #editorjs{
     width:inherit;

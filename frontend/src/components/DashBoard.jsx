@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
-import './css/DashBoard.css'
-import { UserInfo } from "./homepage"
+import '../css/DashBoard.css'
+import { UserInfo } from "./Home"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
@@ -16,14 +16,14 @@ const StoryComponent = ({ currentStory }) => {
       }));
     };
     setStoryData(currentStory);
-    fetchCoverPage(currentStory['']);
+    fetchCoverPage();
   }, []);
 
   const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
 
   return (
     <div className="story-component" onClick={() => {
-      navigate('/homepage/storypage', {
+      navigate('/storypage', {
         state: {
           currentStory: storyData,
         }
@@ -35,7 +35,7 @@ const StoryComponent = ({ currentStory }) => {
         <h4 className="author-name">{storyData.author || 'Author'}</h4>
       </div>
       <div className="story-details">
-        <h3 className="title">{storyData.title || 'Title'}</h3>
+        <h3 className="story-title">{storyData.title || 'Title'}</h3>
         <p className="story-description">
           {storyDescription || 'Story decription'}
         </p>
@@ -61,7 +61,8 @@ const DashBoard = () => {
 
   return (
     stories.length !== 0 ? <div className="user-dashboard">
-      {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
+      {stories.map((currentStory, i) =>
+       <StoryComponent key={i} currentStory={currentStory} />)
       }
     </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )

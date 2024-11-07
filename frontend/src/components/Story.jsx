@@ -1,6 +1,6 @@
-import { useLocation } from 'react-router-dom'
-import './css/StoryPage.css'
-import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom';
+import '../css/Story.css';
+import PropTypes from 'prop-types';
 
 const StoryContent = ({ contentData }) => {
   return (
@@ -23,7 +23,7 @@ const StoryContent = ({ contentData }) => {
 }
 
 StoryContent.propTypes = {
-  contentData: PropTypes.object.isRequired
+  contentData: PropTypes.array.isRequired
 }
 
 const StoryPage = () => {
@@ -39,7 +39,7 @@ const StoryPage = () => {
           <div className='story-author-details-container'>
             <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId }?v=4`}></img>
             <div className='story-author-account-info-container'>
-              <p className='story-author-name'>{storyData.author}</p>
+              <p className='story-author-name'>{storyData.author || 'Author'}</p>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>

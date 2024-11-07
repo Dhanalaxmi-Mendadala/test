@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import Header from "./Header";
-import "./css/homepage.css";
+import "../css/Home.css";
 import { Outlet } from "react-router-dom";
 
 export const UserInfo = createContext(null);
@@ -16,12 +16,13 @@ const fetchUseData = async () => {
     return null;
   }
 };
+
 const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserData = async () => {
-     const data = await fetchUseData();
-      setUserData(data||{})
+      const data = await fetchUseData();
+      setUserData(data || {})
     };
     getUserData();
   }, []);
@@ -32,7 +33,9 @@ const HomePage = () => {
     <>
       <UserInfo.Provider value={userData}>
         <Header />
-        <Outlet />
+        <div className="main-container">
+          <Outlet />
+        </div>
       </UserInfo.Provider>
     </>
   );
