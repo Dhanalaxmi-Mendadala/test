@@ -42,7 +42,7 @@ const StoryComponent = ({ currentStory }) => {
         <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        <p className="published-time">{storyData.publishedTime}</p>
+        <p className="published-time">5:45pm</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
