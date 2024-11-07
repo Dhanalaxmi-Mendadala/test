@@ -1,30 +1,67 @@
 import { useLocation } from 'react-router-dom'
-import './css/StoryPage.css'
-import PropTypes from 'prop-types'
+import './css/StoryPage.css';
+import EditorJS from "@editorjs/editorjs";
+import { useRef ,useEffect} from 'react';
+import PropTypes from 'prop-types';
+// const parseData=(contentData)=>{
+//   let html=[];
+//   contentData.forEach((block, index) => {
+//     switch (block.type) {
+//       case 'paragraph':
+//         html.push(<p key={index} className='content-paragraph'>{block.data.text.toLowerCase()}</p>);
+//         break;
+//       case 'header':
+//         html.push(<h2 key={index} className='content-header'>{block.data.text}</h2>);
+//         break;
+//       case 'delimiter':
+//         html.push(<hr key={index} className='content-delimiter' />);
+//         break;
+//       default:
+//         return null;
+//     }
+//   }
+//   );
+//   return html;
+// }
 
-const StoryContent = ({ contentData }) => {
-  return (
-    <>
-      {contentData.map((block, index) => {
-        switch (block.type) {
-          case 'paragraph':
-            return <p key={index} className='content-paragraph'>{block.data.text.toLowerCase()}</p>;
-          case 'header':
-            return <h2 key={index} className='content-header'>{block.data.text}</h2>
-          case 'delimiter':
-            return <hr key={index} className='content-delimiter' />;
-          default:
-            return null;
-        }
-      })
+const StoryContent = (props)=> {
+  const editorRef = useRef(null);
+  let editor = null;
+  const initialData = {
+    time: new Date().getTime(),
+    blocks: props['contentData']
+  };
+  useEffect(() => {
+    if (!editor) {
+      editor = new EditorJS({
+        holder: "editorjs",
+        data: initialData,
+        readOnly: true,
+        
+    });
+  }
+    return () => {
+      if (editor && typeof editor.destroy === "function") {
+        editor.destroy();
       }
+    };
+  }, [initialData]);  return (
+    <>
+      <div
+        ref={editorRef}
+        id="editorjs"
+        style={{ border: "1px solid #ccc", padding: "10px",margin:'auto',backgroundColor:'white' }}
+      />
     </>
-  )
-}
+  );
+};
+
 
 StoryContent.propTypes = {
   contentData: PropTypes.object.isRequired
 }
+
+
 
 const StoryPage = () => {
   const location = useLocation();

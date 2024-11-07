@@ -28,7 +28,7 @@ const Profile = () => {
       setUserData(data);
     };
     getprofile();
-  }, []);
+  });
 
   console.log(userData, 'profile page')
   return (
