@@ -43,7 +43,6 @@ function App() {
     <>
       <Router>
         <Routes>
-          {/* <Route path='/index' element={homeElement} > */}
           <Route path="/" element={homeElement}>
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />

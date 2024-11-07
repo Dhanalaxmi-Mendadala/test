@@ -1,6 +1,7 @@
 .profile-menu {
   position: relative;
   display: inline-block;
+  width: 380px;
 }
 .profile-icon {
   width: 40px;
@@ -43,9 +44,9 @@
 .dropdownItem{
   display: flex;
   align-items: center;
-  justify-content: space-between;
   column-gap:5px ;
   width: auto;
+  text-decoration: none;
 }
 .dropdownItem:hover{
   cursor: pointer;

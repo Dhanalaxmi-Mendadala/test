@@ -31,7 +31,10 @@ main {
   margin-top: 50px;
   font-size: large;
 }
-
+.story-content-container div{
+width: inherit;
+justify-content: left;
+}
 .story-author-details-container {
   display: flex;
   font-size: large;
@@ -50,11 +53,7 @@ main {
   height: 50px;
   border-radius: 50%;
 }
-/*
-.story-author-account-info-container {
-  margin-left: 10px;
-  margin-top: 5px;
-} */
+
 
 .story-content {
   width: inherit;
