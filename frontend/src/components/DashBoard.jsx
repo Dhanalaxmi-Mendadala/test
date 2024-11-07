@@ -12,6 +12,9 @@ const GenerateTime = ({time}) => {
   <p>{relativeTime}</p>
   )
 }
+GenerateTime.propTypes = {
+ time: PropTypes.object.isRequired
+}
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});

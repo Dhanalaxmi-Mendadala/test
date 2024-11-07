@@ -35,7 +35,7 @@ const StoryPage = () => {
     <>
       {
         storyData ? <main>
-          <h1 className='story-title'>{storyData.title || 'Title'}</h1>
+          <h1 className='main-title'>{storyData.title || 'Title'}</h1>
           <div className='story-author-details-container'>
             <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId }?v=4`}></img>
             <div className='story-author-account-info-container'>
