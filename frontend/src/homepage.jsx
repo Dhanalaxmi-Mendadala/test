@@ -16,12 +16,13 @@ const fetchUseData = async () => {
     return null;
   }
 };
+
 const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserData = async () => {
-     const data = await fetchUseData();
-      setUserData(data||{})
+      const data = await fetchUseData();
+      setUserData(data || {})
     };
     getUserData();
   }, []);
@@ -32,7 +33,9 @@ const HomePage = () => {
     <>
       <UserInfo.Provider value={userData}>
         <Header />
-        <Outlet />
+        <div className="main-container">
+          <Outlet />
+        </div>
       </UserInfo.Provider>
     </>
   );

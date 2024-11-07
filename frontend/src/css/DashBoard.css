@@ -1,18 +1,19 @@
 .story-component {
   border: 0.01px solid grey;
+  border-radius: 10px;
   display: grid;
   grid-template-rows: 45px 130px 45px;
   width: 60%;
   margin: auto;
   position: relative;
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  z-index: 1;
 }
 
 .story-component:hover {
   transform: scale(1.005);
-  box-shadow: 5px 5px 5px grey;
-
+  box-shadow: 2px 2px 2px grey;
 }
 
 .author-details {
@@ -21,6 +22,7 @@
   justify-content: start;
   align-items: center;
   padding-left: 20px;
+  border-bottom:1px solid gray ;
 }
 
 .story-details {
@@ -28,14 +30,17 @@
   position: inherit;
   padding-left: 20px;
   overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-size: small; */
 }
 
 .story-title {
   margin: 10px;
+  font-size: small;
 }
 
 .story-description {
-  font-size: 17px;
+  font-size: 16px;
   margin: 10px;
   max-width: 70%;
   padding-bottom: 10px;
@@ -71,10 +76,4 @@
 
 .author-name::first-letter {
   text-transform: capitalize;
-}
-
-.title {
-  font-size: xx-large;
-  padding-left: 8px;
-  font-family: sans-serif;
 }

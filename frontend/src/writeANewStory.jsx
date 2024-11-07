@@ -53,7 +53,11 @@ const EditorComponent = (props) => {
     }
     return () => {
       if (editor && typeof editor.destroy === "function") {
-        if (clicked === false) {
+      
+      
+        if (!clicked) {
+      
+      
           try {
             const getHeaderData = async () => {
               const content = await editor.save();
@@ -125,8 +129,6 @@ const WriteAStory = () => {
     <>
       <div id="writeHeader">
         <div>Draft in {userData["username"]}</div>
-        <div>
-        </div>
       </div>
       <div className="editor-component">
         <EditorComponent className="editor" storyId={id} initialData={content} />

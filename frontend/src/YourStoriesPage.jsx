@@ -40,7 +40,7 @@ function Drafts({ drafts }) {
     , [drafts]);
 
   return (<div className="drafts-container">
-    {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
+    {drafts.length === 0 ? <p>No Drafts yet,please create</p> :
       <div className='all-drafts-unit'>{
         drafts.map((draft, i) =>
           <div className="draft-unit" key={i} >
@@ -100,7 +100,7 @@ function Stories({ stories }) {
   const [currentPage, setCurrentPage] = useState('draft');
   return (
     <div id="yourStories">
-      <h1>Your Stories</h1>
+      <h2>Your Stories</h2>
       <nav>
         <a className="draft" onClick={() => setCurrentPage("draft")}>Drafts</a>
         <a className="publish" onClick={() => setCurrentPage("publish")}>Published</a>
