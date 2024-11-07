@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import "./css/yourStories.css"
-import getStories from "./getStoriesApi"
+import "../css/MyStories.css"
+import getStories from "../API/getStories"
 import PropTypes from 'prop-types'
-import { publishStory } from "./publishStory"
+import { publishStory } from "../API/publishStory"
 
-function YourStories() {
+function MyStories() {
   const [stories, setStories] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -45,14 +45,14 @@ function Drafts({ drafts }) {
         drafts.map((draft, i) =>
           <div className="draft-unit" key={i} >
             <p className="draft-title" onClick={() => {
-              navigator('/homepage/storypage', {
+              navigator('/storypage', {
                 state: {
                   currentStory: draft,
                 }
               })
             }}>{draft['title']}</p>
             <button className="edit-draft-button" onClick={() =>
-              navigator("/homepage/addstory", {
+              navigator("/addstory", {
                 state: {
                   id: draft['id'],
                   content: draft['content']
@@ -79,7 +79,7 @@ function Publish({ published }) {
       <div className='all-published-unit' > {
         published.map((aStory, i) =>
           <div className="a-story-unit" key={i} onClick={() => {
-            navigator('/homepage/storypage', {
+            navigator('/storypage', {
               state: {
                 currentStory: aStory,
               }
@@ -116,4 +116,4 @@ Stories.propTypes = {
   stories: PropTypes.object.isRequired
 }
 
-export default YourStories;
+export default MyStories;

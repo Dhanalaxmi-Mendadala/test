@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import './css/StoryPage.css'
+import '../css/Story.css'
 import PropTypes from 'prop-types'
 
 const StoryContent = ({ contentData }) => {
@@ -39,7 +39,7 @@ const StoryPage = () => {
           <div className='story-author-details-container'>
             <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId || 172028165}?v=4`}></img>
             <div className='story-author-account-info-container'>
-              <p className='story-author-name'>{storyData.author || 'Siddhu83'}</p>
+              <p className='story-author-name'>{storyData.author || 'Author'}</p>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>

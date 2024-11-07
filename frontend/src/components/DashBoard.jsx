@@ -1,17 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
-import './css/DashBoard.css'
-import { UserInfo } from "./homepage"
-import moment from 'moment'
+import '../css/DashBoard.css'
+import { UserInfo } from "./Home"
 
-const setRelativeTime = () => {
-  const now = moment();
-  console.log(now)
-  const fewMinutesAgo = now.subtract(5, 'minutes').fromNow();
-  const oneDayAgo = now.subtract(1, 'day').fromNow();
-  console.log(`${fewMinutesAgo}`);
-}
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
   const navigate = useNavigate();
@@ -23,7 +15,6 @@ const StoryComponent = ({ currentStory }) => {
         image: response['url'],
       }));
     };
-    setRelativeTime();
     setStoryData(currentStory);
     fetchCoverPage();
   }, []);
@@ -32,7 +23,7 @@ const StoryComponent = ({ currentStory }) => {
 
   return (
     <div className="story-component" onClick={() => {
-      navigate('/homepage/storypage', {
+      navigate('/storypage', {
         state: {
           currentStory: storyData,
         }

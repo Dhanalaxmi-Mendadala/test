@@ -2,12 +2,12 @@ import { useRef, useEffect, useContext, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
-import saveDraft from "./saveDraft";
+import saveDraft from "../API/saveDraft";
 import PropTypes from "prop-types";
-import "./css/writeANewStory.css";
-import { UserInfo } from "./homepage";
+import "../css/WriteEditStory.css";
+import { UserInfo } from "./Home";
 import { useLocation, useNavigate } from "react-router-dom";
-import { publishStory } from "./publishStory";
+import { publishStory } from "../API/publishStory";
 
 const EditorComponent = (props) => {
   const editorRef = useRef(null);
@@ -86,7 +86,7 @@ const EditorComponent = (props) => {
   const handlePublish = async (draftId) => {
     if (draftId) {
       publishStory(draftId)
-        .then(navigatior('/homepage/yourstories'));
+        .then(navigatior('/yourstories'));
     } else {
       const firstHeader = currentDraft.blocks.find(
         (block) => block.type === "header"
@@ -95,7 +95,7 @@ const EditorComponent = (props) => {
         await saveDraft(props.storyId, firstHeader.data.text, currentDraft.blocks) :
         await saveDraft(props.storyId, 'Untitled Story', currentDraft.blocks);
       await publishStory(storyId)
-      navigatior('/homepage/yourstories');
+      navigatior('/yourstories');
     }
   }
 
