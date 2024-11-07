@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
+import moment from "moment"
+
+const GenerateTime = ({time}) => {
+  const relativeTime = moment(time).fromNow();
+  console.log(relativeTime, "Time")
+  return (
+  <p>{relativeTime}</p>
+  )
+}
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
@@ -42,7 +51,8 @@ const StoryComponent = ({ currentStory }) => {
         <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        <p className="published-time">5:45pm</p>
+        
+        <p className="published-time">{<GenerateTime time={storyData['published_at']}/>}</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
