@@ -23,15 +23,11 @@ const StoryComponent = ({ currentStory }) => {
 
   return (
     <div className="story-component" onClick={() => {
-      navigate('/storypage', {
-        state: {
-          currentStory: storyData,
-        }
-      })
+      navigate(`/storypage/${storyData['id']}`)
     }}>
 
       <div className="author-details">
-        <img src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`} alt="avatar" className="author-avatar" />
+        <img src={storyData['author_avatar_url']} alt="avatar" className="author-avatar" />
         <h4 className="author-name">{storyData.author || 'Author'}</h4>
       </div>
       <div className="story-details">
@@ -58,12 +54,12 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-
+console.log(stories, 'dashboard')
   return (
     stories.length !== 0 ? <div className="user-dashboard">
-      {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
-      }
-    </div> : <div id='Authors'>Please follow Authors to see the stories</div>
+      {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)}
+    </div> :
+      <div id='Authors'>Please follow Authors to see the stories</div>
   )
 }
 
