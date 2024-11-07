@@ -4,13 +4,6 @@ import PropTypes from 'prop-types'
 import './css/DashBoard.css'
 import { UserInfo } from "./homepage"
 
-// const generateTimeDifference = (timeStamp) => {
-//   const present = new Date(timeStamp)
-//   const month = present.getMonth() + 1;
-//   const date = present.getDate();
-//   return month + '-' + date;
-// };
-
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState({});
   const navigate = useNavigate();
@@ -23,7 +16,6 @@ const StoryComponent = ({ currentStory }) => {
       }));
     };
     setStoryData(currentStory);
-    // setStoryData({ ...storyData, publishedTime: generateTimeDifference(storyData.published_at) })
     fetchCoverPage(currentStory['']);
   }, []);
 
@@ -65,15 +57,13 @@ StoryComponent.propTypes = {
 
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
-  console.log(someContext)
-
   const stories = someContext['stories']
 
   return (
-    <div className="user-dashboard">
-      {stories ? stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
-        : <div className="error-message">Please follow Authors to see the stories</div>}
-    </div>
+    stories.length !== 0 ? <div className="user-dashboard">
+      {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
+      }
+    </div> : <div>Please follow Authors to see the stories</div>
   )
 }
 

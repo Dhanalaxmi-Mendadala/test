@@ -10,7 +10,7 @@ const fetchUseData = async () => {
       credentials: "include",
     });
     const data = await response.json();
-    // console.log(data)
+    console.log(data, 'home page')
     return data;
   } catch {
     return null;
@@ -20,9 +20,8 @@ const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserData = async () => {
-      const data = await fetchUseData();
-      setUserData(data);
-      console.log(data);
+     const data = await fetchUseData();
+      setUserData(data||{})
     };
     getUserData();
   }, []);

@@ -21,9 +21,10 @@
     border-radius: 25px;
     padding: 10px;
     letter-spacing: 0.5px;
-    position: fixed;
-    bottom: 20px;
+    position: absolute;
+    top: -90px;
     right: 5%;
+    z-index: 3;
 }
 
 #writeHeader div {
@@ -43,6 +44,11 @@
 .editor-component {
     /* border: 1px solid blue; */
     width: 100%;
+    margin-top:50px;
+    object-fit: cover;
+    position: relative;
+    box-sizing: content-box;
+    height: fit-content;
 }
 
 .editorTitle {
@@ -53,7 +59,7 @@
     margin-left: 25%;
     font-family: sans-serif;
     outline: none;
-    margin-top: 120px;
+    margin-top: 150px;
     box-sizing: border-box;
     word-break: break-all;
     white-space: pre-wrap;
@@ -64,4 +70,11 @@
 
 .editorTitle:hover {
     outline: none;
+}
+
+#editorjs{
+    width:inherit;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 150px;
 }

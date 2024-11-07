@@ -1,31 +1,26 @@
-const saveDraft = (story, storyTitle) => {
-  // const storyContent = story.blocks.map(content => {
-  //   return { type: content.type, data: content.data }
-  // })
-  console.log(storyTitle);
-
-  // const object = {
-  //   storyId: 1,
-  //   title: storyTitle,
-  //   content: storyContent,
-  // };
+async function putStory(story) {
+  try {
+    const response = await fetch('http://localhost:8000/story', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(story),
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    return null;
+  }
+};
+const saveDraft = async (id, storyTitle, story) => {
+  const object = {
+    storyId: id,
+    title: storyTitle,
+    content: story,
+  };
+  const response = await putStory(object);
+  return response.storyId;
 }
 
-// async function putStory(story) {
-//   try {
-//     const response = await fetch('http://localhost:8000/story', {
-//       method: 'PUT',
-//       headers: { 'Content-Type': 'json' },
-//       mode: 'cors',
-//       credentials: "include",
-//       body: story,
-//     });
-//     const data = await response.json();
-//     console.log(data);
-//     return data;
-//   } catch {
-//     return null;
-//   }
-// };
 
 export default saveDraft;
