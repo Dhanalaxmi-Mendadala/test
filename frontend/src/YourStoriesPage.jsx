@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom"
 import "./css/yourStories.css"
 import getStories from "./getStoriesApi"
 import PropTypes from 'prop-types'
+import { publishStory } from "./publishStory"
 
 function YourStories() {
-  const [stories, setStoriesData] = useState(false);
+  const [stories, setStories] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -14,9 +15,8 @@ function YourStories() {
       if (data === null) {
         setError(true);
       } else {
-        setStoriesData(data);
+        setStories(data);
         setLoading(false);
-        console.log(stories,"Fetched Success");
       }
     };
     getStoriesData();
@@ -35,18 +35,38 @@ function YourStories() {
 };
 
 function Drafts({ drafts }) {
+  const navigator = useNavigate();
+  useEffect(() => { }
+    , [drafts]);
+
   return (<div className="drafts-container">
-    {drafts.length === 0 ? <p>No Drafts yet,please created</p> :
+    {drafts.length === 0 ? <p>No Drafts yet,please Write a story</p> :
       <div className='all-drafts-unit'>{
         drafts.map((draft, i) =>
-          <div className="draft-unit" key={i}>
-            <p className="draft-title">{draft['title']}</p>
-            <button className="edit-draft-button">EDIT</button>
+          <div className="draft-unit" key={i} >
+            <p className="draft-title" onClick={() => {
+              navigator('/homepage/storypage', {
+                state: {
+                  currentStory: draft,
+                }
+              })
+            }}>{draft['title']}</p>
+            <button className="edit-draft-button" onClick={() =>
+              navigator("/homepage/addstory", {
+                state: {
+                  id: draft['id'],
+                  content: draft['content']
+                }
+              })}>EDIT</button>
+            <button className="publish-button" onClick={() => {
+              publishStory(draft['id'])
+                .then(window.location.reload())
+            }}>PUBLISH</button>
           </div>
         )
       }
       </div>}
-  </div>)
+  </div >)
 }
 Drafts.propTypes = {
   drafts: PropTypes.array.isRequired
@@ -55,7 +75,7 @@ Drafts.propTypes = {
 function Publish({ published }) {
   const navigator = useNavigate();
   return (<div className="published-container">
-    {published.length === 0 ? <p>No published yet,please pulish a story</p> :
+    {published.length === 0 ? <p>No published Stories yet,please publish a story</p> :
       <div className='all-published-unit' > {
         published.map((aStory, i) =>
           <div className="a-story-unit" key={i} onClick={() => {
@@ -78,7 +98,6 @@ Publish.propTypes = {
 
 function Stories({ stories }) {
   const [currentPage, setCurrentPage] = useState('draft');
-  console.log(stories)
   return (
     <div id="yourStories">
       <h1>Your Stories</h1>
@@ -94,7 +113,7 @@ function Stories({ stories }) {
   );
 }
 Stories.propTypes = {
-  stories: PropTypes.array.isRequired
+  stories: PropTypes.object.isRequired
 }
 
 export default YourStories;

@@ -57,15 +57,13 @@ StoryComponent.propTypes = {
 
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
-  console.log(someContext)
-
   const stories = someContext['stories']
 
   return (
-    stories.length!==0 ? <div className="user-dashboard">
+    stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) => <StoryComponent key={i} currentStory={currentStory} />)
-       }
-    </div> : <div>Please follow Authors to see the stories</div>
+      }
+    </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )
 }
 

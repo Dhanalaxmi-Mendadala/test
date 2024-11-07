@@ -35,21 +35,25 @@ const ProfileMenu = () => {
               className="profile-icon"
               src={profileUrl || "../assets/github.png"}
             />
-            <Link to="/homepage/profile" className="profile-name">
+            <Link to="profile" className="profile-name">
               {userName || "Guest"}
             </Link>
           </div>
           <Link to='profile'>
-            <DropdownItem img={author} name="Profile" />
+            <DropdownItem img={author} name="Profile" path="profile" />
           </Link>
           <Link to='yourstories'>
             <DropdownItem
               img={story}
-              path="/homepage/yourStories"
+              path="yourStories"
               name="Your Stories"
             />
           </Link>
-          <DropdownItem img={logout} path="/logout" name="Logout" />
+          <DropdownItem
+              img={logout}
+              path="logout"
+              name="Your Stories"
+            />
         </div>
       )}
     </div>

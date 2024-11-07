@@ -10,7 +10,7 @@ const fetchUseData = async () => {
       credentials: "include",
     });
     const data = await response.json();
-    // console.log(data)
+    console.log(data, 'home page')
     return data;
   } catch {
     return null;

@@ -5,7 +5,7 @@ import HomePage from "./homepage";
 import StoryPage from "./StoryPage.jsx";
 import WriteAStory from "./writeANewStory.jsx";
 import DashBoard from "./DashBoard.jsx";
-import YourStories from "./YourStories.jsx";
+import YourStories from "./YourStoriesPage.jsx";
 import Profile from "./myprofile.jsx";
 
 

@@ -1,12 +1,13 @@
 #writeHeader {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     position: sticky;
     top: 0px;
     padding: 10px;
     align-items: center;
-    z-index: 1;
+    z-index: 0;
+    position: sticky;
+    top:100px;
     background-color: white;
 }
 
@@ -18,14 +19,16 @@
     border-radius: 25px;
     padding: 10px;
     letter-spacing: 0.5px;
-    position: fixed;
-    bottom: 20px;
-    right: 5%;
+    position: absolute;
+    top: -200px;
+    right: 30%;
+    z-index: 3;
 }
 
 #writeHeader div {
     width: 190px;
     display: flex;
+    background-color: white;
     justify-content: space-between;
 }
 
@@ -38,9 +41,8 @@
 }
 
 .editor-component {
-    border: 1px solid blue;
     width: 100%;
-    margin-top:50px;
+    margin-top:5px;
     object-fit: cover;
     position: relative;
     box-sizing: content-box;
@@ -71,4 +73,7 @@
     box-sizing: border-box;
     position: relative;
     margin-top: 150px;
+    z-index:0;
+    padding: 0px;
+    outline: none;
 }
