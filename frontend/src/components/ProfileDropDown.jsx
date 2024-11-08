@@ -60,6 +60,9 @@ const ProfileMenu = ({logoutFunction}) => {
     </div>
   );
 };
+ProfileMenu.propTypes = {
+  logoutFunction: PropTypes.func.isRequired,
+};
 function DropdownItem(props) {
   return (
     <div className="dropdownItem" onClick= {props.onClick}>
@@ -75,7 +78,7 @@ DropdownItem.propTypes = {
   img: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  click: PropTypes.string.isRequired,
+  onClick: PropTypes.string.isRequired,
 };
 
 export default ProfileMenu

@@ -1,5 +1,6 @@
 import '../css/logoutPop.css'
 import mainLogout from "../API/logout";
+import PropTypes from "prop-types";
 
 
 function LogoutPopUp ({logoutFlag, close}) {
@@ -18,5 +19,9 @@ function LogoutPopUp ({logoutFlag, close}) {
       </>
     )
 }
+LogoutPopUp.propTypes = {
+    logoutFlag: PropTypes.bool.isRequired,
+    close: PropTypes.func.isRequired
+};
 export default LogoutPopUp
     
