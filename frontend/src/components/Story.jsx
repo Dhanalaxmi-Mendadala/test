@@ -1,16 +1,16 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import '../css/Story.css'
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory'
 import { useEffect, useState } from 'react'
-import EditorJS from '@editorjs/editorjs';
-import Header from "@editorjs/header";
-import Delimiter from "@editorjs/delimiter";
-import copyLink from '../utilites/copyLink';
-import image1 from "../components/svg/notclicked1.svg"
-import image2 from "../components/svg/clicked-clap.svg"
-import fetchCoverPage from '../API/fetchCoverPage';
+import EditorJS from '@editorjs/editorjs'
+import Header from "@editorjs/header"
+import Delimiter from "@editorjs/delimiter"
+import claped from "../components/svg/notclicked1.svg"
+import unClaped from "../components/svg/clicked-clap.svg"
+import copyLink from "../components/svg/copyLink.svg"
+import fetchCoverPage from '../API/fetchCoverPage'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -75,7 +75,7 @@ const StoryPage = () => {
       console.log(storyData, 'added the image')
     }
     getStoryData()
-      .then(() => addImage());
+      .then(addImage);
   }, []);
   if (error) {
     return (
@@ -102,29 +102,34 @@ const StoryPage = () => {
             </div>
           </div>
           <div className='all-actions-container'>
-            <div className='claps-response-cotainer' title='claps'>
-              <div className='claps-container'>
-                <img src={flag ? image2 : image1} onClick={flagFunction} style={{
+            <div className='claps-response-cotainer'>
+              <div className='claps-container' title='Claps' >
+                <img src={flag ? unClaped : claped} onClick={flagFunction} style={{
                   width: '20px',
                   height: '20px'
                 }} />
                 <span className='claps-count'>{storyData['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
-                <p className='response' >Response </p>
+                <p className='response' >Response</p>
                 <span className='response-count'>{storyData['responsesCount']}</span>
               </div>
             </div>
             <div className='all-links-container'>
               <div className='copy-link-container'>
-                <p className='copy-link' onClick={() => copyLink()} title='Copy Link'>Copy Link</p>
+                <img src={copyLink} style={{
+                  height: '20px',
+                  width: '20px'
+                }}></img>
               </div>
             </div>
-          </div>{
-            storyData['imageUrl'] &&
-            <div className='story-coverpage-container'>
-              <img className='story-coverpage' src={storyData['imageUrl']} />
-            </div>}
+          </div>
+          {
+            // storyData['imageUrl'] &&
+            // <div className='story-coverpage-container'>
+            //   <img className='story-coverpage' src={null} />
+            // </div>
+            }
           <div className='story-content-container'>
             <StoryContent contentData={storyData.content} className='story-content' />
           </div>

@@ -38,14 +38,17 @@ main {
 
 .story-coverpage-container{
   width: 100%;
-  height: 500px;
+  max-height: 500px;
+  min-height: 200px;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
   object-fit: cover;
 }
 
 .story-coverpage {
-  height: 100%;
-  width: 100%;
   margin: auto;
+  object-fit: contain;
 }
 
 .story-content-container {
@@ -84,9 +87,9 @@ main {
   margin-left: 10px;
   font-size: 16px;
 }
-/* .ce-block__content {
+.ce-block__content {
   max-width: 1000px;
-} */
+}
 .all-actions-container {
   border-top: 1px solid rgb(242, 242, 242);
   border-bottom: 1px solid rgb(242, 242, 242);
