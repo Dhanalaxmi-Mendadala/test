@@ -10,9 +10,6 @@ import MyStories from "./MyStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
 
-
-
-
 function App() {
   const [error, setError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,9 +41,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={homeElement}>
-            <Route path="/dashboard" element={<DashBoard />} />
+            <Route index element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />
-            <Route path="storypage" element={<StoryPage />} />
+            <Route path="storypage/:id" element={<StoryPage />} />
             <Route path="profile" element={<Profile />} />
             <Route path="yourstories" element={<MyStories />} />
           </Route>
@@ -55,28 +52,5 @@ function App() {
     </>
   );
 }
-
-// function App() {
-//   return (
-//     <>
-//       <Router>
-//         <Routes>
-//           <Route path='/index' element={<WelcomePage />} />
-//           <Route path="/" element={<HomePage />}>
-//             <Route index element={<DashBoard />} />
-//             <Route path="addstory" element={<WriteAStory />} />
-//             <Route path="storypage" element={<StoryPage />} />
-//             <Route path="profile" element={<Profile />} />
-//             <Route path="yourstories" element={<MyStories />} />
-//           </Route>
-//         </Routes>
-//       </Router>
-//     </>
-//   );
-// }
-
-//           <Route path="/" element={<HomePage />}>
-/* <Route path='/index' element={ isLoggedin ? <WelcomePage /> HOME} /> */
-//           <Route path="/" element={<HomePage />}>
 
 export default App;
