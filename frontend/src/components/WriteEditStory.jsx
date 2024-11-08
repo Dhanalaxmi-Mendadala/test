@@ -129,7 +129,7 @@ const WriteAStory = () => {
   return (
     <>
       <div id="writeHeader">
-        <div>Draft in {userData["username"]}</div>
+        Draft in {userData["username"]}
       </div>
       <div className="editor-component">
         <EditorComponent className="editor" storyId={id} initialData={content} />

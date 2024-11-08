@@ -14,6 +14,7 @@ function Publish() {
                         navigator(`/storypage/${aStory['id']}`)
                     }}>
                         <p className="a-story-title">{aStory['title']}</p>
+                        <p>Published at{aStory['published_at']}</p>
                     </div>
                 )
             }

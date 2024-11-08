@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
-import unClaped from "../components/svg/notclicked1.svg"
-import claped from "../components/svg/clicked-clap.svg"
-import copylink from "../components/svg/copyLink.svg"
+import claped from "../components/svg/notclicked1.svg"
+import unClaped from "../components/svg/clicked-clap.svg"
+import copyLink from "../components/svg/copyLink.svg"
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -21,7 +21,7 @@ const StoryContent = (props) => {
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
-        holder: "editorjs",
+        holder: "Editorjs",
         data: initialData,
         readOnly: true,
         tools: {
@@ -48,7 +48,7 @@ const StoryContent = (props) => {
       }
     }
   }, []);
-  return <div id="editorjs" ref={editorContainer} ></div>;
+  return <div id="Editorjs" ref={editorContainer} ></div>;
 }
 StoryContent.propTypes = {
   contentData: PropTypes.array.isRequired,
@@ -88,7 +88,7 @@ const StoryPage = () => {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
           <div className='story-author-details-container'>
-            <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`}></img>
+           <div><img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`}></img></div> 
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>
               <p className='story-author-published'>{storyData.publications || ''}</p>
@@ -97,7 +97,7 @@ const StoryPage = () => {
           <div className='all-actions-container'>
            <div className='claps-response-cotainer'>
            <div className='claps-container'>
-              <img src = {flag ? claped : unClaped} onClick={flagFunction}  style={{
+              <img src = {flag ? unClaped : claped} onClick={flagFunction}  style={{
                 width: '20px', 
                 height: '20px'
               }} title='Claps'/>
@@ -110,10 +110,10 @@ const StoryPage = () => {
            </div>
            <div className='all-links-container'>
             <div className='copy-link-container'>
-              <img src= {copylink} style={{
+              <img src= {copyLink} style={{
                 height: '20px',
-                width: '20px',
-              }} title='Copy Link'></img>
+                width: '20px'
+              }}></img>
             </div>
            </div>
           </div>

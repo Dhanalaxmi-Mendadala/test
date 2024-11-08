@@ -2,9 +2,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProfileMenu from "./ProfileDropDown";
 import '../css/Home.css'
 import LogoutPopUp from "./LogoutPopup";
+import { useState } from "react";
+
+
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [logoutFlag, setLogoutFlag] = useState(false);
+  function logoutFunction () {
+    setLogoutFlag(!logoutFlag);
+  }
+function close () {
+  setLogoutFlag(false)
+}
   console.log(location, "heheee😀");
   return (
    <>
@@ -26,9 +37,9 @@ const Header = () => {
           })}>Write</button>
         )
       }
-      <ProfileMenu />
+      <ProfileMenu logoutFunction = {logoutFunction} />
     </header >
-    <LogoutPopUp />
+    <LogoutPopUp close = {close} logoutFlag = {logoutFlag} />
    </>
   );
 };

@@ -5,13 +5,13 @@ import logout from "../../assets/logout.jpeg";
 import story from "../../assets/story.jpeg";
 import PropTypes from "prop-types";
 import { UserInfo } from "./Home";
-import { Link, Navigate } from "react-router-dom";
-import mainLogout from "../API/logout";
+import { Link} from "react-router-dom";
 
-const ProfileMenu = () => {
+const ProfileMenu = ({logoutFunction}) => {
   const [isOpen, setIsOpen] = useState(false);
   const userInfo = useContext(UserInfo)
   console.log(userInfo)
+  console.log(logoutFunction)
 
   const profileUrl = userInfo['avatar_url'];
   const userName = userInfo.username;
@@ -53,9 +53,7 @@ const ProfileMenu = () => {
           <DropdownItem
             img={logout}
             name="Logout"
-            onClick = {() => {mainLogout();
-              window.location.reload();
-            }}
+            onClick = {logoutFunction}
           />
         </div>
       )}
@@ -77,6 +75,7 @@ DropdownItem.propTypes = {
   img: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  click: PropTypes.string.isRequired,
 };
 
 export default ProfileMenu
