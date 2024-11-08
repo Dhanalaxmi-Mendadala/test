@@ -1,7 +1,8 @@
 .profile-menu {
   position: relative;
-  display: inline-block;
-  width: 380px;
+  margin-top: 5%;
+  width: fit-content;
+
 }
 .profile-icon {
   width: 40px;
@@ -12,11 +13,12 @@
 .dropdown-menu {
   margin-top: 5px;
   display: flex;
-  flex-direction: column;
+  width: 200px;
   position: absolute;
-  top: 35px;
-  right: 10px;
-  background-color: rgb(255, 255, 255);
+  top: 0px;
+  right: 11px;
+  flex-direction: column;
+   background-color: rgb(255, 255, 255);
   border: 1px solid #ccc;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 2;

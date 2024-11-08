@@ -7,10 +7,10 @@ import WriteAStory from "./WriteEditStory.jsx";
 import DashBoard from "./DashBoard.jsx";
 import Profile from "./MyProfile.jsx";
 import MyStories from "./MyStories.jsx";
+import Drafts from "./Drafts.jsx";
+import Publish from "./publishStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
-
-
 
 
 function App() {
@@ -48,7 +48,10 @@ function App() {
             <Route path="addstory" element={<WriteAStory />} />
             <Route path="storypage/:id" element={<StoryPage />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="yourstories" element={<MyStories />} />
+            <Route path="yourstories" element={<MyStories />} >
+            <Route index path="drafts" element={<Drafts/>} />
+            <Route path="published" element={<Publish />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

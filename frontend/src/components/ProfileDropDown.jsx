@@ -45,15 +45,15 @@ const ProfileMenu = () => {
           <Link to='yourstories'>
             <DropdownItem
               img={story}
-              path="yourStories"
+              path="yourStories/drafts"
               name="Your Stories"
             />
           </Link>
           <DropdownItem
-              img={logout}
-              path="logout"
-              name="Logout"
-            />
+            img={logout}
+            path="logout"
+            name="Logout"
+          />
         </div>
       )}
     </div>
