@@ -4,7 +4,7 @@ import '../css/Home.css'
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  console.log(location, "heheee😀");
   return (
     <header className="main-header">
       <h1 className="title" onClick={() => navigate("/")}> Medium</h1>

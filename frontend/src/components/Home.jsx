@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import fetchUserDashboard from "../API/userDashboard";
 export const UserInfo = createContext(null);
 
-
 const HomePage = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {

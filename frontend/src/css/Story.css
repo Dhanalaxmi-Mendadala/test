@@ -1,16 +1,32 @@
 main {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-content: flex-start;
   flex-direction: column;
   margin-top: 50px;
-  width: 75%;
+  width: 70%;
   margin: auto;
 }
 .main-title {
   margin-bottom: 10px;
   padding: 10px;
+  font-size: 45px;
+  margin-top: 10px;
+}
+#Editorjs{
+  text-align: left;
+  padding: 0%;
+  width: fit-content;
+}
+.story-author-details-container {
+  display: flex;
+  font-size: large;
+  width: auto;
+  height: fit-content;
+  padding: 3px;
+  align-items: center;
+  text-transform: capitalize;
+  position: relative;
 }
 
 .story-title {
@@ -20,37 +36,22 @@ main {
   overflow-wrap: break-word;
 }
 
-.story-coverpage-container {
-  display: flex;
-  justify-content: start;
+.story-coverpage-container{
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
 }
 
 .story-coverpage {
-  height: 200px;
-  padding: 10px;
-  width: inherit;
+  height: 100%;
+  width: 100%;
+  margin: auto;
 }
 
 .story-content-container {
   font-family: Arial, Helvetica, sans-serif;
-  /* margin-top: 50px; */
   font-size: large;
-  /* border: 2px solid black; */
   width: 1000px;
-}
-
-.story-author-details-container {
-  display: flex;
-  font-size: large;
-  width: 200px;
-  margin-top: 20px;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: -50px;
-  text-transform: capitalize;
-  position: relative;
-  right: 30%;
 }
 
 .story-author-image {
@@ -83,6 +84,36 @@ main {
   margin-left: 10px;
   font-size: 16px;
 }
-.ce-block__content {
+/* .ce-block__content {
   max-width: 1000px;
+} */
+.all-actions-container {
+  border-top: 1px solid rgb(242, 242, 242);
+  border-bottom: 1px solid rgb(242, 242, 242);
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  padding: 10px;
+}
+.claps-response-cotainer {
+  display: flex;
+}
+.claps-container, .response-container {
+  display: flex;
+  cursor: pointer;
+}
+.claps-count, .response-count {
+  margin-left: 3px;
+}
+.response-container {
+  margin-left: 20px;
+}
+.all-links-container {
+  display: flex;
+}
+.copy-link-container {
+  cursor: pointer;
+}
+.hidden {
+  display: none;
 }

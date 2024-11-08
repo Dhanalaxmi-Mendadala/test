@@ -12,7 +12,6 @@ import Publish from "./publishStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
 
-
 function App() {
   const [error, setError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
