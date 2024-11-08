@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
+import copyLink from '../utilites/copyLink';
 import image1 from "../components/svg/notclicked1.svg"
 import image2 from "../components/svg/clicked-clap.svg"
 
@@ -20,7 +21,7 @@ const StoryContent = (props) => {
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
-        holder: "editorjs",
+        holder: "Editorjs",
         data: initialData,
         readOnly: true,
         tools: {
@@ -47,7 +48,7 @@ const StoryContent = (props) => {
       }
     }
   }, []);
-  return <div id="editorjs" ref={editorContainer} ></div>;
+  return <div id="Editorjs" ref={editorContainer} ></div>;
 }
 StoryContent.propTypes = {
   contentData: PropTypes.array.isRequired,
@@ -87,7 +88,7 @@ const StoryPage = () => {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
           <div className='story-author-details-container'>
-            <img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`}></img>
+           <div><img className='story-author-image' src={`https://avatars3.githubusercontent.com/u/${storyData.authorId}?v=4`}></img></div> 
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>
               <p className='story-author-published'>{storyData.publications || ''}</p>
@@ -109,7 +110,7 @@ const StoryPage = () => {
            </div>
            <div className='all-links-container'>
             <div className='copy-link-container'>
-              <p className='copy-link' title='Copy Link'>Copy Link</p>
+              <p className='copy-link' onClick={()=>copyLink()}title='Copy Link'>Copy Link</p>
             </div>
            </div>
           </div>
