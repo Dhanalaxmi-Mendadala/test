@@ -1,11 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfileMenu from "./ProfileDropDown";
 import '../css/Home.css'
+import LogoutPopUp from "./LogoutPopup";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log(location, "heheee😀");
   return (
+   <>
     <header className="main-header">
       <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
       {
@@ -26,6 +28,8 @@ const Header = () => {
       }
       <ProfileMenu />
     </header >
+    <LogoutPopUp />
+   </>
   );
 };
 

@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
-import image1 from "../components/svg/notclicked1.svg"
-import image2 from "../components/svg/clicked-clap.svg"
+import unClaped from "../components/svg/notclicked1.svg"
+import claped from "../components/svg/clicked-clap.svg"
+import copylink from "../components/svg/copyLink.svg"
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -96,10 +97,10 @@ const StoryPage = () => {
           <div className='all-actions-container'>
            <div className='claps-response-cotainer'>
            <div className='claps-container'>
-              <img src = {flag ? image2 : image1} onClick={flagFunction}  style={{
+              <img src = {flag ? claped : unClaped} onClick={flagFunction}  style={{
                 width: '20px', 
                 height: '20px'
-              }}/>
+              }} title='Claps'/>
               <span className='claps-count'>12</span>
             </div>
             <div className='response-container'>
@@ -109,7 +110,10 @@ const StoryPage = () => {
            </div>
            <div className='all-links-container'>
             <div className='copy-link-container'>
-              <p className='copy-link' title='Copy Link'>Copy Link</p>
+              <img src= {copylink} style={{
+                height: '20px',
+                width: '20px',
+              }} title='Copy Link'></img>
             </div>
            </div>
           </div>

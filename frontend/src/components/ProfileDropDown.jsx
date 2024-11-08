@@ -5,7 +5,8 @@ import logout from "../../assets/logout.jpeg";
 import story from "../../assets/story.jpeg";
 import PropTypes from "prop-types";
 import { UserInfo } from "./Home";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import mainLogout from "../API/logout";
 
 const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,8 +52,10 @@ const ProfileMenu = () => {
           </Link>
           <DropdownItem
             img={logout}
-            path="logout"
             name="Logout"
+            onClick = {() => {mainLogout();
+              window.location.reload();
+            }}
           />
         </div>
       )}
@@ -61,7 +64,7 @@ const ProfileMenu = () => {
 };
 function DropdownItem(props) {
   return (
-    <div className="dropdownItem">
+    <div className="dropdownItem" onClick= {props.onClick}>
       <img src={props.img} className="drop-down-icon" />
       <Link to={props.path} className="drop-down-nav-name">
         {props.name}
@@ -69,9 +72,12 @@ function DropdownItem(props) {
     </div>
   );
 }
+
 DropdownItem.propTypes = {
   img: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
-export default ProfileMenu;
+
+export default ProfileMenu
+
