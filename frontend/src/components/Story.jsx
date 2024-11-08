@@ -10,7 +10,6 @@ import Delimiter from "@editorjs/delimiter";
 import image1 from "../components/svg/notclicked1.svg"
 import image2 from "../components/svg/clicked-clap.svg"
 
-
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -56,6 +55,7 @@ StoryContent.propTypes = {
 
 const StoryPage = () => {
   const { id } = useParams();
+  const [flag, setFlag] = useState(false);
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState(false);
   useEffect(() => {
@@ -77,11 +77,10 @@ const StoryPage = () => {
     );
   }
 
-const [flag, setFlag] = useState(false);
-  const flagFunction   = () => {
+  const flagFunction = () => {
+    // const state = !flag;
     setFlag(!flag)
 }
-console.log(flag, "flag")
   return (
     <>
       {

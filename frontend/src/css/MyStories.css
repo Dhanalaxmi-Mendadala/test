@@ -12,7 +12,10 @@
     padding: 2px;
     border-bottom: 1px solid #ccc;
 }
-
+.active{
+    color:red;
+    text-decoration: underline;
+}
 #yourStories nav a {
     font-size: 18px;
     cursor: pointer;
@@ -22,24 +25,14 @@
 .draft,
 .publish {
     grid-column: span;
+    text-decoration: none;
 }
 
 .draft {
-    color: grey;
     text-align: right;
 }
 
-.publish {
-    color: grey;
-}
 
-.publish:hover {
-    color: black;
-}
-
-.draft:hover {
-    color: black;
-}
 
 .drafts-container,
 .published-container {
