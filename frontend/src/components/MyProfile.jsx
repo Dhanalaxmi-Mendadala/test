@@ -1,21 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { UserInfo } from "./homepage";
-
-async function fetchingProfile(USER_ID) {
-  console.log(USER_ID, 'haosipvjsifvjisjf')
-  try {
-    const response = await fetch(`http://localhost:8000/user/profile/${USER_ID}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
-      credentials: 'include'
-    });
-    const data = await response.json();
-    return data;
-  } catch {
-    return null;
-  }
-};
+import { UserInfo } from "./Home";
+import { fetchProfile } from "../API/Profile";
 
 const Profile = () => {
   const userInfo = useContext(UserInfo);
@@ -24,11 +9,11 @@ const Profile = () => {
 
   useEffect(() => {
     const getprofile = async () => {
-      const data = await fetchingProfile(userInfo['id']);
+      const data = await fetchProfile(userInfo['id']);
       setUserData(data);
     };
     getprofile();
-  });
+  },[]);
 
   console.log(userData, 'profile page')
   return (

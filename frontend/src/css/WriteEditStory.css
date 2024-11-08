@@ -1,0 +1,69 @@
+#writeHeader {
+    display: flex;
+    justify-content: left;
+    width: 20%;
+    align-items: center;
+    position: sticky;
+    top:100px;
+    margin: 0%;
+    background-color: transparent;
+    height: 80px;
+    z-index: 2;
+}
+#writeHeader div{
+    width: fit-content;
+}
+#publish {
+    background-color: rgb(115, 181, 115);
+    color: white;
+    width: 80px;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    letter-spacing: 0.5px;
+    position: absolute;
+    top: -258px;
+    right: 9%;
+    z-index: 3;
+}
+
+#saveDraft {
+    background: transparent;
+    padding: 5px;
+    width: 100px;
+    outline: none;
+    border: 0px;
+}
+
+.editor-component {
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    box-sizing: content-box;
+    height:100% ;
+    max-height: 100%;
+    align-content: center;
+    padding: 10px;
+    background-color: white;
+ 
+}
+
+#editorjs{
+    height: 100%;
+    width: 900px;
+    box-sizing: border-box;
+    padding-left: 5%;
+    z-index:0;
+    padding: 0px;
+    border:0px solid black;
+    outline: none;
+    margin: auto;
+    background-color: white;
+    font-size: 24px;
+}
+#editorjs .codex-editor_redactor{
+    padding-left: 0%;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+}

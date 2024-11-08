@@ -1,0 +1,26 @@
+.drafts-list {
+    margin-top: 20px;
+  }
+  
+  .drafts-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .drafts-list li {
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f0f0f0; /* Light background for drafts */
+  }
+  
+  .drafts-list li:hover {
+    background-color: #e0e0e0; /* Darker background on hover */
+  }
+  .draft-details {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border around the details */
+    background-color: #f9f9f9; /* Light background */
+  }
+  

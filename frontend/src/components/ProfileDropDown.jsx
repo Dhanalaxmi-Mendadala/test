@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import "./css/ProfileMenu.css"; // Import CSS for styling
-import author from "../assets/author.jpeg";
-import logout from "../assets/logout.jpeg";
-import story from "../assets/story.jpeg";
+import "../css/ProfileDropDown.css";
+import profile from "../../assets/profile.jpeg";
+import logout from "../../assets/logout.jpeg";
+import story from "../../assets/story.jpeg";
 import PropTypes from "prop-types";
-import { UserInfo } from "./homepage";
+import { UserInfo } from "./Home";
 import { Link } from "react-router-dom";
 
 const ProfileMenu = () => {
@@ -40,7 +40,7 @@ const ProfileMenu = () => {
             </Link>
           </div>
           <Link to='profile'>
-            <DropdownItem img={author} name="Profile" path="profile" />
+            <DropdownItem img={profile} name="Profile" path="profile" />
           </Link>
           <Link to='yourstories'>
             <DropdownItem
@@ -52,7 +52,7 @@ const ProfileMenu = () => {
           <DropdownItem
               img={logout}
               path="logout"
-              name="Your Stories"
+              name="Logout"
             />
         </div>
       )}
@@ -62,7 +62,7 @@ const ProfileMenu = () => {
 function DropdownItem(props) {
   return (
     <div className="dropdownItem">
-      <img src={props.img} className="profile-icon drop-down-icon" />
+      <img src={props.img} className="drop-down-icon" />
       <Link to={props.path} className="drop-down-nav-name">
         {props.name}
       </Link>

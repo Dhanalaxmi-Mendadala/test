@@ -1,16 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import ProfileMenu from "./profileDropDown";
-
+import ProfileMenu from "./ProfileDropDown";
+import '../css/Home.css'
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
-    <header className="main-header" style={{position:'sticky',top:'0px',zIndex:'1',backgroundColor:'white'}}>
-      <h1 className="title" onClick={() => navigate("/homepage")}> Medium</h1>
+    <header className="main-header">
+      <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
       {
-        location.pathname !== "/homepage/addstory" && (
-          <button onClick={() => navigate("/homepage/addstory", {
+        location.pathname !== "/addstory" && (
+          <button className="write-button" onClick={() => navigate("/addstory", {
             state: {
               id: null,
               content: [
