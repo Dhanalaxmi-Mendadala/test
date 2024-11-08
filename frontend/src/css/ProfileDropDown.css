@@ -8,7 +8,6 @@
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  padding-left: 10px;
 }
 .dropdown-menu {
   margin-top: 5px;
@@ -17,11 +16,12 @@
   position: absolute;
   top: 35px;
   right: 10px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border: 1px solid #ccc;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   padding: 10px;
+  width: 150px;
 }
 .dropdown-menu::before{
   content: '';

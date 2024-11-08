@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import "./css/ProfileMenu.css"; // Import CSS for styling
-import author from "../assets/author.jpeg";
-import logout from "../assets/logout.jpeg";
-import story from "../assets/story.jpeg";
+import "../css/ProfileDropDown.css";
+import author from "../../assets/author.jpeg";
+import logout from "../../assets/logout.jpeg";
+import story from "../../assets/story.jpeg";
 import PropTypes from "prop-types";
-import { UserInfo } from "./homepage";
+import { UserInfo } from "./Home";
 import { Link } from "react-router-dom";
 
 const ProfileMenu = () => {

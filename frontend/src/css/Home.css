@@ -1,12 +1,23 @@
 .main-header {
-    margin-top: 5px;
     border: 1px solid rgb(55, 55, 55);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-bottom: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 50px;
+    z-index: 3;
+    background-color: white;
 }
+
+.title {
+    margin-top: 10px;
+    font-size: xx-large;
+    padding-left: 8px;
+    font-family: sans-serif;
+  }
 
 .main-header button {
     position: absolute;
@@ -19,11 +30,6 @@
     border: 2px solid black;
 }
 
-.user-profile-icon {
-    height: 33px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-    cursor: pointer;
+.main-container {
+    margin-top: 100px;
 }
