@@ -112,12 +112,12 @@ const StoryPage = () => {
           <div className='all-actions-container'>
             <div className='claps-response-cotainer'>
               <div className={`claps-container ${storyData['isAuthor'] && 'disable'}`} title='Claps' >
-                <img src={clapStatus['isClapped'] ? claped : unClaped}
+                <img src={(clapStatus['isClapped'] || storyData['isClapped']) ? claped : unClaped}
                   onClick={handldeClap} style={{
                     width: '20px',
                     height: '20px'
                   }} />
-                <span className='claps-count'>{clapStatus['clapsCount']}</span>
+                <span className='claps-count'>{clapStatus['clapsCount'] || storyData['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
                 <p className='response' >Response</p>
