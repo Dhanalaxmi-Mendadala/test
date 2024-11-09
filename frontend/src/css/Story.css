@@ -46,7 +46,7 @@ main {
   border: 2px solid red;
   display: flex;
   justify-content: center;
-  object-fit: cover;
+  object-fit:contain;
 }
 
 .story-coverpage {
@@ -138,6 +138,6 @@ main {
 
 .disable {
   cursor: not-allowed;
-  /* pointer-events: none; */
+  pointer-events: none;
   opacity: .3;
 }

@@ -67,25 +67,32 @@ const StoryPage = () => {
       if (data === null) {
         setError(true);
       } else {
-        setStoryData(data['story']);
+        return data['story'];
       }
     };
-    const addImage = async () => {
-      const imageUrl = await fetchCoverPage(storyData['cover_image_name']);
+    const addImage = async (url) => {
+      const imageUrl = await fetchCoverPage(url);
       setStoryData((currentData) => { return ({ ...currentData, imageUrl: imageUrl }) })
       console.log(storyData, 'added the image')
     }
     getStoryData()
-      .then(addImage)
-      .then(setClapStatus({
+      .then((storyData) => {
+        addImage(storyData['cover_image_name']);
+        return storyData;
+      })
+      .then((storyData) => {
+        setStoryData(storyData);
+        return storyData;
+      })
+      .then((storyData) => setClapStatus({
         isClapped: storyData['isClapped'],
         clapsCount: storyData['clapsCount']
       }))
   }, []);
 
-  const handldeClap = async () => {
-    const response = await makeClap(storyData['id']);
-    setClapStatus(response);
+  const handldeClap = () => {
+    makeClap(storyData['id'])
+      .then((response) => setClapStatus(response));
   }
 
   if (error) {
@@ -112,12 +119,12 @@ const StoryPage = () => {
           <div className='all-actions-container'>
             <div className='claps-response-cotainer'>
               <div className={`claps-container ${storyData['isAuthor'] && 'disable'}`} title='Claps' >
-                <img src={(clapStatus['isClapped'] || storyData['isClapped']) ? claped : unClaped}
+                <img src={(clapStatus['isClapped']) ? claped : unClaped}
                   onClick={handldeClap} style={{
                     width: '20px',
                     height: '20px'
                   }} />
-                <span className='claps-count'>{clapStatus['clapsCount'] || storyData['clapsCount']}</span>
+                <span className='claps-count'>{clapStatus['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
                 <p className='response' >Response</p>
@@ -133,15 +140,12 @@ const StoryPage = () => {
               </div>
             </div>
           </div>
-          <div className='story-content-container'>
-            <StoryContent contentData={storyData.content} className='story-content' />
+          <div className='story-coverpage-container'>
+            <img className='story-coverpage' src={storyData['imageUrl']} />
           </div>
-          {
-            // storyData['imageUrl'] &&
-            // <div className='story-coverpage-container'>
-            //   <img className='story-coverpage' src={null} />
-            // </div>
-          }
+          <div className='story-content-container'>
+            <StoryContent contentData={storyData['content']} className='story-content' />
+          </div>
         </main> : <p style={{ color: 'red' }}>Error with story</p>
       }
     </>

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
 import moment from "moment"
+import fetchCoverPage from "../API/fetchCoverPage"
 
 const GenerateTime = ({ time }) => {
   const relativeTime = moment(time).fromNow();
-  console.log(relativeTime, "Time")
   return (
     <p>{relativeTime}</p>
   )
@@ -17,19 +17,20 @@ GenerateTime.propTypes = {
 }
 
 const StoryComponent = ({ currentStory }) => {
-  const [storyData, setStoryData] = useState({});
+  const [storyData, setStoryData] = useState(currentStory);
   const navigate = useNavigate();
   useEffect(() => {
-    const fetchCoverPage = async () => {
-      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
-      setStoryData(storyData => ({
+    const addImage = async (url) => {
+      const imageUrl = await fetchCoverPage(url);
+      setStoryData({
         ...storyData,
-        image: response['url'],
-      }));
-    };
-    setStoryData(currentStory);
-    fetchCoverPage();
+        imageUrl: imageUrl
+      })
+      console.log(storyData, imageUrl, 'added the image')
+    }
+    addImage(currentStory['coverImageName']);
   }, []);
+
   console.log(storyData['content'], 'single story')
   const isContent = storyData['content'];
   const storyDescription = (isContent !== undefined) ? storyData['content']['0']['data']['text'] : '';
@@ -48,7 +49,7 @@ const StoryComponent = ({ currentStory }) => {
         <p className="story-description">
           {storyDescription || 'Story decription'}
         </p>
-        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
+        <img src={storyData['imageUrl'] || null} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
 
