@@ -1,16 +1,14 @@
-// const formatDate = (dateString) => { 
-//     console.log(dateString);
-//     const date = new Date(dateString);
-//     const options = { 
-//         year: 'numeric',
-//         month: 'short',
-//         day: 'numeric' 
-//     }; 
-//     return new Intl.DateTimeFormat('en-US', options).format(date); 
-// }; 
+import moment from "moment";
+import PropTypes from "prop-types";
+const formatDate = (dateString) => {
+    return moment(dateString).format('MMM D, YYYY');
+};
 
-// const DateComponent = ({ dateString }) => {
-//     console.log(dateString);
-//     return (<div> {formatDate(dateString)} </div>);
-//  };
-// export default DateComponent;
+const DateComponent = ({ dateString }) => {
+    console.log(dateString);
+    return (<span className="publishedTime">{formatDate(dateString)} </span>);
+ };
+DateComponent.propTypes={
+    dateString:PropTypes.string.isRequired,
+}
+export default DateComponent;

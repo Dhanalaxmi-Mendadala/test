@@ -7,23 +7,23 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs'
 import Header from "@editorjs/header"
 import Delimiter from "@editorjs/delimiter"
-import claped from "../components/svg/notclicked1.svg"
-import unClaped from "../components/svg/clicked-clap.svg"
+import unClaped from "../components/svg/notclicked1.svg"
+import claped from "../components/svg/clicked-clap.svg"
 import copyLink from "../components/svg/copyLink.svg"
+import response from "../components/svg/responses.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
-import CopyLink from "../utilites/copyLink";
-// import DateComponent from './Date'
-// import responses from "../components/svg/responses.svg"
-
-
+import makeClap from '../API/makeClap'
+import copyLinkToClipboard from '../utilites/copyLink'
+import DateComponent from './Date.jsx'
+import ResponseofStory from './ResponseofStory.jsx'
 const StoryContent = (props) => {
   // To Show the Story Content
   const editorContainer = useRef(null);
   let editor = null;
   const initialData = {
-    blocks: props.contentData,
+    blocks: props['contentData'],
   };
-
+  console.log(props, 'at stoery conetne', initialData)
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
@@ -33,7 +33,6 @@ const StoryContent = (props) => {
         tools: {
           header: {
             class: Header,
-            inlineToolbar: true,
             config: {
               level: 1,
             }
@@ -46,7 +45,7 @@ const StoryContent = (props) => {
           },
           delimiter: Delimiter,
         },
-      });
+      })
     }
     return () => {
       if (editor && typeof editor.destroy === "function") {
@@ -61,35 +60,43 @@ StoryContent.propTypes = {
 };
 
 const StoryPage = () => {
-  const { id } = useParams(); //get id from url
-  const [loading,setLoading]=useState(true);
-  const [flag, setFlag] = useState(false);
+  const { id } = useParams();
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
-  console.log("hello",id);
+  const [openResponse,setopenResponse]=useState(false);
+  const [clapStatus, setClapStatus] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  //Fetch the storyData from API by using its story Id
   useEffect(() => {
     const getStoryData = async () => {
+      setLoading(true);
       const data = await fetchStory(id);
       console.log(data);
       if (data === null) {
         setError(true);
       } else {
-        const story=data['story'];
-        const imageUrl=await fetchCoverPage(story['cover_image_name']);
-        setStoryData({...story,imageUrl});
+        const story = data['story'];
+        const imageUrl = await fetchCoverPage(story['cover_image_name']);
+        setStoryData({ ...story, imageUrl });
+        setClapStatus({
+          isClapped: story['isClapped'],
+          clapsCount: story['clapsCount'],
+        });
       }
       setLoading(false);
     };
     getStoryData();
-  },[id]);
+  }, [id]);
 
-  if(loading){
-    return <div>Loading</div>;
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
-  /* Error ,When data is not fetched */
+  const handldeClap = () => {
+    makeClap(storyData['id'])
+      .then((response) => setClapStatus(response));
+  }
+
   if (error) {
     return (
       <h1 style={{ color: "red" }}>
@@ -97,16 +104,11 @@ const StoryPage = () => {
       </h1>
     );
   }
+  console.log(storyData, storyData['cover_image_name'], storyData['imageUrl'], 'completed fetching story data', clapStatus)
 
-
-// Toggle the clap
-  const flagFunction = () => {
-    setFlag(!flag)
-  }
-
-// Return the story page
   return (
     <>
+      {openResponse &&<ResponseofStory  setopenResponse={setopenResponse} />}
       {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
@@ -114,46 +116,50 @@ const StoryPage = () => {
             <div><img className='story-author-image' src={storyData['avatar_url']}></img></div>
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>
+              <div>Published at <DateComponent dateString={storyData.published_at}/></div>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>
           <div className='all-actions-container'>
             <div className='claps-response-cotainer'>
-              <div className='claps-container' title='Claps' >
-                <img src={flag ? unClaped : claped} onClick={flagFunction} style={{
-                  width: '20px',
-                  height: '20px'
-                }} />
-                <span className='claps-count'>{storyData['clapsCount']}</span>
+              <div className={`claps-container ${storyData['isAuthor'] && 'disable'}`} title='Claps' >
+                <img src={(clapStatus['isClapped']) ? claped : unClaped}
+                  onClick={handldeClap} style={{
+                    width: '20px',
+                    height: '20px'
+                  }} />
+                <span className='claps-count'>{clapStatus['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
-                <p className='response' >Response</p>
+                <p className='response' onClick={()=>{setopenResponse(true)
+                }}  > <img src={response}
+                 style={{
+                    width: '20px',
+                    height: '20px'
+                  }} /></p>
                 <span className='response-count'>{storyData['responsesCount']}</span>
               </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container'>
-                <img src={copyLink} onClick={()=>CopyLink()}style={{
+              <div className='copy-link-container' onClick={copyLinkToClipboard}>
+                <img src={copyLink} style={{
                   height: '20px',
                   width: '20px'
                 }}></img>
               </div>
             </div>
           </div>
-          <div className='story-content-container'>
-            {console.log(storyData.content)}
-            <StoryContent contentData={storyData.content} className='story-content' />
+          <div className='story-coverpage-container'>
+            <img className='story-coverpage' src={storyData['imageUrl']} />
           </div>
-        </main> : <p style={{ color: 'red' }}>Error</p>
+          <div className='story-content-container'>
+            <StoryContent contentData={storyData['content']} className='story-content' />
+          </div>
+          {console.log(openResponse)}
+        </main> : <p style={{ color: 'red' }}>Error with story</p>
       }
     </>
   )
 }
 
-// {
-//   // storyData['imageUrl'] &&
-//   // <div className='story-coverpage-container'>
-//   //   <img className='story-coverpage' src={null} />
-//   // </div>
-//   }
 export default StoryPage

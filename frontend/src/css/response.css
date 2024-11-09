@@ -1,0 +1,21 @@
+#response-outer{
+    width: 100%;
+    height: 100%;
+    top:0px;
+    right:0px;
+    position: absolute;
+    z-index:6;
+    background-color: transparent;
+}
+
+#response{
+    top:0px;
+    right:0px;
+    position: absolute;
+    z-index:5;
+    width: fit-content;
+    height: fit-content;
+    color:red;
+    background: red;
+    border:5px solid red;
+}
