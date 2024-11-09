@@ -7,10 +7,11 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs'
 import Header from "@editorjs/header"
 import Delimiter from "@editorjs/delimiter"
-import claped from "../components/svg/notclicked1.svg"
-import unClaped from "../components/svg/clicked-clap.svg"
+import unClaped from "../components/svg/notclicked1.svg"
+import claped from "../components/svg/clicked-clap.svg"
 import copyLink from "../components/svg/copyLink.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
+import makeClap from '../API/makeClap'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -57,9 +58,9 @@ StoryContent.propTypes = {
 
 const StoryPage = () => {
   const { id } = useParams();
-  const [flag, setFlag] = useState(false);
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
+  const [clapStatus, setClapStatus] = useState({});
   useEffect(() => {
     const getStoryData = async () => {
       const data = await fetchStory(id);
@@ -75,8 +76,18 @@ const StoryPage = () => {
       console.log(storyData, 'added the image')
     }
     getStoryData()
-      .then(addImage);
+      .then(addImage)
+      .then(setClapStatus({
+        isClapped: storyData['isClapped'],
+        clapsCount: storyData['clapsCount']
+      }))
   }, []);
+
+  const handldeClap = async () => {
+    const response = await makeClap(storyData['id']);
+    setClapStatus(response);
+  }
+
   if (error) {
     return (
       <h1 style={{ color: "red" }}>
@@ -84,11 +95,8 @@ const StoryPage = () => {
       </h1>
     );
   }
-  console.log(storyData, storyData['cover_image_name'], storyData['imageUrl'], 'completed fetching story data')
+  console.log(storyData, storyData['cover_image_name'], storyData['imageUrl'], 'completed fetching story data', clapStatus)
 
-  const flagFunction = () => {
-    setFlag(!flag)
-  }
   return (
     <>
       {
@@ -103,12 +111,13 @@ const StoryPage = () => {
           </div>
           <div className='all-actions-container'>
             <div className='claps-response-cotainer'>
-              <div className='claps-container' title='Claps' >
-                <img src={flag ? unClaped : claped} onClick={flagFunction} style={{
-                  width: '20px',
-                  height: '20px'
-                }} />
-                <span className='claps-count'>{storyData['clapsCount']}</span>
+              <div className={`claps-container ${storyData['isAuthor'] && 'disable'}`} title='Claps' >
+                <img src={clapStatus['isClapped'] ? claped : unClaped}
+                  onClick={handldeClap} style={{
+                    width: '20px',
+                    height: '20px'
+                  }} />
+                <span className='claps-count'>{clapStatus['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
                 <p className='response' >Response</p>
@@ -124,15 +133,15 @@ const StoryPage = () => {
               </div>
             </div>
           </div>
+          <div className='story-content-container'>
+            <StoryContent contentData={storyData.content} className='story-content' />
+          </div>
           {
             // storyData['imageUrl'] &&
             // <div className='story-coverpage-container'>
             //   <img className='story-coverpage' src={null} />
             // </div>
-            }
-          <div className='story-content-container'>
-            <StoryContent contentData={storyData.content} className='story-content' />
-          </div>
+          }
         </main> : <p style={{ color: 'red' }}>Error</p>
       }
     </>
