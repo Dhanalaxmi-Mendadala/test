@@ -87,7 +87,7 @@ const EditorComponent = (props) => {
   const handlePublish = async (draftId) => {
     if (draftId) {
       publishStory(draftId)
-        .then(navigatior('/yourstories'));
+        .then(navigatior('/yourstories/published'));
     } else {
       const firstHeader = currentDraft.blocks.find(
         (block) => block.type === "header"
@@ -96,7 +96,7 @@ const EditorComponent = (props) => {
         await saveDraft(props.storyId, firstHeader.data.text, currentDraft.blocks) :
         await saveDraft(props.storyId, 'Untitled Story', currentDraft.blocks);
       await publishStory(storyId)
-      navigatior('/yourstories');
+      navigatior('/yourstories/published');
     }
   }
 

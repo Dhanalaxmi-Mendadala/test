@@ -5,15 +5,15 @@ import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
 import moment from "moment"
 
-const GenerateTime = ({time}) => {
+const GenerateTime = ({ time }) => {
   const relativeTime = moment(time).fromNow();
   console.log(relativeTime, "Time")
   return (
-  <p>{relativeTime}</p>
+    <p>{relativeTime}</p>
   )
 }
 GenerateTime.propTypes = {
- time: PropTypes.object.isRequired
+  time: PropTypes.string.isRequired
 }
 
 const StoryComponent = ({ currentStory }) => {
@@ -30,8 +30,9 @@ const StoryComponent = ({ currentStory }) => {
     setStoryData(currentStory);
     fetchCoverPage();
   }, []);
-
-  const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
+  console.log(storyData['content'], 'single story')
+  const isContent = storyData['content'];
+  const storyDescription = (isContent !== undefined) ? storyData['content']['0']['data']['text'] : '';
 
   return (
     <div className="story-component" onClick={() => {
@@ -50,8 +51,8 @@ const StoryComponent = ({ currentStory }) => {
         <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        
-        <p className="published-time">{<GenerateTime time={storyData['published_at']}/>}</p>
+
+        <p className="published-time">{<GenerateTime time={storyData['published_at']} />}</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
@@ -67,11 +68,11 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-console.log(stories, 'dashboard')
+  console.log(stories, 'dashboard')
   return (
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) =>
-       <StoryComponent key={i} currentStory={currentStory} />)
+        <StoryComponent key={i} currentStory={currentStory} />)
       }
     </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )
