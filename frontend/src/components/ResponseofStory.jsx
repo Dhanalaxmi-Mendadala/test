@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 function ResponseofStory(props){
     return <div id="response-outer" onClick={()=>props.setopenResponse(false)}>
         <div id="response">
