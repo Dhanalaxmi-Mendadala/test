@@ -7,10 +7,11 @@ import { useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
+import claped from "../components/svg/notclicked1.svg"
+import unClaped from "../components/svg/clicked-clap.svg"
+import CopyLink from "../components/svg/copyLink.svg"
+import responses from "../components/svg/responses.svg"
 import copyLink from '../utilites/copyLink';
-import image1 from "../components/svg/notclicked1.svg"
-import image2 from "../components/svg/clicked-clap.svg"
-
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -97,20 +98,26 @@ const StoryPage = () => {
           <div className='all-actions-container'>
            <div className='claps-response-cotainer'>
            <div className='claps-container'>
-              <img src = {flag ? image2 : image1} onClick={flagFunction}  style={{
+              <img src = {flag ? unClaped : claped} onClick={flagFunction}  style={{
                 width: '20px', 
                 height: '20px'
-              }}/>
+              }} title='Claps'/>
               <span className='claps-count'>12</span>
             </div>
             <div className='response-container'>
-              <p className='response' title='Response'>Response</p>
+              <p className='response' title='Response'> <img src= {responses} style={{
+                height: '20px',
+                width: '25px'
+              }}></img></p>
               <span className='response-count'>12</span>
             </div>
            </div>
            <div className='all-links-container'>
             <div className='copy-link-container'>
-              <p className='copy-link' onClick={()=>copyLink()}title='Copy Link'>Copy Link</p>
+              <img src= {CopyLink} onClick={()=>copyLink()}style={{
+                height: '20px',
+                width: '40px'
+              }}></img>
             </div>
            </div>
           </div>

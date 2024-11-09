@@ -21,7 +21,6 @@ Header.propTypes = {
 
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
-
   return (
     <div>
       <Header click={setClicked} />

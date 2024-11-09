@@ -12,6 +12,7 @@ async function putStory(story) {
     return null;
   }
 };
+
 const saveDraft = async (id, storyTitle, story) => {
   const object = {
     storyId: id,
