@@ -142,7 +142,7 @@ const StoryPage = () => {
             //   <img className='story-coverpage' src={null} />
             // </div>
           }
-        </main> : <p style={{ color: 'red' }}>Error</p>
+        </main> : <p style={{ color: 'red' }}>Error with story</p>
       }
     </>
   )
