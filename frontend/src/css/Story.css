@@ -4,21 +4,25 @@ main {
   align-content: flex-start;
   flex-direction: column;
   margin-top: 50px;
-  width: 70%;
+  width: 50%;
   margin: auto;
+  border: 1px solid red;
 }
 
 .main-title {
   margin-bottom: 10px;
   padding: 10px;
-  font-size: 45px;
+  font-size: 2.5rem;
   margin-top: 10px;
+  letter-spacing: -2px;
 }
 
 #Editorjs {
   text-align: left;
   padding: 0%;
-  width: fit-content;
+  max-width: 100%;
+  word-wrap: break-word;
+  border: 1px solid black;
 }
 
 .story-author-details-container {
@@ -42,15 +46,15 @@ main {
 .story-coverpage-container {
   width: 100%;
   max-height: 500px;
-  min-height: 200px;
-  border: 2px solid red;
+  min-height: 0;
   display: flex;
   justify-content: center;
-  object-fit:contain;
+  align-items: center;
 }
 
 .story-coverpage {
-  margin: auto;
+  max-width: 100%;
+  max-height: 300px;
   object-fit: contain;
 }
 

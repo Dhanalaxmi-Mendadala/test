@@ -12,14 +12,15 @@ import claped from "../components/svg/clicked-clap.svg"
 import copyLink from "../components/svg/copyLink.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
 import makeClap from '../API/makeClap'
+import copyLinkToClipboard from '../utilites/copyLink'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
   const initialData = {
-    blocks: props.contentData,
+    blocks: props['contentData'],
   };
-
+  console.log(props, 'at stoery conetne', initialData)
   useEffect(() => {
     if (!editor) {
       editor = new EditorJS({
@@ -29,7 +30,6 @@ const StoryContent = (props) => {
         tools: {
           header: {
             class: Header,
-            inlineToolbar: true,
             config: {
               level: 1,
             }
@@ -42,7 +42,7 @@ const StoryContent = (props) => {
           },
           delimiter: Delimiter,
         },
-      });
+      })
     }
     return () => {
       if (editor && typeof editor.destroy === "function") {
@@ -61,34 +61,31 @@ const StoryPage = () => {
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
   const [clapStatus, setClapStatus] = useState({});
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getStoryData = async () => {
+      setLoading(true);
       const data = await fetchStory(id);
       if (data === null) {
         setError(true);
       } else {
-        return data['story'];
+        const story = data['story'];
+        const imageUrl = await fetchCoverPage(story['cover_image_name']);
+        setStoryData({ ...story, imageUrl });
+        setClapStatus({
+          isClapped: story['isClapped'],
+          clapsCount: story['clapsCount'],
+        });
       }
+      setLoading(false);
     };
-    const addImage = async (url) => {
-      const imageUrl = await fetchCoverPage(url);
-      setStoryData((currentData) => { return ({ ...currentData, imageUrl: imageUrl }) })
-      console.log(storyData, 'added the image')
-    }
-    getStoryData()
-      .then((storyData) => {
-        addImage(storyData['cover_image_name']);
-        return storyData;
-      })
-      .then((storyData) => {
-        setStoryData(storyData);
-        return storyData;
-      })
-      .then((storyData) => setClapStatus({
-        isClapped: storyData['isClapped'],
-        clapsCount: storyData['clapsCount']
-      }))
-  }, []);
+    getStoryData();
+  }, [id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   const handldeClap = () => {
     makeClap(storyData['id'])
@@ -132,7 +129,7 @@ const StoryPage = () => {
               </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container'>
+              <div className='copy-link-container' onClick={copyLinkToClipboard}>
                 <img src={copyLink} style={{
                   height: '20px',
                   width: '20px'

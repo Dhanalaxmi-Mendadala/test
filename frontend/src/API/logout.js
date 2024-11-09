@@ -1,17 +1,12 @@
-const mainLogout = () => {
+const mainLogout = async () => {
+  try {
     fetch('http://localhost:8000/user/logout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
     })
-    .then((data) => {
-        return data;
-    })
-    .then((data) => {
-        return data.json()
-    })
-    .then((data) => {
-        console.log(data)
-    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 export default mainLogout
