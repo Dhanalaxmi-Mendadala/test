@@ -14,7 +14,7 @@ const Profile = () => {
       console.log(data, "abcd", 1, 2, 3);
     };
     getProfile();
-  }, []);
+  }, [userInfo["id"]]);
   console.log(userData, "profile page");
   return (
     <>
