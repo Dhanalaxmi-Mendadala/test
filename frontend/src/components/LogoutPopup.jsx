@@ -1,11 +1,8 @@
 import '../css/logoutPop.css'
 import mainLogout from "../API/logout";
 import PropTypes from "prop-types";
-import { Navigate, useNavigate } from 'react-router-dom';
-
 
 function LogoutPopUp({ logoutFlag, close }) {
-  const ab = useNavigate()
   return (
     <>
       <div className={logoutFlag ? "popupContainer" : "hidden"}>

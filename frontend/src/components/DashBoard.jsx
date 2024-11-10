@@ -7,7 +7,9 @@ import moment from "moment"
 import fetchCoverPage from "../API/fetchCoverPage"
 
 const GenerateTime = ({ time }) => {
-  const relativeTime = moment(time).fromNow();
+  const publishedTime = moment(time);
+  const timeDifference = moment().diff(publishedTime, 'days');
+  const relativeTime = timeDifference > 7 ? publishedTime.format('MMM Do') : publishedTime.fromNow()
   return (
     <p>{relativeTime}</p>
   )
