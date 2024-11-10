@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 function DropdownItem(props) {
   return (
     <div className="dropdownItem" onClick={props.onClick}>
-      <img src={props.img} className="drop-down-icon" />
       <Link to={props.path} className="drop-down-nav-name">
+      <img src={props.img} className="drop-down-icon" />
         {props.name}
       </Link>
     </div>
