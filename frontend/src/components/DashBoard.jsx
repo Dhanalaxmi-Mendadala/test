@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
 import fetchCoverPage from "../API/fetchCoverPage"
-import { GenerateTime } from "./Date"
+import GenerateTime from "./Date"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState(currentStory);

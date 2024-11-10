@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/Welcome.css";
-import CLIENT_ID from "../../clientInfo.jsx";
+import CLIENT_ID from "../../clientInfo";
 import PropTypes from "prop-types";
 
 function Header({ click }) {
