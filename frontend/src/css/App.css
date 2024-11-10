@@ -3,15 +3,6 @@
   margin: 0;
 }
 
-/* .main-header {
-  margin-top: 5px;
-  border: 1px solid rgb(55, 55, 55);
-  display: block;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  z-index: 5;
-} */
 
 .user-profile-icon {
   height: 30px;
@@ -21,17 +12,6 @@
   margin-right: 10px;
 }
 
-.story-component {
-  border: 2px solid black;
-  display: grid;
-  grid-template-rows: 35px 130px 35px;
-  width: 60%;
-  margin: auto;
-}
-/* .main-container{
-  margin-top: 80px;
-} */
-/* src/App.css */
 .profile {
   text-align: center;
 }
