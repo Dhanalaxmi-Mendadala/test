@@ -53,21 +53,13 @@
 
 #editorjs {
     height: 100%;
-    width: 900px;
+    width: 950px;
     box-sizing: border-box;
     padding-left: 5%;
     z-index: 0;
-    padding: 0px;
     border: 0px solid black;
     outline: none;
     margin: auto;
     background-color: white;
     font-size: 24px;
-}
-
-#editorjs .codex-editor_redactor {
-    padding-left: 0%;
-    margin: 0;
-    display: flex;
-    justify-content: left;
 }
