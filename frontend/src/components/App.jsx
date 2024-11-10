@@ -7,11 +7,10 @@ import WriteAStory from "./WriteEditStory.jsx";
 import DashBoard from "./DashBoard.jsx";
 import Profile from "./MyProfile.jsx";
 import MyStories from "./MyStories.jsx";
+import Drafts from "./Drafts.jsx";
+import Publish from "./publishStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
-
-
-
 
 function App() {
   const [error, setError] = useState(false);
@@ -44,39 +43,19 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={homeElement}>
-            <Route path="/dashboard" element={<DashBoard />} />
+            <Route index element={<DashBoard />} />
             <Route path="addstory" element={<WriteAStory />} />
-            <Route path="storypage" element={<StoryPage />} />
+            <Route path="storypage/:id" element={<StoryPage />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="yourstories" element={<MyStories />} />
+            <Route path="yourstories" element={<MyStories />} >
+            <Route index path="drafts" element={<Drafts/>} />
+            <Route path="published" element={<Publish />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
     </>
   );
 }
-
-// function App() {
-//   return (
-//     <>
-//       <Router>
-//         <Routes>
-//           <Route path='/index' element={<WelcomePage />} />
-//           <Route path="/" element={<HomePage />}>
-//             <Route index element={<DashBoard />} />
-//             <Route path="addstory" element={<WriteAStory />} />
-//             <Route path="storypage" element={<StoryPage />} />
-//             <Route path="profile" element={<Profile />} />
-//             <Route path="yourstories" element={<MyStories />} />
-//           </Route>
-//         </Routes>
-//       </Router>
-//     </>
-//   );
-// }
-
-//           <Route path="/" element={<HomePage />}>
-/* <Route path='/index' element={ isLoggedin ? <WelcomePage /> HOME} /> */
-//           <Route path="/" element={<HomePage />}>
 
 export default App;

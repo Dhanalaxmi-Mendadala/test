@@ -3,14 +3,15 @@
   margin: 0;
 }
 
-.main-header {
+/* .main-header {
   margin-top: 5px;
   border: 1px solid rgb(55, 55, 55);
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-}
+  z-index: 5;
+} */
 
 .user-profile-icon {
   height: 30px;
@@ -27,9 +28,9 @@
   width: 60%;
   margin: auto;
 }
-
-
-
+/* .main-container{
+  margin-top: 80px;
+} */
 /* src/App.css */
 .profile {
   text-align: center;
@@ -39,6 +40,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-left: 15px;
 }
 
 .profile-header img {

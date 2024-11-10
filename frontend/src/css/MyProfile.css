@@ -15,7 +15,7 @@ body {
 
 .about-user {
     margin-top: 5px;
-    width: 625px;
+    width: 575px;
     left: 10px;
     display: flex;
     justify-content: center;
@@ -34,15 +34,12 @@ body {
     border: 1px solid white;
     background-color: white;
     border-radius: 15px;
-    margin-left: 670px;
+    margin-left: 600px;
     height: fit-content;
     width: fit-content;
     position: absolute;
     top: 115px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-   padding-top: 30px;
+    padding-top: 30px;
     
 }
 .profile:focus {
@@ -51,26 +48,26 @@ body {
 .profile-header {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding-left: 90px;
+    
 
 }
 
 .user-avatar {
     height: 35px;
     width: 35px;
-    position: absolute;
     border-radius: 50%;
+    
 }
 .user-name {
     margin-top: 25px;
     font-weight: 500;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* padding-left: 90px; */
-   
+   font-size:medium;
 }
 .user-id {
     font-style: 12px;
+   font-size:smaller;
+
 
 }
 .profile-stats {
@@ -78,7 +75,7 @@ body {
     justify-content: space-between;
     width: 400px;
 }
-.profile-stats-line {
+/* .profile-stats-line {
     height: 1px;
     width: 115px;
     border: 1px solid black;
@@ -86,11 +83,11 @@ body {
     position: absolute;
     top: 187px;
     left: 97px;
-}
+} */
 .followers {
     position: relative;
     margin-top: 10px;
-    left: 105px;
+    left: 60px;
     font-size: larger;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -101,7 +98,7 @@ body {
     /* border: 1px solid red; */
     height: 230px;
     width: 320px;
-    left: 66px;
+    left: 10px;
     padding: 10px;
     overflow-y: auto;
 }
@@ -111,7 +108,6 @@ body {
     height: 50px;
     width: 250px;
     margin-top: 5px;
-    margin-left: 20px;
     align-items: center;
     padding: 2px 7px;
     padding-top: 1px;
@@ -132,7 +128,7 @@ body {
     position: relative;
     margin-top: 10px;
     color: gray;
-    right: 57px;
+    right: 100px;
     font-size: larger;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 

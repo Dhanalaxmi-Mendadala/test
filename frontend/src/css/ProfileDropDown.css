@@ -1,7 +1,8 @@
 .profile-menu {
   position: relative;
-  display: inline-block;
-  width: 380px;
+  margin-top: 5%;
+  width: fit-content;
+
 }
 .profile-icon {
   width: 40px;
@@ -12,16 +13,18 @@
 .dropdown-menu {
   margin-top: 5px;
   display: flex;
-  flex-direction: column;
+  width: 200px;
   position: absolute;
-  top: 35px;
-  right: 10px;
-  background-color: rgb(255, 255, 255);
+  top: 0px;
+  right: 11px;
+  flex-direction: column;
+   background-color: rgb(255, 255, 255);
   border: 1px solid #ccc;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  border: 1px solid grey;
+  border-radius: 5px;
   padding: 10px;
-  width: 150px;
 }
 .dropdown-menu::before{
   content: '';
@@ -29,11 +32,15 @@
   width:10px;
   position: absolute;
   top:-6px;
-  right:17px;
+  right:26px;
   rotate: 45deg;
-  border-left:  1px solid #ccc;
-  border-top:  1px solid #ccc;
+  border-left:  2px solid grey;
+  border-top:  2px solid grey;
   background-color: white;
+}
+.drop-down-icon{
+  height: 30px;
+  width: 30px;
 }
 #profile{
   display: flex;
@@ -47,6 +54,7 @@
   column-gap:5px ;
   width: auto;
   text-decoration: none;
+  padding: 5px;
 }
 .dropdownItem:hover{
   cursor: pointer;
@@ -72,6 +80,7 @@
   right: 1%;
   cursor: pointer;
   border-radius: 50%;
+  margin-top: 5px;
 }
 .profile-name {
   font-family: Arial, Helvetica, sans-serif;

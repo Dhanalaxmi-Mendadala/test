@@ -10,7 +10,7 @@ async function fetching() {
     console.log(data,'121323e2')
     return data.isLoggedIn;
   } catch {
-    return null;
+    return '1';
   }
 };
 export default fetching;
