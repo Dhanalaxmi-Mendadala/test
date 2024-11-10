@@ -3,20 +3,8 @@ import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
-import moment from "moment"
 import fetchCoverPage from "../API/fetchCoverPage"
-
-const GenerateTime = ({ time }) => {
-  const publishedTime = moment(time);
-  const timeDifference = moment().diff(publishedTime, 'days');
-  const relativeTime = timeDifference > 7 ? publishedTime.format('MMM D') : publishedTime.fromNow()
-  return (
-    <p>{relativeTime}</p>
-  )
-}
-GenerateTime.propTypes = {
-  time: PropTypes.string.isRequired
-}
+import { GenerateTime } from "./Date"
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState(currentStory);

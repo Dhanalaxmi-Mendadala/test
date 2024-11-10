@@ -3,6 +3,7 @@ import mainLogout from "../API/logout";
 import PropTypes from "prop-types";
 
 function LogoutPopUp({ logoutFlag, close }) {
+
   return (
     <>
       <div className={logoutFlag ? "popupContainer" : "hidden"}>

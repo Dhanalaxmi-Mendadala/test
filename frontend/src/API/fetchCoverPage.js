@@ -1,4 +1,4 @@
-const fetchCoverPage = async (coverImageName) => {
+const fetchCoverPage =  async(coverImageName) => {
   if (coverImageName === 'NULL') return null;
 console.log(coverImageName)
   try {
@@ -17,4 +17,4 @@ console.log(response, response['url'], 'after a fecth call of image')
   }
 };
 
-export default fetchCoverPage
+export default fetchCoverPage;
