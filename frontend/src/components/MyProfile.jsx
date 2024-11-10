@@ -6,15 +6,26 @@ const Profile = () => {
   const userInfo = useContext(UserInfo);
   console.log(userInfo, "its profile");
   const [userData, setUserData] = useState({});
-
+  const [loading,setLoading]=useState(true)
   useEffect(() => {
     const getProfile = async () => {
+      try{
+      if(userInfo){
       const data = await fetchProfile(userInfo["id"]);
+      setLoading(false);
       setUserData(data);
       console.log(data, "abcd", 1, 2, 3);
+      }
+    }
+    catch{
+     console.log("Error");
+    }
     };
     getProfile();
   }, []);
+  if(loading){
+    return <div>Loading....</div>
+  }
   console.log(userData, "profile page");
   return (
     <>
