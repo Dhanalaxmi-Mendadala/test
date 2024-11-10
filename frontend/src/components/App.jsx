@@ -8,7 +8,7 @@ import DashBoard from "./DashBoard.jsx";
 import Profile from "./MyProfile.jsx";
 import MyStories from "./MyStories.jsx";
 import Drafts from "./Drafts.jsx";
-import Publish from "./publishStories.jsx";
+import Publish from "./PublishStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
 import "../css/App.css";
