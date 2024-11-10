@@ -33,7 +33,7 @@ const Profile = () => {
         <h2 className="profile-user-name">{userData["username"]}</h2>
       </div>
       <div className="profile">
-        <div className="profile-header">
+        <div className="profile-section">
           <img
             src={userData["avatar_url"]}
             alt="Profile"
@@ -41,8 +41,10 @@ const Profile = () => {
             style={{ height: "100px", width: "100px" }}
           />
           <h2 className="user-name">{userData["username"]}</h2>
-          {console.log(userData["followers"])}
-          <p>{userData["followers"].length} followers</p>
+          <p className="followers-count">{userData["followers"].length} followers</p>
+
+         </div>
+         {console.log(userData["followers"])}
           {userData["followers"] && userData["following"] && (
             <>
               <div className="profile-stats">
@@ -75,7 +77,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
