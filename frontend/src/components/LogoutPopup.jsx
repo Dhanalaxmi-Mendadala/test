@@ -2,8 +2,6 @@ import '../css/logoutPop.css'
 import mainLogout from "../API/logout";
 import PropTypes from "prop-types";
 
-
-
 function LogoutPopUp({ logoutFlag, close }) {
 
   return (
