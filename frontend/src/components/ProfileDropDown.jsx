@@ -1,16 +1,35 @@
 import { useContext, useState } from "react";
 import "../css/ProfileDropDown.css";
-import profile from "../../assets/profile.jpeg";
-import logout from "../../assets/logout.jpeg";
-import story from "../../assets/story.jpeg";
+import profile from "../components/svg/profile.svg";
+import logout from "../components/svg/logout.svg";
+import story from "../components/svg/stories.svg";
 import PropTypes from "prop-types";
 import { UserInfo } from "./Home";
 import { Link } from "react-router-dom";
 
-const ProfileMenu = () => {
+
+function DropdownItem(props) {
+  return (
+    <div className="dropdownItem" onClick={props.onClick}>
+      <img src={props.img} className="drop-down-icon" />
+      <Link to={props.path} className="drop-down-nav-name">
+        {props.name}
+      </Link>
+    </div>
+  );
+}
+
+DropdownItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.string.isRequired,
+};
+
+
+const ProfileMenu = ({ logoutFunction }) => {
   const [isOpen, setIsOpen] = useState(false);
   const userInfo = useContext(UserInfo)
-  console.log(userInfo)
 
   const profileUrl = userInfo['avatar_url'];
   const userName = userInfo.username;
@@ -18,8 +37,7 @@ const ProfileMenu = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  console.log(profileUrl)
-  console.log(userName)
+  
   return (
     <div className="profile-menu">
       <img
@@ -31,47 +49,21 @@ const ProfileMenu = () => {
       {isOpen && (
         <div className="dropdown-menu" onClick={toggleMenu}>
           <div id="profile">
-            <img
-              className="profile-icon"
-              src={profileUrl || "../assets/github.png"}
-            />
-            <Link to="profile" className="profile-name">
-              {userName || "Guest"}
-            </Link>
+            <img className="profile-icon" src={profileUrl || "../assets/github.png"}/>
+            <Link to="profile" className="profile-name">{userName || "Guest"}</Link>
           </div>
-          <Link to='profile'>
-            <DropdownItem img={profile} name="Profile" path="profile" />
-          </Link>
-          <Link to='yourstories'>
-            <DropdownItem
-              img={story}
-              path="yourStories/drafts"
-              name="Your Stories"
-            />
-          </Link>
-          <DropdownItem
-            img={logout}
-            path="logout"
-            name="Logout"
-          />
+          <DropdownItem img={profile} name="Profile" path="profile" />
+          <DropdownItem img={story} path="yourStories/drafts" name="My Stories" />
+          <DropdownItem img={logout} name="Logout" onClick={logoutFunction} />
         </div>
       )}
     </div>
   );
 };
-function DropdownItem(props) {
-  return (
-    <div className="dropdownItem">
-      <img src={props.img} className="drop-down-icon" />
-      <Link to={props.path} className="drop-down-nav-name">
-        {props.name}
-      </Link>
-    </div>
-  );
-}
-DropdownItem.propTypes = {
-  img: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+
+ProfileMenu.propTypes = {
+  logoutFunction: PropTypes.func.isRequired,
 };
-export default ProfileMenu;
+
+export default ProfileMenu
+

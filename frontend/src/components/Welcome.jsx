@@ -21,7 +21,6 @@ Header.propTypes = {
 
 function WelcomePage() {
   const [clicked, setClicked] = useState(false);
-
   return (
     <div>
       <Header click={setClicked} />
@@ -59,7 +58,7 @@ function SignInPage({ click }) {
         <p className="close" onClick={() => click(false)}>
           &times;
         </p>
-        <h2 className="welcomeBack">Welcome Back.</h2>
+        <h2 className="welcomeBack">Welcome</h2>
         <p className="signInGitHub">
           <img src="../../assets/github.png"></img>
           <a href={githubAuthUrl}>Sign in with GitHub</a>

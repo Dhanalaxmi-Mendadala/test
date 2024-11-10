@@ -3,35 +3,27 @@ import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
-import moment from "moment"
-
-const GenerateTime = ({time}) => {
-  const relativeTime = moment(time).fromNow();
-  console.log(relativeTime, "Time")
-  return (
-  <p>{relativeTime}</p>
-  )
-}
-GenerateTime.propTypes = {
- time: PropTypes.object.isRequired
-}
+import fetchCoverPage from "../API/fetchCoverPage"
+import { GenerateTime } from "./Date"
 
 const StoryComponent = ({ currentStory }) => {
-  const [storyData, setStoryData] = useState({});
+  const [storyData, setStoryData] = useState(currentStory);
   const navigate = useNavigate();
   useEffect(() => {
-    const fetchCoverPage = async () => {
-      const response = await fetch('http://localhost:8000/coverImage/cover-image.png');
-      setStoryData(storyData => ({
+    const addImage = async (url) => {
+      const imageUrl = await fetchCoverPage(url);
+      setStoryData({
         ...storyData,
-        image: response['url'],
-      }));
-    };
-    setStoryData(currentStory);
-    fetchCoverPage();
+        imageUrl: imageUrl
+      })
+      console.log(storyData, imageUrl, 'added the image')
+    }
+    addImage(currentStory['coverImageName']);
   }, []);
 
-  const storyDescription = storyData['content'] ? storyData['content']['0']['data']['text'] : '';
+  console.log(storyData['content'], 'single story')
+  const isContent = storyData['content'];
+  const storyDescription = (isContent !== undefined) ? storyData['content']['0']['data']['text'] : '';
 
   return (
     <div className="story-component" onClick={() => {
@@ -47,11 +39,11 @@ const StoryComponent = ({ currentStory }) => {
         <p className="story-description">
           {storyDescription || 'Story decription'}
         </p>
-        <img src={storyData['image']} alt="cover-image" className="story-cover-image" />
+        <img src={storyData['imageUrl'] || null} alt="cover-image" className="story-cover-image" />
       </div>
       <div className="story-meta-data">
-        
-        <p className="published-time">{<GenerateTime time={storyData['published_at']}/>}</p>
+
+        <p className="published-time">{<GenerateTime time={storyData['published_at']} />}</p>
         <p className="story-claps"></p>
         <p className="story-responses"></p>
       </div>
@@ -67,11 +59,11 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-console.log(stories, 'dashboard')
+  console.log(stories, 'dashboard')
   return (
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) =>
-       <StoryComponent key={i} currentStory={currentStory} />)
+        <StoryComponent key={i} currentStory={currentStory} />)
       }
     </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )

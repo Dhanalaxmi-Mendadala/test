@@ -80,13 +80,19 @@
     position: fixed;
     top: 30%;
     left: 40%;
+<<<<<<< HEAD
     border-radius: 4px;
+=======
+    border-radius: 5px;
+    position: relative; 
+    background-color:white;
+>>>>>>> 33e74ae07258e42ff93858b6793589d06df865b3
 }
 
 .signInGitHub {
 display: flex;
 border: 2px solid black;
-padding: 8px;
+padding: 9px;
 height: fit-content;
 width: 175px;
 margin-top: 20px;
@@ -120,6 +126,7 @@ font-family: sans-serif;
 .hidden {
     display: none;
 }
+<<<<<<< HEAD
 #signIn {
     height: 100%;
     width: 100%;
@@ -128,3 +135,14 @@ font-family: sans-serif;
     top:0;
     left:0;
 }
+=======
+#signIn{ 
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 2; 
+} 
+>>>>>>> 33e74ae07258e42ff93858b6793589d06df865b3
