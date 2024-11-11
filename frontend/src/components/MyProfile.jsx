@@ -14,8 +14,8 @@ const Item = ({ personDetail }) => {
     </Link>
   </div >
 }
-Item.propTypes ={
-  personDetail:PropTypes.object.isRequired
+Item.propTypes = {
+  personDetail: PropTypes.object.isRequired
 }
 
 const List = ({ data }) => {
@@ -24,8 +24,8 @@ const List = ({ data }) => {
   )
   return ListComponent;
 }
-List.propTypes ={
-  data:PropTypes.array.isRequired
+List.propTypes = {
+  data: PropTypes.array.isRequired
 }
 
 const ProfileCard = ({ userData }) => {
@@ -41,8 +41,8 @@ const ProfileCard = ({ userData }) => {
       (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
   </div>
 }
-ProfileCard.propTypes ={
-  userData:PropTypes.object.isRequired
+ProfileCard.propTypes = {
+  userData: PropTypes.object.isRequired
 }
 
 const ProfileStats = ({ userData }) => {
@@ -59,13 +59,13 @@ const ProfileStats = ({ userData }) => {
     </div>
     <div className="user-stats">
       {currenInfo === 'followers' ?
-        <List data={userData['followers']} /> :
-        <List data={userData['following']} />}
+        (userData['followers'].length ? <List data={userData['followers']} /> : <p>nobody is following you</p>) :
+        (userData['following'].length ? <List data={userData['following']} /> : <p>you are not following anyone</p>)}
     </div>
   </div>
 }
-ProfileStats.propTypes ={
-  userData:PropTypes.object.isRequired
+ProfileStats.propTypes = {
+  userData: PropTypes.object.isRequired
 }
 
 const UserStories = ({ userData }) => {
@@ -84,8 +84,8 @@ const UserStories = ({ userData }) => {
     }
   </div>
 }
-UserStories.propTypes ={
-  userData:PropTypes.object.isRequired
+UserStories.propTypes = {
+  userData: PropTypes.object.isRequired
 }
 
 const Profile = () => {
