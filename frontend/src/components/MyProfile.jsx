@@ -1,7 +1,93 @@
 import { useEffect, useState } from "react";
-import "../css/MyProfile.css";
+// import "../css/MyProfile.css";
 import { fetchProfile } from "../API/Profile";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import StoryCard from "./StoryCard";
+import PropTypes from 'prop-types'
+
+const Item = ({ personDetail }) => {
+  return <div className="follower-data">
+    <Link to={`/profile/${personDetail['id']}`}>
+      <img className="followers-list-profile"
+        src={personDetail['avatar_url']} />
+      <p className="followers-list-username">{personDetail['username']}</p>
+    </Link>
+  </div >
+}
+Item.propTypes ={
+  personDetail:PropTypes.object.isRequired
+}
+
+const List = ({ data }) => {
+  const ListComponent = data.map((personDetail, i) =>
+    <Item personDetail={personDetail} key={i} />
+  )
+  return ListComponent;
+}
+List.propTypes ={
+  data:PropTypes.array.isRequired
+}
+
+const ProfileCard = ({ userData }) => {
+  return <div className="profile-section">
+    <img
+      src={userData["avatar_url"]}
+      alt="Profile"
+      className="user-avatar"
+      style={{ height: "100px", width: "100px" }}
+    />
+    <h2 className="user-name">{userData["username"]}</h2>
+    <p className="followers-count">{userData["followers"].length +
+      (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
+  </div>
+}
+ProfileCard.propTypes ={
+  userData:PropTypes.object.isRequired
+}
+
+const ProfileStats = ({ userData }) => {
+  const [currenInfo, setCurrentInfo] = useState('followers');
+  return <div className="profile-stats">
+    <div>
+      <p className="followers" onClick={() => setCurrentInfo('followers')}>
+        Followers {userData["followers"].length}
+      </p>
+      <div className="profile-stats-line" ></div>
+      <p id="active" className="following" onClick={() => setCurrentInfo('following')}>
+        Following {userData["following"].length}
+      </p>
+    </div>
+    <div className="user-stats">
+      {currenInfo === 'followers' ?
+        <List data={userData['followers']} /> :
+        <List data={userData['following']} />}
+    </div>
+  </div>
+}
+ProfileStats.propTypes ={
+  userData:PropTypes.object.isRequired
+}
+
+const UserStories = ({ userData }) => {
+  return <div className="user-stories-component">
+    <h2 className="profile-user-name">{userData["username"]}</h2>
+    {
+      userData['stories'].length ?
+        userData['stories'].map((story, i) =>
+          <StoryCard storyData={story}
+            key={i}
+            username={userData['username']}
+            userAvatar={userData['avatar_url']}
+            userId={userData['id']} />)
+        :
+        <p>No stories yet</p>
+    }
+  </div>
+}
+UserStories.propTypes ={
+  userData:PropTypes.object.isRequired
+}
+
 const Profile = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
@@ -20,59 +106,22 @@ const Profile = () => {
     };
     getProfile();
   }, [id]);
-  
+
   if (userData['error']) return <div className="">Error in fetching..</div>
   if (loading) {
     return <div>Loading....</div>
   }
   console.log(userData, "profile page");
   return (
-    <>
-      <div className="about-user">
-        <h2 className="profile-user-name">{userData["username"]}</h2>
+    <div className="profile-page">
+      <div className="main-stories">
+        <UserStories userData={userData} />
       </div>
       <div className="profile">
-        <div className="profile-section">
-          <img
-            src={userData["avatar_url"]}
-            alt="Profile"
-            className="user-avatar"
-            style={{ height: "100px", width: "100px" }}
-          />
-          <h2 className="user-name">{userData["username"]}</h2>
-          <p className="followers-count">{userData["followers"].length +
-            (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
-        </div>
-        <div className="profile-stats">
-          <p className="followers">
-            Followers {userData["followers"].length}
-          </p>
-          <div className="profile-stats-line"></div>
-          <p id="active" className="following">
-            Following {userData["following"].length}
-          </p>
-        </div>
-        <div className="followers-list">
-          <div className="follower-data">
-            <img
-              className="followers-list-profile"
-              src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-            ></img>
-            <p className="followers-list-username">abhi</p>
-          </div>
-          <div className="follower-data">
-            <img
-              className="followers-list-profile"
-              src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-            ></img>
-            <p className="followers-list-username">
-              naveen kumar varma vadla
-            </p>
-          </div>
-        </div>
+        <ProfileCard userData={userData} />
+        <ProfileStats userData={userData} />
       </div>
-
-    </>
+    </div>
   );
 };
 
