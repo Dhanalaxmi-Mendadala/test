@@ -2,10 +2,13 @@
     width: 100%;
     height: 100%;
     top:0px;
-    right:0px;
+    left:0px;
     position: absolute;
-    z-index:6;
+    z-index:0;
+    overflow:scroll;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: transparent;
+    font-weight: 400;
 }
 
 #response{
@@ -13,9 +16,14 @@
     right:0px;
     position: absolute;
     z-index:5;
-    width: fit-content;
-    height: fit-content;
-    color:red;
-    background: red;
-    border:5px solid red;
+    width: 40%;
+    height: 100%;
+    background:white;
+    border:5px solid whitesmoke;
+}
+#response div{
+    display: flex;
+    padding: 4px;
+    font-size: 15px;
+    justify-content: space-between;
 }
