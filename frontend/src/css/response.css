@@ -47,3 +47,20 @@
     font-size: 2rem; 
     margin-left: auto; 
 }
+
+.response-card{
+    height: 50px;
+    width: inherit;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.response-card img{
+    height: 30px;
+    width: 30px;
+}
+
+.responses-unit{
+    display: flex;
+    flex-direction: column;
+}

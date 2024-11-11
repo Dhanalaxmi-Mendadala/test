@@ -110,7 +110,7 @@ const StoryPage = () => {
 
   return (
     <>
-      {openResponse && <ResponseofStory setopenResponse={setopenResponse} responsesCount={responsesCount} />}
+      {openResponse && <ResponseofStory storyId={storyData['id']} setopenResponse={setopenResponse} responsesCount={responsesCount} />}
       {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>

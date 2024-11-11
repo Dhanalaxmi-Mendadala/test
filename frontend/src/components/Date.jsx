@@ -14,4 +14,14 @@ GenerateTime.propTypes = {
   time: PropTypes.string.isRequired
 }
 
+const RelativeTime = ({ time }) => {
+  const publishedTime = moment(time);
+  return <>{publishedTime.fromNow()}</>
+
+}
+RelativeTime.propTypes = {
+  time: PropTypes.string.isRequired
+}
+
+export { RelativeTime }
 export default GenerateTime;
