@@ -7,7 +7,7 @@ const GenerateTime = ({ time }) => {
   const relativeTime = timeDifference > 7 ? publishedTime.format('MMM D YYYY') : publishedTime.fromNow();
   console.log(relativeTime)
   return (
-    <p>{relativeTime}</p>
+    <span className="last-submitted-time">{relativeTime}</span>
   )
 }
 GenerateTime.propTypes = {

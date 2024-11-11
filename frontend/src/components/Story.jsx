@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
@@ -66,6 +66,7 @@ const StoryPage = () => {
   const [openResponse, setopenResponse] = useState(false);
   const [clapStatus, setClapStatus] = useState({});
   const [loading, setLoading] = useState(true);
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const getStoryData = async () => {
@@ -112,7 +113,9 @@ const StoryPage = () => {
       {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
-          <div className='story-author-details-container'>
+          <div className='story-author-details-container' onClick={() => {
+            navigateTo(`/profile/${storyData.authorId}`)
+          }}>
             <div><img className='story-author-image' src={storyData['avatar_url']}></img></div>
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>

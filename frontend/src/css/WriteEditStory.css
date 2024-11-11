@@ -48,7 +48,6 @@
     max-height: 100%;
     align-content: center;
     padding: 10px;
-    background-color: #F6F6F6;
     display: flex;
 }
 
@@ -61,7 +60,6 @@
     border: 0px solid black;
     outline: none;
     margin: auto;
-    background-color: #F6F6F6;
     font-size: 24px;
 }
 .ce-toolbar__actions {

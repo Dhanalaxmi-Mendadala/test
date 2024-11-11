@@ -51,7 +51,7 @@ function App() {
           <Route index element={<DashBoard />} />
           <Route path="addstory" element={<ProtectedRoute element={<WriteAStory />} />} />
           <Route path="storypage/:id" element={<ProtectedRoute element={<StoryPage />} />} />
-          <Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
+          <Route path="profile/:id" element={<ProtectedRoute element={<Profile />} />} />
           <Route path="yourstories" element={<ProtectedRoute element={<MyStories />} />}>
             <Route index path="drafts" element={<Drafts />} />
             <Route path="published" element={<Publish />} />

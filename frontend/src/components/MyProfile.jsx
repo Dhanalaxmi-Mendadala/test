@@ -1,91 +1,131 @@
-import { useContext, useEffect, useState } from "react";
-import { UserInfo } from "./Home";
+import { useEffect, useState } from "react";
 import "../css/MyProfile.css";
 import { fetchProfile } from "../API/Profile";
+import { Link, useParams } from "react-router-dom";
+import StoryCard from "./StoryCard";
+import PropTypes from 'prop-types'
 
-const FollowerList = () => {
-  return (
-    <div className="followers-list">
-    <div className="follower-data">
-      <img
-        className="followers-list-profile"
-        src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-      ></img>
-      <p className="followers-list-username">abhi</p>
-    </div>
-    <div className="follower-data">
-      <img
-        className="followers-list-profile"
-        src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-      ></img>
-      <p className="followers-list-username">
-        naveen kumar varma vadla
+const Item = ({ personDetail }) => {
+  return <div className="follower-data">
+    <Link to={`/profile/${personDetail['id']}`}>
+      <img className="followers-list-profile"
+        src={personDetail['avatar_url']} />
+      <p className="followers-list-username">{personDetail['username']}</p>
+    </Link>
+  </div >
+}
+Item.propTypes = {
+  personDetail:PropTypes.object.isRequired
+}
+
+const List = ({ data }) => {
+  // console.log(data,'dataaa')
+  const ListComponent = data.map((personDetail, i) =>
+    <Item personDetail={personDetail} key={i} />
+  )
+  return ListComponent;
+}
+List.propTypes ={
+  data:PropTypes.array.isRequired
+}
+
+const ProfileCard = ({ userData }) => {
+  return <div className="profile-section">
+    <img
+      src={userData["avatar_url"]}
+      alt="Profile"
+      className="user-avatar"
+      style={{ height: "100px", width: "100px" }}
+    />
+    <h2 className="user-name">{userData["username"]}</h2>
+    <p className="followers-count">{userData["followers"].length +
+      (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
+  </div>
+}
+ProfileCard.propTypes ={
+  userData:PropTypes.object.isRequired
+}
+const ProfileStats = ({ userData }) => {
+  const [currenInfo, setCurrentInfo] = useState('followers');
+  console.log(currenInfo, 'currentInfooo')
+  return <div className="profile-stats">
+    <div className="user-follow-and-followers-container">
+    <p className="followers" onClick={() => setCurrentInfo('followers')}>
+        Followers {userData["followers"].length}
       </p>
+      <div className="profile-stats-line" ></div>
+           <p className="following" onClick={() => setCurrentInfo('following')}>
+           Following {userData["following"].length}
+         </p>
+    </div>
+    <div className="user-stats">
+      {currenInfo === 'followers' ?
+        <List data={userData['followers']} /> :
+        <List data={userData['following']} />}
     </div>
   </div>
-  )
+}
+ProfileStats.propTypes ={
+  userData:PropTypes.object.isRequired
+}
+
+const UserStories = ({ userData }) => {
+  return <div className="user-stories-component">
+    <h2 className="profile-user-name">{userData["username"]}</h2>
+    {
+      userData['stories'].length ?
+        userData['stories'].map((story, i) =>
+        <div className="stories-container">
+          <StoryCard storyData={story}
+            key={i}
+            username={userData['username']}
+            userAvatar={userData['avatar_url']}
+            userId={userData['id']} />
+        </div>  
+        )
+        :
+        <p>No stories yet</p>
+    }
+  </div>
+}
+UserStories.propTypes ={
+  userData:PropTypes.object.isRequired
 }
 
 const Profile = () => {
-  const userInfo = useContext(UserInfo);
-  console.log(userInfo, "its profile");
+  const { id } = useParams();
   const [userData, setUserData] = useState({});
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const getProfile = async () => {
-      try{
-      if(userInfo){
-      const data = await fetchProfile(userInfo["id"]);
-      setLoading(false);
-      setUserData(data);
-      console.log(data, "abcd", 1, 2, 3);
+      try {
+        const data = await fetchProfile(id);
+        setLoading(false);
+        setUserData(data);
+        console.log(data, "abcd", 1, 2, 3);
       }
-    }
-    catch{
-     console.log("Error");
-    }
+      catch {
+        console.log("Error");
+      }
     };
     getProfile();
-  }, []);
-  if(loading){
+  }, [id]);
+
+  if (userData['error']) return <div className="">Error in fetching..</div>
+  if (loading) {
     return <div>Loading....</div>
   }
   console.log(userData, "profile page");
   return (
-    <>
-      <div className="about-user">
-        <h2 className="profile-user-name">{userData["username"]}</h2>
+    <div className="profile-page">
+      <div className="main-stories">
+        <UserStories userData={userData} />
       </div>
       <div className="profile">
-        <div className="profile-section">
-          <img
-            src={userData["avatar_url"]}
-            alt="Profile"
-            className="user-avatar"
-            style={{ height: "100px", width: "100px" }}
-          />
-          <h2 className="user-name">{userData["username"]}</h2>
-          <p className="followers-count">{userData["followers"].length} followers</p>
-
-         </div>
-         {console.log(userData["followers"])}
-          {userData["followers"] && userData["following"] && (
-            <>
-              <div className="profile-stats">
-                <p id="active" className="followers">
-                  Followers {userData["followers"].length}
-                </p>
-                <div className="profile-stats-line"></div>
-                <p id="active" className="following">
-                  Following {userData["following"].length}
-                </p>
-              </div>
-            </>
-          )}
-         <FollowerList></FollowerList>
-        </div>
-      
-    </>
+        <ProfileCard userData={userData} />
+        <ProfileStats userData={userData} />
+      </div>
+    </div>
   );
 };
 

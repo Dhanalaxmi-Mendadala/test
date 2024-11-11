@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
+import GenerateTime from "./Date";
+
 function Drafts() {
   const stories = useContext(StoryData);
   const navigator = useNavigate();
@@ -20,7 +22,7 @@ function Drafts() {
             })}>
             <h2 className="draft-title">{draft['title']}</h2>
             {console.log(draft)}
-            <p>Last modified at {draft['last_modified']}</p>
+            <p>Last modified <GenerateTime time={draft['last_modified']} /></p>
           </div>
         )
       }

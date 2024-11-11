@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
 import fetchCoverPage from "../API/fetchCoverPage"
-import GenerateTime from "./Date"
+import StoryCard from "./StoryCard"
+
 
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState(currentStory);
-  const navigate = useNavigate();
   useEffect(() => {
     const addImage = async (url) => {
       const imageUrl = await fetchCoverPage(url);
@@ -22,35 +21,14 @@ const StoryComponent = ({ currentStory }) => {
   }, []);
 
   console.log(storyData['content'], 'single story')
-  const isContent = storyData['content'];
-  const storyDescription = (isContent !== undefined) ? storyData['content']['0']['data']['text'] : '';
 
   return (
-    <div className="story-component" onClick={() => {
-      navigate(`/storypage/${storyData['id']}`)
-    }}>
-
-      <div className="author-details">
-        <img src={storyData['author_avatar_url']} alt="avatar" className="author-avatar" />
-        <h4 className="author-name">{storyData.author || 'Author'}</h4>
-      </div>
-      <div className="story-details">
-        <h3 className="story-title">{storyData.title || 'Title'}</h3>
-        <p className="story-description">
-          {storyDescription || 'Story decription'}
-        </p>
-        <img src={storyData['imageUrl'] || null} alt="no-cover-image" className="story-cover-image" />
-      </div>
-      <div className="story-meta-data">
-
-        <p className="published-time">{<GenerateTime time={storyData['published_at']} />}</p>
-        <p className="story-claps"></p>
-        <p className="story-responses"></p>
-      </div>
-    </div>
+    <StoryCard storyData={storyData}
+      username={storyData['author']}
+      userAvatar={storyData['author_avatar_url']}
+      userId={storyData.authorId} />
   )
 }
-
 StoryComponent.propTypes = {
   currentStory: PropTypes.object.isRequired
 }
@@ -59,7 +37,7 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-  console.log(stories, 'dashboard')
+  console.log(someContext, stories, 'dashboard')
   return (
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) =>
@@ -70,7 +48,7 @@ const DashBoard = () => {
 }
 
 
-
+export { StoryComponent }
 export default DashBoard
 // app -|
 //      welcomePage -|
