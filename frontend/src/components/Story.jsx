@@ -67,7 +67,7 @@ const StoryPage = () => {
   const [clapStatus, setClapStatus] = useState({});
   const [loading, setLoading] = useState(true);
   const navigateTo = useNavigate();
-
+  const responsesCount = useRef(null);
   useEffect(() => {
     const getStoryData = async () => {
       setLoading(true);
@@ -83,6 +83,7 @@ const StoryPage = () => {
           isClapped: story['isClapped'],
           clapsCount: story['clapsCount'],
         });
+        responsesCount['current'] = story['responsesCount'];
       }
       setLoading(false);
     };
@@ -109,7 +110,7 @@ const StoryPage = () => {
 
   return (
     <>
-      {openResponse && <ResponseofStory setopenResponse={setopenResponse} />}
+      {openResponse && <ResponseofStory setopenResponse={setopenResponse} responsesCount={responsesCount} />}
       {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
@@ -141,7 +142,7 @@ const StoryPage = () => {
                     width: '20px',
                     height: '20px'
                   }} /></p>
-                <span className='response-count'>{storyData['responsesCount']}</span>
+                <span className='response-count' ref={responsesCount}>{responsesCount['current']}</span>
               </div>
             </div>
             <div className='all-links-container'>
