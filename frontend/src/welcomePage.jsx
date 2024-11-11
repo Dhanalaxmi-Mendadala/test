@@ -68,12 +68,12 @@ function WelcomePage() {
     );
   }
 }
-
 function Footer() {
   return (
     <>
       <footer id="welcomeFooter">
         <nav>
+          <a href="#">help</a>
           <a href="#">Help</a>
           <a href="#">About</a>
           <a href="#">Privacy</a>
