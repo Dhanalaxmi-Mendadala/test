@@ -1,6 +1,6 @@
 .main-header {
     border: none;
-    border-bottom: 2px solid gray;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.233);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,15 +10,16 @@
     top: 0px; 
     height: 50px;
     z-index: 3;
-    background-color: white;
-    margin-bottom: 2px;
+    background-color: hsl(0, 0%, 96%);
+    margin-bottom: 10px;
 }
 
 .title {
-    font-size: 40px;
+    font-size: 42px;
     padding-left: 8px;
     cursor: pointer;
-  }
+    letter-spacing: -2px;
+}
 
 .write-button {
     padding: 12px 20px;
@@ -29,4 +30,5 @@
     position: absolute;
     right: 10%;
     letter-spacing: 1px;
+    font-size: 16px;
 }

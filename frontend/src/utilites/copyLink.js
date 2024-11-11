@@ -1,4 +1,4 @@
-const copyLink = () => {
+const copyLinkToClipboard = () => {
   const url = window.location.href;
   navigator.clipboard
     .writeText(url)
@@ -9,4 +9,4 @@ const copyLink = () => {
       console.error("Failed to copy: ", err);
     });
 };
-export default copyLink;
+export default copyLinkToClipboard;

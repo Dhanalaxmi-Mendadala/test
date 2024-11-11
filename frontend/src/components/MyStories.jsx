@@ -35,12 +35,11 @@ function MyStories() {
 };
 
 function Stories({ stories }) {
-
   return (
     <div id="yourStories">
-      <h2>Your Stories</h2>
+      <h2 className="your-stories-heading">Your Stories</h2>
       <nav>
-        <NavLink ClassName="active" className="draft" to="drafts" >Drafts</NavLink>
+        <NavLink ClassName="active" className="draft" to="drafts">Drafts</NavLink>
         <NavLink ClassName="active" className="publish" to="published">Published</NavLink>
       </nav>
       <StoryData.Provider value={stories}>

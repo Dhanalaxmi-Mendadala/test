@@ -4,20 +4,27 @@ main {
   align-content: flex-start;
   flex-direction: column;
   margin-top: 50px;
-  width: 70%;
+  width: 50%;
   margin: auto;
 }
+
 .main-title {
   margin-bottom: 10px;
   padding: 10px;
-  font-size: 45px;
+  font-size: 2.5rem;
+  word-wrap: break-word;
   margin-top: 10px;
+  letter-spacing: -2px;
 }
-#Editorjs{
+
+#Editorjs {
   text-align: left;
   padding: 0%;
-  width: fit-content;
+  width: inherit;
+  word-wrap: break-word;
+  line-height: 10px;
 }
+
 .story-author-details-container {
   display: flex;
   font-size: large;
@@ -28,36 +35,39 @@ main {
   text-transform: capitalize;
   position: relative;
 }
-
-.story-title {
-  font-size: 45px;
-  line-height: 52px;
-  font-weight: 700;
-  overflow-wrap: break-word;
+.publishedTime{
+  margin-left: 1px;
+  color:rgb(138, 130, 130);
+  font-size: 14px;
+  align-content: center;
+  text-transform: none;
 }
 
-.story-coverpage-container{
+
+.story-coverpage-container {
   width: 100%;
   max-height: 500px;
-  min-height: 200px;
+  min-height: 0;
   display: flex;
   justify-content: center;
-  object-fit: cover;
+  align-items: center;
 }
 
 .story-coverpage {
-  margin: auto;
+  max-width: 100%;
+  max-height: 300px;
   object-fit: contain;
 }
 
 .story-content-container {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-  width: 1000px;
+  width: 100%;
 }
 
 .story-author-image {
-  height: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
 }
 
@@ -82,13 +92,25 @@ main {
 .content-paragraph {
   font-family: sans;
 }
+.story-author-account-info-container div{
+  font-size: 14px;
+  text-transform:none ;
+  margin-top: 2px;
+  padding-left: 9px;
+  color: rgb(152, 146, 146);
+}
 .story-author-account-info-container .story-author-name {
   margin-left: 10px;
-  font-size: 16px;
+  font: 1em sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
+
 .ce-block__content {
   max-width: 1000px;
 }
+
 .all-actions-container {
   border-top: 1px solid rgb(242, 242, 242);
   border-bottom: 1px solid rgb(242, 242, 242);
@@ -97,25 +119,40 @@ main {
   width: 98%;
   padding: 10px;
 }
+
 .claps-response-cotainer {
   display: flex;
 }
-.claps-container, .response-container {
+
+.claps-container,
+.response-container {
   display: flex;
   cursor: pointer;
 }
-.claps-count, .response-count {
+
+.claps-count,
+.response-count {
   margin-left: 3px;
 }
+
 .response-container {
   margin-left: 20px;
 }
+
 .all-links-container {
   display: flex;
 }
+
 .copy-link-container {
   cursor: pointer;
 }
+
 .hidden {
   display: none;
+}
+
+.disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .3;
 }

@@ -22,7 +22,7 @@
   border: 1px solid #ccc;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 2;
-  border: 1px solid grey;
+  border: 1px solid rgb(213, 210, 210);
   border-radius: 5px;
   padding: 10px;
 }
@@ -51,7 +51,7 @@
 .dropdownItem{
   display: flex;
   align-items: center;
-  column-gap:5px ;
+  column-gap:5px;
   width: auto;
   text-decoration: none;
   padding: 5px;
@@ -60,18 +60,12 @@
   cursor: pointer;
   background-color: rgba(227, 213, 213, 0.2);
 }
-.dropdownItem a{
+a{
   text-decoration: none;
   font-family:  Helvetica;
   font-size: 14px;
   color: black;
 }
-/* .outer{
-  width:100%;
-  top:0;
-  position: absolute;
-  background-color: red;
-} */
 .profile-icon1 {
   height: 45px;
   width: 45px;
@@ -91,4 +85,9 @@
 }
 #writeHeader div {
   width: 180px;
+}
+
+#logout-icon {
+  width: 27px;
+  margin-right: 5px;
 }
