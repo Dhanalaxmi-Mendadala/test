@@ -20,7 +20,7 @@ function Drafts() {
                 content: draft['content']
               }
             })}>
-            <p className="draft-title" >{draft['title']}</p>
+            <h2 className="draft-title">{draft['title']}</h2>
             {console.log(draft)}
             <p>Last modified <GenerateTime time={draft['last_modified']} /></p>
           </div>

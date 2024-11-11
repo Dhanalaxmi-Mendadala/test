@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import "../css/MyProfile.css";
+import "../css/MyProfile.css";
 import { fetchProfile } from "../API/Profile";
 import { Link, useParams } from "react-router-dom";
 import StoryCard from "./StoryCard";
@@ -19,6 +19,7 @@ Item.propTypes = {
 }
 
 const List = ({ data }) => {
+  // console.log(data,'dataaa')
   const ListComponent = data.map((personDetail, i) =>
     <Item personDetail={personDetail} key={i} />
   )
@@ -44,18 +45,18 @@ const ProfileCard = ({ userData }) => {
 ProfileCard.propTypes = {
   userData: PropTypes.object.isRequired
 }
-
 const ProfileStats = ({ userData }) => {
   const [currenInfo, setCurrentInfo] = useState('followers');
+  console.log(currenInfo, 'currentInfooo')
   return <div className="profile-stats">
-    <div>
-      <p className="followers" onClick={() => setCurrentInfo('followers')}>
+    <div className="user-follow-and-followers-container">
+    <p className="followers" onClick={() => setCurrentInfo('followers')}>
         Followers {userData["followers"].length}
       </p>
       <div className="profile-stats-line" ></div>
-      <p id="active" className="following" onClick={() => setCurrentInfo('following')}>
-        Following {userData["following"].length}
-      </p>
+           <p className="following" onClick={() => setCurrentInfo('following')}>
+           Following {userData["following"].length}
+         </p>
     </div>
     <div className="user-stats">
       {currenInfo === 'followers' ?
@@ -74,11 +75,14 @@ const UserStories = ({ userData }) => {
     {
       userData['stories'].length ?
         userData['stories'].map((story, i) =>
+        <div className="stories-container" key={i}>
           <StoryCard storyData={story}
             key={i}
             username={userData['username']}
             userAvatar={userData['avatar_url']}
-            userId={userData['id']} />)
+            userId={userData['id']} />
+        </div>  
+        )
         :
         <p>No stories yet</p>
     }
