@@ -29,8 +29,10 @@ const StoryComponent = ({ currentStory }) => {
     <div className="story-component" onClick={() => {
       navigate(`/storypage/${storyData['id']}`)
     }}>
-
-      <div className="author-details">
+      <div className="author-details" title={storyData.author} onClick={(event) => {
+        event.stopPropagation();
+        navigate(`/profile/${storyData.authorId}`);
+      }}>
         <img src={storyData['author_avatar_url']} alt="avatar" className="author-avatar" />
         <h4 className="author-name">{storyData.author || 'Author'}</h4>
       </div>
@@ -59,7 +61,7 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-  console.log(stories, 'dashboard')
+  console.log(someContext, stories, 'dashboard')
   return (
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) =>

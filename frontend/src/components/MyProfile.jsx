@@ -1,29 +1,28 @@
-import { useContext, useEffect, useState } from "react";
-import { UserInfo } from "./Home";
+import { useEffect, useState } from "react";
 import "../css/MyProfile.css";
 import { fetchProfile } from "../API/Profile";
+import { useParams } from "react-router-dom";
 const Profile = () => {
-  const userInfo = useContext(UserInfo);
-  console.log(userInfo, "its profile");
+  const { id } = useParams();
   const [userData, setUserData] = useState({});
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const getProfile = async () => {
-      try{
-      if(userInfo){
-      const data = await fetchProfile(userInfo["id"]);
-      setLoading(false);
-      setUserData(data);
-      console.log(data, "abcd", 1, 2, 3);
+      try {
+        const data = await fetchProfile(id);
+        setLoading(false);
+        setUserData(data);
+        console.log(data, "abcd", 1, 2, 3);
       }
-    }
-    catch{
-     console.log("Error");
-    }
+      catch {
+        console.log("Error");
+      }
     };
     getProfile();
-  }, []);
-  if(loading){
+  }, [id]);
+  
+  if (userData['error']) return <div className="">Error in fetching..</div>
+  if (loading) {
     return <div>Loading....</div>
   }
   console.log(userData, "profile page");
@@ -41,43 +40,38 @@ const Profile = () => {
             style={{ height: "100px", width: "100px" }}
           />
           <h2 className="user-name">{userData["username"]}</h2>
-          <p className="followers-count">{userData["followers"].length} followers</p>
-
-         </div>
-         {console.log(userData["followers"])}
-          {userData["followers"] && userData["following"] && (
-            <>
-              <div className="profile-stats">
-                <p id="active" className="followers">
-                  Followers {userData["followers"].length}
-                </p>
-                <div className="profile-stats-line"></div>
-                <p id="active" className="following">
-                  Following {userData["following"].length}
-                </p>
-              </div>
-            </>
-          )}
-          <div className="followers-list">
-            <div className="follower-data">
-              <img
-                className="followers-list-profile"
-                src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-              ></img>
-              <p className="followers-list-username">abhi</p>
-            </div>
-            <div className="follower-data">
-              <img
-                className="followers-list-profile"
-                src="https://avatars3.githubusercontent.com/u/58025056?v=4"
-              ></img>
-              <p className="followers-list-username">
-                naveen kumar varma vadla
-              </p>
-            </div>
+          <p className="followers-count">{userData["followers"].length +
+            (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
+        </div>
+        <div className="profile-stats">
+          <p className="followers">
+            Followers {userData["followers"].length}
+          </p>
+          <div className="profile-stats-line"></div>
+          <p id="active" className="following">
+            Following {userData["following"].length}
+          </p>
+        </div>
+        <div className="followers-list">
+          <div className="follower-data">
+            <img
+              className="followers-list-profile"
+              src="https://avatars3.githubusercontent.com/u/58025056?v=4"
+            ></img>
+            <p className="followers-list-username">abhi</p>
+          </div>
+          <div className="follower-data">
+            <img
+              className="followers-list-profile"
+              src="https://avatars3.githubusercontent.com/u/58025056?v=4"
+            ></img>
+            <p className="followers-list-username">
+              naveen kumar varma vadla
+            </p>
           </div>
         </div>
-      
+      </div>
+
     </>
   );
 };

@@ -8,12 +8,13 @@
   background-color: white;
   position: relative;
   cursor: pointer;
-  padding-top:10px;
+  padding-top: 10px;
   z-index: 1;
   padding-bottom: 5px;
   border-bottom: 1px solid black;
 }
-#Authors{
+
+#Authors {
   width: 500px;
   margin: auto;
   font-size: 40px;
@@ -32,6 +33,13 @@
   align-items: center;
   padding-left: 20px;
   height: 30px;
+  text-decoration: none;
+}
+
+.author-details:hover{
+  color: rgb(6, 6, 78);
+  letter-spacing: 0.1px;
+  text-decoration: underline black;
 }
 
 .story-details {
@@ -100,6 +108,7 @@
 .author-name {
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 4px;
+  text-decoration:antiquewhite;
 }
 
 .author-name::first-letter {

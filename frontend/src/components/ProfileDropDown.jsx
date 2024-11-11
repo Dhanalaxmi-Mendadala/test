@@ -52,7 +52,7 @@ const ProfileMenu = ({ logoutFunction }) => {
             <img className="profile-icon" src={profileUrl || "../assets/github.png"}/>
             <Link to="profile" className="profile-name">{userName || "Guest"}</Link>
           </div>
-          <DropdownItem img={profile} name="Profile" path="profile" />
+          <DropdownItem img={profile} name="Profile" path={`profile/${userInfo['id']}`} />
           <DropdownItem img={story} path="yourStories/drafts" name="My Stories" />
           <DropdownItem img={logout} name="Logout" onClick={logoutFunction} />
         </div>

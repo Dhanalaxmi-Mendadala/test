@@ -34,10 +34,20 @@ main {
   align-items: center;
   text-transform: capitalize;
   position: relative;
+  cursor: pointer;
 }
-.publishedTime{
+
+.story-author-details-container:hover {
+  :last-child:first-child::after {
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+  }
+
+
+.publishedTime {
   margin-left: 1px;
-  color:rgb(138, 130, 130);
+  color: rgb(138, 130, 130);
   font-size: 14px;
   align-content: center;
   text-transform: none;
@@ -71,6 +81,10 @@ main {
   border-radius: 50%;
 }
 
+.story-author-details-container:hover > :last-child > :first-child{
+  text-decoration: underline;
+  color: rgb(14, 14, 96);
+}
 
 .story-content {
   width: inherit;
@@ -92,13 +106,15 @@ main {
 .content-paragraph {
   font-family: sans;
 }
-.story-author-account-info-container div{
+
+.story-author-account-info-container div {
   font-size: 14px;
-  text-transform:none ;
+  text-transform: none;
   margin-top: 2px;
   padding-left: 9px;
   color: rgb(152, 146, 146);
 }
+
 .story-author-account-info-container .story-author-name {
   margin-left: 10px;
   font: 1em sans-serif;
