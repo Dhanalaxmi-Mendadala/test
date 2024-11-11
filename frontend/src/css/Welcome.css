@@ -1,0 +1,133 @@
+#welcomeHeader,#welcomeBody{
+    background-color: #F7F4ED;
+}
+#welcomeHeader{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding-left: 16px;
+    padding-right: 1px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    position: sticky;
+    top: 0px;
+}
+#welcomeHeader h1 {
+    font-size: 30px;
+    cursor: pointer;
+    padding-left: 7px;
+}
+#signin {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 35px;
+    background-color: black;
+    color: white;
+    height: 20px;
+    width: 60px;
+    text-align: center;
+    padding: 5px;
+    margin-right: 30px;
+}
+#welcomeBody h2 {
+    font-size: 125px;
+    height: fit-content;
+    font-weight: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#welcomeBody h2 p {
+    font-size: 25px;
+    height: fit-content;
+    font-weight: normal;
+    padding-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#welcomeBody {
+    height: fit-content;
+    width: inherit;
+    border-bottom: 2px solid grey;
+    padding: 80px 80px 80px 0px;
+
+} 
+#welcomeFooter {
+    background-color: #F7F4ED;
+    padding: 30px;
+}
+#welcomeFooter nav {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+#welcomeFooter a {
+    text-decoration: none;
+    color: black;
+}
+.popup {
+    background-color: #fff;
+    padding: 30px;
+    display: flex;
+    height: fit-content;
+    width:fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:2px solid white;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    border-radius: 5px;
+    position: relative; 
+    background-color:white;
+}
+
+.signInGitHub {
+display: flex;
+border: 2px solid black;
+padding: 9px;
+height: fit-content;
+width: 175px;
+margin-top: 20px;
+border-radius: 30px;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+background-color: white;
+/* padding: 2px; */
+}
+.signInGitHub img {
+    height:38px;
+    width: 38px;
+    /* background-color: black;
+    color: whi; */
+}
+.signInGitHub a {
+ text-decoration: none;
+color: black;
+font-family: sans-serif;
+
+}
+.close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 27px;
+    cursor: pointer;
+    border: 1;
+}
+.hidden {
+    display: none;
+}
+#signIn{ 
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 2; 
+} 

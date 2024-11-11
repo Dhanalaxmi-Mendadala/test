@@ -105,3 +105,4 @@ SignInPage.propTypes = {
 };
 
 export default WelcomePage;
+

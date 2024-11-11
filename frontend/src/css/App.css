@@ -3,49 +3,15 @@
   margin: 0;
 }
 
-.main-header {
-  margin-top: 5px;
-  border: 1px solid rgb(55, 55, 55);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
 
 .user-profile-icon {
   height: 30px;
   aspect-ratio: 1;
-  border: 1px solid blue;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
 }
 
-.story-component {
-  border: 2px solid black;
-  display: grid;
-  grid-template-rows: 35px 130px 35px;
-  width: 60%;
-  margin: auto;
-}
-
-.author-details {
-  grid-row: span;
-  border: 1px solid red;
-}
-
-.story-details {
-  grid-row: span;
-  border: 1px solid blue;
-}
-
-.story-meta-data {
-
-  grid-row: span;
-  border: 1px solid brown;
-}
-
-/* src/App.css */
 .profile {
   text-align: center;
 }
@@ -54,6 +20,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-left: 15px;
 }
 
 .profile-header img {

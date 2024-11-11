@@ -1,0 +1,174 @@
+main {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 50%;
+  margin: auto;
+}
+
+.main-title {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 2.5rem;
+  word-wrap: break-word;
+  margin-top: 10px;
+  letter-spacing: -2px;
+}
+
+#Editorjs {
+  text-align: left;
+  padding: 0%;
+  width: inherit;
+  word-wrap: break-word;
+  line-height: 10px;
+}
+
+.story-author-details-container {
+  display: flex;
+  font-size: large;
+  width: auto;
+  height: fit-content;
+  padding: 3px;
+  align-items: center;
+  text-transform: capitalize;
+  position: relative;
+  cursor: pointer;
+}
+
+.story-author-details-container:hover {
+  :last-child:first-child::after {
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+  }
+
+
+.publishedTime {
+  margin-left: 1px;
+  color: rgb(138, 130, 130);
+  font-size: 14px;
+  align-content: center;
+  text-transform: none;
+}
+
+
+.story-coverpage-container {
+  width: 100%;
+  max-height: 500px;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-coverpage {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.story-content-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  width: 100%;
+}
+
+.story-author-image {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.story-author-details-container:hover > :last-child > :first-child{
+  text-decoration: underline;
+  color: rgb(14, 14, 96);
+}
+
+.story-content {
+  width: inherit;
+}
+
+.content-paragraph,
+.content-header,
+.content-delimiter {
+  margin: 20px;
+  content: paragraph;
+  line-height: 25px;
+  font-size: larger;
+}
+
+.content-paragraph::first-letter {
+  text-transform: capitalize;
+}
+
+.content-paragraph {
+  font-family: sans;
+}
+
+.story-author-account-info-container div {
+  font-size: 14px;
+  text-transform: none;
+  margin-top: 2px;
+  padding-left: 9px;
+  color: rgb(152, 146, 146);
+}
+
+.story-author-account-info-container .story-author-name {
+  margin-left: 10px;
+  font: 1em sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.ce-block__content {
+  max-width: 1000px;
+}
+
+.all-actions-container {
+  border-top: 1px solid rgb(242, 242, 242);
+  border-bottom: 1px solid rgb(242, 242, 242);
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  padding: 10px;
+}
+
+.claps-response-cotainer {
+  display: flex;
+}
+
+.claps-container,
+.response-container {
+  display: flex;
+  cursor: pointer;
+}
+
+.claps-count,
+.response-count {
+  margin-left: 3px;
+}
+
+.response-container {
+  margin-left: 20px;
+}
+
+.all-links-container {
+  display: flex;
+}
+
+.copy-link-container {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .3;
+}
