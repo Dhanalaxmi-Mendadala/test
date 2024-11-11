@@ -75,7 +75,7 @@ const UserStories = ({ userData }) => {
     {
       userData['stories'].length ?
         userData['stories'].map((story, i) =>
-        <div className="stories-container">
+        <div className="stories-container" key={i}>
           <StoryCard storyData={story}
             key={i}
             username={userData['username']}
