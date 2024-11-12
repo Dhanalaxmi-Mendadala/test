@@ -1,66 +1,175 @@
 /* Styles for the outer overlay */
 #response-outer {
     height: 100vh;
-    width: 100vw; 
+    width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     justify-content: flex-end;
-    align-items: center; 
+    align-items: center;
     z-index: 3;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.heading-unit {
+    margin-top: 15px;
+    margin-right: 4%;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-#response {
-    width: 40%; 
-    padding: 30px;
-    height: 100%;
+.responses-heading {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid grey;
+}
+
+.action-buttons {
+    width: 40%;
+    position: absolute;
+    top: 25%;
+    left: 63%;
+}
+
+.response-field textarea {
+    width: 100%;
+    height: 75%;
+    resize: none;
+    border: none;
+    font-size: largex;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.response-field textarea:focus {
+    outline: none;
+}
+
+.response-field {
+    padding: 5px;
+    margin-top: 20px;
+    margin-left: 5%;
+    height: 150px;
+    width: 90%;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
-    align-items: center; 
+    box-shadow: -3px 3px 10px rgba(180, 180, 180, 0.477);
+}
+
+.cancel-button,
+.respond-button {
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+
+.respond-button {
+    width: 70px;
+    background-color: green;
+    border: 1px solid rgba(128, 128, 128, 0.6);
+    color: white;
+}
+
+.respond-button:disabled {
+    opacity: 0.3;
+}
+
+.cancel-button {
+    width: 50px;
+    background-color: transparent;
+    border: none;
+}
+
+#response {
+    width: 30%;
+    padding: 10px;
+    height: 100%;
     border: 2px solid white;
-    background-color:white; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 20px rgba(228, 203, 203, 0.5); 
-    position: relative; 
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(228, 203, 203, 0.5);
+    position: relative;
+    overflow: hidden auto;
 }
 
 #response h1 {
-    margin: 0; 
+    margin: 0;
+    padding: 0;
     color: black;
 }
 
-
 #response div {
-    display: flex;
-    padding: 4px;
     font-size: 15px;
-    justify-content: space-between;
-    color: black; 
+    color: black;
 }
 
 #response h1:last-child {
-    cursor: pointer; 
-    font-size: 2rem; 
-    margin-left: auto; 
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: auto;
 }
 
-.response-card{
-    height: 50px;
-    width: inherit;
-    box-sizing: border-box;
-    display: flex;
-}
-
-.response-card img{
-    height: 30px;
-    width: 30px;
-}
-
-.responses-unit{
+.response-card {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.052);
+    padding: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.response-card img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+
+}
+
+.response-card-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.response-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.response-details:hover{
+    cursor: pointer;
+}
+
+.response-details:hover > :first-child{
+    text-decoration: underline;
+}
+
+.responses-unit {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3%;
+    margin-top: 20px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    width: 93%;
+}
+
+.user-response {
+    margin-top: 10px;
+    cursor: default;
+}
+
+.response-time {
+    font-size: 12px;
+}
+
+.responded-user {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.responded-user::first-letter {
+    text-transform: capitalize;
 }

@@ -4,10 +4,11 @@ import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
 import DropDown from "../components/svg/dropdown.svg";
 import PropTypes from 'prop-types';
-import deleteDraft from '../API/deleteDraft'
+// import deleteDraft from '../API/deleteDraft'  (uncomment this)
 
 
 function Drafts() {
+  // const [someDrafts, setSomeDrafts] = useState([]);  //just declared 
 const [deleteDraftFlag, setDeleteDraftFlag] = useState(false);
 function deleteDraftFunction () {
   setDeleteDraftFlag(!deleteDraftFlag)
@@ -15,8 +16,10 @@ function deleteDraftFunction () {
 function hidden1Function () {
   setDeleteDraftFlag(false)
 }
+
+console.log(hidden1Function)  //remove this line
+
   const stories = useContext(StoryData);
-  console.log(stories);
   const drafts = stories.drafts;
   return (
     <>
@@ -28,7 +31,7 @@ function hidden1Function () {
             {" "}
             {drafts.map((draft, i) => (
               <div className="draft-unit" key={i}>
-                <DraftContainer draft={draft} deleteDraftFunction = {deleteDraftFunction} deleteDraftFlag = {deleteDraftFlag} hidden1Function = {hidden1Function} ></DraftContainer>
+                <DraftContainer draft={draft} deleteDraftFunction = {deleteDraftFunction} deleteDraftFlag = {deleteDraftFlag} ></DraftContainer>  {/* hidden1Function = {hidden1Function}   use this in this line*/}
               </div>
             ))}
           </div>
@@ -38,13 +41,16 @@ function hidden1Function () {
   );
 }
 
-const DraftContainer = ({ draft, deleteDraftFunction, deleteDraftFlag, hidden1Function }) => {
+const DraftContainer = ({ draft, deleteDraftFunction, deleteDraftFlag }) => {  // hidden1Function  (use it in this line in parameter)
   const navigator = useNavigate();
   const [dropDownFlag, setDropDownFLag] = useState(false);
   function dropDownFlagFunction() {
     setDropDownFLag(!dropDownFlag);
   }
   const [id, setId] = useState(draft['id']);
+  console.log(setId)
+  console.log(typeof id,'id')
+  console.log(typeof hidden1Function,'id')
   return (
     <>
       <div className="draft-data-container">
@@ -84,26 +90,26 @@ const DraftContainer = ({ draft, deleteDraftFunction, deleteDraftFlag, hidden1Fu
       </div>
       {
         deleteDraftFlag && 
-      <DeleteDraft hidden1Function = {hidden1Function} id={id}></DeleteDraft>
+      <DeleteDraft  id={id}></DeleteDraft> //hidden1Function = {hidden1Function}  (use this before id)
       }
     </>
   );
 };
 
-function DeleteDraft ({hidden1Function, id}) {
-  console.log(id, 'deleted id')
+function DeleteDraft () {  //hidden1Function and id (use  this is in parameter)
+  //  console.log(id, 'deleted id')
   return (
     <>
     <div className= "delete-draft-container">
-      <p className="cancel" id="close" onClick= {hidden1Function}>&times;</p>
+      <p className="cancel" id="close" >&times;</p> {/* onClick= {hidden1Function}    (use it in this line)*/}
      <div className="heading-container">
      <h3 className="confirmation-heading">Are You Sure?</h3>
      </div>
       <div className="buttons-container">
         <button className="delete-draft-button" onClick={() => {
-          deleteDraft(id)
+          // deleteDraft(id)   (uncomment this)
           }}>Delete Draft</button>
-        <button className="cancel" onClick= {hidden1Function}>Cancel</button>
+        <button className="cancel" >Cancel</button>   {/* onClick= {hidden1Function}    (use it in this line)*/}
       </div>
     </div>
     </>
@@ -111,7 +117,12 @@ function DeleteDraft ({hidden1Function, id}) {
 }
 
 DraftContainer.propTypes = {
-  draft: PropTypes.object.isrequired
+  draft: PropTypes.object.isrequired,
+  deleteDraftFunction: PropTypes.func.isrequired,
+  deleteDraftFlag: PropTypes.bool.isrequired,
+  hidden1Function: PropTypes.func.isrequired,
+  setId: PropTypes.func.isrequired,
+  id: PropTypes.number.isrequired,
 }
 
 export default Drafts;

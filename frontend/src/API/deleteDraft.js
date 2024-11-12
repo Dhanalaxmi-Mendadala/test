@@ -12,8 +12,8 @@ const deleteDraft = (id) => {
         console.log(data)
         return data.json()
     })
-    .then((data) => {
-        console.log(data)
+    .catch((error) => {
+        console.log(error)
     })
 }
 export default deleteDraft
