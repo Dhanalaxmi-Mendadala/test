@@ -121,7 +121,6 @@ EditorComponent.propTypes = {
 };
 
 const WriteAStory = () => {
-
   const userData = useContext(UserInfo);
   const location = useLocation();
   const id = location.state.id;
