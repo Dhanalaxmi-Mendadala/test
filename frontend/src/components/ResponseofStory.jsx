@@ -20,7 +20,7 @@ const ResponseInput = ({ storyId, reRender, spanElement }) => {
   const [response, setResponse] = useState('');
   return (
     <>
-      <textarea placeholder="write your response here" value={response} rows={5} cols={20}
+      <input style={{height:'40px'}} placeholder="write your response here" value={response} rows={5} cols={20}
         onChange={(e) => setResponse(e.target.value)} />
       <div className="action-buttons">
         <button className="cancel-button" onClick={() => setResponse('')}>Clear</button>

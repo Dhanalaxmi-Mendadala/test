@@ -13,7 +13,6 @@ import copyLink from "../components/svg/copyLink.svg"
 import response from "../components/svg/responses.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
 import makeClap from '../API/makeClap'
-import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
 
@@ -146,7 +145,7 @@ const StoryPage = () => {
               </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container' onClick={copyLinkToClipboard}>
+              <div className='copy-link-container'>
                 <img src={copyLink} style={{
                   height: '20px',
                   width: '20px'
