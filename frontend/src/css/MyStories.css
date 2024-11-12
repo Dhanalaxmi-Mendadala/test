@@ -1,10 +1,8 @@
 #yourStories nav {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 300px;
+    margin-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 1px solid #ccc;
-    padding: 10px 0px;
+    padding-bottom: 5px;
 }
 
 #yourStories h1 {
@@ -13,7 +11,8 @@
     border-bottom: 1px solid #ccc;
 }
 .active{
-    color:red;
+    color:black;
+    font-weight: 500;
     text-decoration: underline;
 }
 #yourStories nav a {
@@ -21,18 +20,18 @@
     cursor: pointer;
     margin: 6px;
 }
-
-.draft,
-.publish {
+a {
+    color: grey;
+}
+.draft,.publish {
     grid-column: span;
     text-decoration: none;
 }
 
 .draft {
-    text-align: right;
+    padding-left: 8%;
+    padding-right: 65px;
 }
-
-
 
 .drafts-container,
 .published-container {
@@ -43,30 +42,21 @@
 .all-published-unit {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.draft-unit,
-.a-story-unit {
-    width: 600px;
-    display: inherit;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #eaeaeafc;
-    border-bottom:1px solid black ;
+    gap: 5px;
 }
 
 .draft-unit:hover,
 .a-story-unit:hover {
     background-color: #b7b6b633;
-    /* text-decoration: underline; */
 }
-
-.draft-title,
-.a-story-title {
+.a-story-unit p {
+    margin-top: 10px;
+}
+.draft-title, .a-story-title {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: large;
 }
 
 .edit-draft-button,
@@ -78,4 +68,27 @@
     border-radius: 5px;
     text-decoration: none;
     z-index: 3;
+}
+.your-stories-heading {
+    font-size: 40px;
+    margin-left: 8%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: -1px;
+}
+
+.draft-unit, .a-story-unit {
+    padding: 15px;
+    max-width: 50%;
+    cursor: pointer;
+}
+.draft-unit, .a-story-unit {
+    background-color: white;
+    border-bottom: 1px solid rgba(160, 159, 159, 0.445);
+    border-radius: 5px;
+}
+.last-submitted-time {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.all-drafts-unit, .all-published-unit {
+    margin-left: 75px;
 }

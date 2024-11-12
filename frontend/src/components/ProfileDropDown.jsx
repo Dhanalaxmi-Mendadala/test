@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 
 function DropdownItem(props) {
   return (
-    <div className="dropdownItem" onClick={props.onClick}>
       <Link to={props.path} className="drop-down-nav-name">
-      <img src={props.img} className="drop-down-icon" />
-        {props.name}
-      </Link>
+    <div className="dropdownItem" onClick={props.onClick}>
+      <img src={props.img} className="drop-down-icon" id= {props.id}/>
+        <span className= {props.name}>{props.name}</span>
     </div>
+      </Link>
   );
 }
 
@@ -23,7 +23,8 @@ DropdownItem.propTypes = {
   img: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 
