@@ -24,7 +24,7 @@ const StoryCard = ({ storyData, userAvatar, username, userId }) => {
       <p className="story-description">
         {storyDescription || 'Story decription'}
       </p>
-      <img src={storyData['imageUrl'] || null} alt="cover-image" className="story-cover-image" />
+      <img src={storyData['imageUrl']} className="story-cover-image" />
     </div>
     <div className="story-meta-data">
 
