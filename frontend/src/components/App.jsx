@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WelcomePage from "./Welcome.jsx";
 import HomePage from "./Home.jsx";
 import StoryPage from "./Story.jsx";
@@ -12,6 +12,7 @@ import Publish from "./PublishStories.jsx";
 import { useEffect, useState } from "react";
 import fetching from "../API/isLogged.js";
 import "../css/App.css";
+import Search from "./Search.jsx";
 
 function App() {
   const [error, setError] = useState(false);
@@ -52,6 +53,7 @@ function App() {
           <Route path="addstory" element={<ProtectedRoute element={<WriteAStory />} />} />
           <Route path="storypage/:id" element={<ProtectedRoute element={<StoryPage />} />} />
           <Route path="profile/:id" element={<ProtectedRoute element={<Profile />} />} />
+          <Route path="search" element={<ProtectedRoute element={<Search />} />} />
           <Route path="yourstories" element={<ProtectedRoute element={<MyStories />} />}>
             <Route index path="drafts" element={<Drafts />} />
             <Route path="published" element={<Publish />} />
