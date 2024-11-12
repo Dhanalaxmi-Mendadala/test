@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import getResponses from "../API/getResponse";
 import { RelativeTime } from "./Date";
 import { postResponse } from "../API/postResponse";
+import { useNavigate } from "react-router-dom";
 
 const Heading = ({ responseCount, closePopUp }) => {
   return (<div className="responses-heading">
@@ -42,15 +43,20 @@ ResponseInput.propTypes = {
 }
 
 const ResponseCard = ({ data }) => {
+  const navigateTo = useNavigate();
   return <div className="response-card" >
     <div className="response-card-header">
       <div className="responded-user-image">
         <img src={data['avatar_url']} alt="" />
       </div>
-      <p className="responded-user">{data['username']}</p>
-      <p className="response-time">{
-        <RelativeTime time={data['responded_at']} />}
-      </p>
+      <div className="response-details" onClick={() => {
+        navigateTo(`/profile/${data['id']}`)
+      }}>
+        <p className="responded-user">{data['username']}</p>
+        <p className="response-time">{
+          <RelativeTime time={data['responded_at']} />}
+        </p>
+      </div>
     </div>
     <div className="user-response">
       {data['response']}
