@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
 import DropDown from "../components/svg/dropdown.svg";
+import PropTypes from 'prop-types'
 
 function Drafts() {
   const stories = useContext(StoryData);
@@ -69,5 +70,8 @@ const DraftContainer = ({ draft }) => {
     </>
   );
 };
+DraftContainer.propTypes = {
+  draft: PropTypes.object.isrequired
+}
 
 export default Drafts;
