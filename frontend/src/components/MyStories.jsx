@@ -4,6 +4,9 @@ import "../css/MyStories.css"
 import getStories from "../API/getStories"
 import PropTypes from 'prop-types'
 import { Outlet } from "react-router-dom"
+import '../css/DeleteDraft.css'
+
+
 export const StoryData = createContext(null);
 function MyStories() {
   const [stories, setStories] = useState(false);
