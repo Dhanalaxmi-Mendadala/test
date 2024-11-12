@@ -7,11 +7,15 @@ const SearchInput = ({ setResults, searchTerm, setSearchTerm }) => {
   return (<div>
     <input type="text" value={searchTerm} onInput={(e) => {
       setSearchTerm(e.target.value)
+    }} onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        const makeSearch = async () => {
+          const data = await searchData(searchTerm);
+          setResults(data['contentBased']);
+        };
+        makeSearch();
+      }
     }} />
-    <button disabled={!searchTerm} onClick={async () => {
-      const data = await searchData(searchTerm);
-      setResults(data['contentBased']);
-    }}>search</button>
   </div>)
 }
 SearchInput.propTypes = {
