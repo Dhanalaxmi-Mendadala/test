@@ -1,17 +1,20 @@
 .story-component {
-  border: 0.01px solid grey;
-  border-radius: 10px;
+  border-radius: 2px;
   display: grid;
   grid-template-rows: 45px 130px 45px;
   width: 60%;
   margin: auto;
+  outline: none;
+  background-color: white;
   position: relative;
   cursor: pointer;
-  margin-bottom: 30px;
+  padding-top: 10px;
   z-index: 1;
-  margin-top: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 }
-#Authors{
+
+#Authors {
   width: 500px;
   margin: auto;
   font-size: 40px;
@@ -19,7 +22,6 @@
 
 .story-component:hover {
   transform: scale(1.005);
-  box-shadow: 2px 2px 2px grey;
 }
 
 .author-details {
@@ -30,8 +32,14 @@
   justify-content: start;
   align-items: center;
   padding-left: 20px;
-  border-bottom:1px solid gray ;
   height: 30px;
+  text-decoration: none;
+}
+
+.author-details:hover{
+  color: rgb(6, 6, 78);
+  letter-spacing: 0.1px;
+  text-decoration: underline black;
 }
 
 .story-details {
@@ -100,6 +108,7 @@
 .author-name {
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 4px;
+  text-decoration:antiquewhite;
 }
 
 .author-name::first-letter {

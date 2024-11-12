@@ -4,7 +4,7 @@ async function fetching() {
       method: 'GET',
       headers: { 'Content-Type': 'json' },
       mode: 'cors',
-      credentials:'include'
+      credentials : 'include'
     });
     const data = await response.json();
     console.log(data,'121323e2')

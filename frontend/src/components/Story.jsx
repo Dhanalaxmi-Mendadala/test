@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
@@ -14,10 +14,10 @@ import response from "../components/svg/responses.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
 import makeClap from '../API/makeClap'
 import copyLinkToClipboard from '../utilites/copyLink'
-import DateComponent from './Date.jsx'
 import ResponseofStory from './ResponseofStory.jsx'
+import GenerateTime from './Date.jsx'
+
 const StoryContent = (props) => {
-  // To Show the Story Content
   const editorContainer = useRef(null);
   let editor = null;
   const initialData = {
@@ -63,9 +63,10 @@ const StoryPage = () => {
   const { id } = useParams();
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
-  const [openResponse,setopenResponse]=useState(false);
+  const [openResponse, setopenResponse] = useState(false);
   const [clapStatus, setClapStatus] = useState({});
   const [loading, setLoading] = useState(true);
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const getStoryData = async () => {
@@ -108,15 +109,17 @@ const StoryPage = () => {
 
   return (
     <>
-      {openResponse &&<ResponseofStory  setopenResponse={setopenResponse} />}
+      {openResponse && <ResponseofStory setopenResponse={setopenResponse} />}
       {
         storyData ? <main>
           <h1 className='main-title'>{storyData.title || 'Title'}</h1>
-          <div className='story-author-details-container'>
+          <div className='story-author-details-container' onClick={() => {
+            navigateTo(`/profile/${storyData.authorId}`)
+          }}>
             <div><img className='story-author-image' src={storyData['avatar_url']}></img></div>
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>
-              <div>Published at <DateComponent dateString={storyData.published_at}/></div>
+              <div>Published at <GenerateTime time={storyData.published_at} /></div>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>
@@ -131,9 +134,10 @@ const StoryPage = () => {
                 <span className='claps-count'>{clapStatus['clapsCount']}</span>
               </div>
               <div className='response-container' title='Response'>
-                <p className='response' onClick={()=>{setopenResponse(true)
+                <p className='response' onClick={() => {
+                  setopenResponse(true)
                 }}  > <img src={response}
-                 style={{
+                  style={{
                     width: '20px',
                     height: '20px'
                   }} /></p>
