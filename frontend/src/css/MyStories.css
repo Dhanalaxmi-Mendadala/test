@@ -77,9 +77,12 @@ a {
 }
 
 .draft-unit, .a-story-unit {
+    height: 80px;
     padding: 15px;
     max-width: 50%;
     cursor: pointer;
+    margin-bottom: 10px;
+    padding-top: 30px;
 }
 .draft-unit, .a-story-unit {
     background-color: white;
@@ -92,3 +95,59 @@ a {
 .all-drafts-unit, .all-published-unit {
     margin-left: 75px;
 }
+.draft-data-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.options-draft select, option{
+    border: none;
+}
+.hidden {
+    display: none;
+}
+.drop-down-menu {
+    background-color: #3d3c3c07;
+    font-family: Arial, Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+.drop-down-menu p {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    padding-left: 3px;
+    padding: 10px;
+}
+.delete-draft {
+    color: red;
+}
+.edit-draft {
+    color: grey;
+}
+.edit-draft:hover {
+    color: black;
+}
+.delete-draft:hover {
+    color: black;
+}
+.options-main-container {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.options-container img {
+    height: 20px;
+    width: 20px;
+}
+.options-draft {
+    position: relative;
+    top: 10px;
+}
+.options-main-container {
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    left: -60px;
+    right: 0px;
+    width: 130px;
+    text-align: center;
+}
+

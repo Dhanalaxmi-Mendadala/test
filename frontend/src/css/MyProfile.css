@@ -69,3 +69,9 @@
     font-weight: bolder;
     border-bottom: 1px solid rgba(160, 159, 159, 0.445);
 }
+.profile-user-name::first-letter {
+    text-transform: capitalize;
+}
+.user-name::first-letter {
+    text-transform: capitalize;
+}

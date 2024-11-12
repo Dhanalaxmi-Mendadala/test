@@ -16,11 +16,11 @@ Heading.propTypes = {
   closePopUp: PropTypes.func.isRequired
 }
 
-const ResponseInput = ({ storyId, reRender, spanElement }) => {
+const ResponseInput = ({ storyId, reRender }) => {
   const [response, setResponse] = useState('');
   return (
-    <div className="response-field">
-      <textarea placeholder="write your response here" value={response} 
+    <>
+      <input style={{ height: '40px' }} placeholder="write your response here" value={response} rows={5} cols={20}
         onChange={(e) => setResponse(e.target.value)} />
       <div className="action-buttons">
         <button className="cancel-button" onClick={() => setResponse('')}>Clear</button>
@@ -28,12 +28,11 @@ const ResponseInput = ({ storyId, reRender, spanElement }) => {
           console.log(await postResponse(storyId, response), 1234567890);
           reRender((current) => current + 1);
           setResponse('')
-          spanElement.current += 1;
         }
         }
         >Respond</button>
       </div >
-    </div>
+    </>
   )
 }
 ResponseInput.propTypes = {
@@ -90,19 +89,20 @@ AllResponse.propTypes = {
 }
 
 const ResponseofStory = (props) => {
-  const [responseCount, setResponseCount] = useState(props.responsesCount.current);
+  const { responsesCount, setResponsesCount } = props.responseState;
+  console.log(props.responseState)
 
   console.log(props, 'recieved props to respowcpsdcnswn')
   return <div id="response-outer" onClick={() => props.setopenResponse(false)}>
     <div id="response" onClick={(e) => { e.stopPropagation() }}>
       <div className="heading-unit">
-        <Heading responseCount={responseCount} closePopUp={props.setopenResponse} />
+        <Heading responseCount={responsesCount} closePopUp={props.setopenResponse} />
       </div>
       <div className="response-input">
-        <ResponseInput storyId={props.storyId} reRender={setResponseCount} spanElement={props.responseCount} />
+        <ResponseInput storyId={props.storyId} reRender={setResponsesCount} />
       </div>
       <div className="all-responses">
-        <AllResponse storyId={props.storyId} status={responseCount} />
+        <AllResponse storyId={props.storyId} status={responsesCount} />
       </div>
     </div>
   </div>
@@ -110,9 +110,7 @@ const ResponseofStory = (props) => {
 ResponseofStory.propTypes = {
   setopenResponse: PropTypes.func.isRequired,
   storyId: PropTypes.number.isRequired,
-  responseCount: PropTypes.object.isRequired,
-  responsesCount: {
-    current: PropTypes.number.isRequired,
-  }
+  responseState: PropTypes.object.isRequired
 }
+
 export default ResponseofStory;
