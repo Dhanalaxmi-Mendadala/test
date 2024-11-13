@@ -3,7 +3,7 @@ import ProfileMenu from "./ProfileDropDown";
 import '../css/Home.css'
 import LogoutPopUp from "./LogoutPopup";
 import { useState } from "react";
-
+import search1 from '../components/svg/1.svg'
 
 const Header = () => {
   const location = useLocation();
@@ -20,8 +20,16 @@ const Header = () => {
   return (
     <>
       <header className="main-header">
-        <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
-        {location.pathname !== '/search' && <button onClick={() => navigate("/search")}>Search</button>}
+       <div className="heading-search-container">
+       <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
+    {
+    location.pathname !== '/search' && <button className="search" onClick={() => navigate("/search")}>
+      <img src= {search1} style={{
+        height:'20px',
+        width:'20px',
+      }}></img>
+      Search</button>}
+       </div>
         {
           location.pathname !== "/addstory" && (
             <button className="write-button" onClick={() => navigate("/addstory", {
