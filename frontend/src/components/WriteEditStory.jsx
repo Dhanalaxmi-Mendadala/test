@@ -13,6 +13,7 @@ const EditorComponent = (props) => {
   const editorRef = useRef(null);
   // const [currentDraft, setCurrentDraft] = useState(null);
   const [savingDraft, setSavingDraft] = useState(false);
+  console.log(savingDraft)
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
