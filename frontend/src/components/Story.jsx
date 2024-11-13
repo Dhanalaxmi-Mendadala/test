@@ -9,7 +9,7 @@ import Header from "@editorjs/header"
 import Delimiter from "@editorjs/delimiter"
 import unClaped from "../components/svg/notclicked1.svg"
 import claped from "../components/svg/clicked-clap.svg"
-import copyLink from "../components/svg/copyLink.svg"
+import copyLink from "../components/svg/copyLink2.svg"
 import response from "../components/svg/responses.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
 import makeClap from '../API/makeClap'
@@ -146,10 +146,10 @@ const StoryPage = () => {
               </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container' onClick={copyLinkToClipboard}>
+              <div className='copy-link-container' title='Copy Link' onClick={copyLinkToClipboard}>
                 <img src={copyLink} style={{
                   height: '20px',
-                  width: '20px'
+                  width: '20px',
                 }}></img>
               </div>
             </div>

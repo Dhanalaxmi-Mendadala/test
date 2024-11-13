@@ -16,6 +16,7 @@ const Header = () => {
   function close() {
     setLogoutFlag(false)
   }
+
   console.log(location, "heheee😀");
   return (
     <>
