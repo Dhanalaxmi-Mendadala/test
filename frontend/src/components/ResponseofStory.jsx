@@ -78,8 +78,16 @@ const AllResponse = ({ storyId, status }) => {
     }
     fetchResponses();
   }, [status]);
-  if (loading) return <p>Responses are loading</p>
-
+  if (loading) {
+    return (
+      <>
+      <div className="loading-container">
+        <div className="loading"></div>
+        <p>Loading..</p>
+      </div>
+      </>
+    )   
+  }
   return (<div className="responses-unit">
     {responses.length ?
       responses.map((data, i) => <ResponseCard data={data} key={i} />) :

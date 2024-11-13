@@ -91,7 +91,14 @@ const StoryPage = () => {
   }, [id]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+    <>
+    <div className='loading-container'>
+      <div className='loading'></div>
+      <p>Loading...</p>
+    </div>
+    </>
+    );
   }
 
   const handldeClap = () => {

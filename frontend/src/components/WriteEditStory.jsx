@@ -114,7 +114,14 @@ const WriteAStory = () => {
     }
   }, []);
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+      <div className="loading-container">
+        <div className="loading"></div>
+        <p>Loading...</p>
+      </div>
+      </>
+    )
   }
   return (
     <>
