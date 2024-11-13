@@ -63,10 +63,10 @@
     margin-left: 10px;
     border-radius: 25px;
     margin-top: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .respond-button {
-    width: 70px;
     background-color: green;
     border: 1px solid rgba(128, 128, 128, 0.6);
     color: white;

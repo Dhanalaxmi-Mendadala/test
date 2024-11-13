@@ -21,7 +21,7 @@ const Header = () => {
     <>
       <header className="main-header">
         <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
-        {location.pathname !== '/search' && <button onClick={() => navigate("/search")}>Search</button>}
+        {location.pathname !== '/search' && <button className="search-button" onClick={() => navigate("/search")}>Search</button>}
         {
           location.pathname !== "/addstory" && (
             <button className="write-button" onClick={() => navigate("/addstory", {
