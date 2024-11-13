@@ -6,8 +6,11 @@ import saveDraft from "../API/saveDraft";
 import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
+import { useLocation } from "react-router-dom";
 
 const EditorComponent = ({ storyId, initialData }) => {
+  let currentDraft;
+  let handlePublish;
   const editorRef = useRef(null);
   const [savingDraft, setSavingDraft] = useState(false);
   const editorInstance = useRef(null);
