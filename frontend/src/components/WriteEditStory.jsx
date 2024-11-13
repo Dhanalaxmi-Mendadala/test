@@ -11,8 +11,9 @@ import { publishStory } from "../API/publishStory";
 
 const EditorComponent = (props) => {
   const editorRef = useRef(null);
-  const [currentDraft, setCurrentDraft] = useState(null);
-  const [clicked, setClicked] = useState(false);
+  // const [currentDraft, setCurrentDraft] = useState(null);
+  const [savingDraft, setSavingDraft] = useState(false);
+  console.log(savingDraft)
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
@@ -42,41 +43,28 @@ const EditorComponent = (props) => {
           },
           delimiter: Delimiter,
         },
-        onChange: async () => {
-          const content = await editor.save();
-          setCurrentDraft(content);
-        },
         onReady: () => {
           console.log("Editor is ready to use");
         },
       });
     }
+    const autosaveInterval = setInterval(async () => {
+      const content = await editor.save();
+      const firstHeader = content.blocks.find(
+        (block) => block.type === "header"
+      );
+
+      if (content) {
+        const title = firstHeader.data.text || "Untitled Story";
+        await saveDraft(props.storyId, title, content.blocks);
+        console.log("Autosaved:", title);
+        setSavingDraft(false);
+      }
+    }, 1500);
 
     return () => {
       if (editor && typeof editor.destroy === "function") {
-      
-      
-        if (!clicked) {
-      
-      
-          try {
-            const getHeaderData = async () => {
-              const content = await editor.save();
-              const firstHeader = content.blocks.find(
-                (block) => block.type === "header"
-              );
-              if (firstHeader) {
-                saveDraft(props.storyId, firstHeader.data.text, content.blocks);
-              } else {
-                saveDraft(props.storyId, 'Untitled Story', content.blocks);
-              }
-              console.log("Unmounted successfully");
-            };
-            getHeaderData();
-          } catch (error) {
-            console.error("Error during unmount:", error);
-          }
-        }
+        clearInterval(autosaveInterval);
         editor.destroy();
       }
     };
@@ -86,19 +74,11 @@ const EditorComponent = (props) => {
 
   const handlePublish = async (draftId) => {
     if (draftId) {
-      publishStory(draftId)
-        .then(navigatior('/yourstories/published'));
-    } else {
-      const firstHeader = currentDraft.blocks.find(
-        (block) => block.type === "header"
-      );
-      let storyId = (firstHeader) ?
-        await saveDraft(props.storyId, firstHeader.data.text, currentDraft.blocks) :
-        await saveDraft(props.storyId, 'Untitled Story', currentDraft.blocks);
-      await publishStory(storyId)
+      await publishStory(draftId);
       navigatior('/yourstories/published');
     }
   }
+
 
   return (
     <>
@@ -109,7 +89,7 @@ const EditorComponent = (props) => {
       />
 
       <button id="publish" onClick={() => {
-        setClicked(true)
+        // setClicked(true)
         handlePublish(props.storyId)
       }}>Publish</button>
     </>
@@ -123,18 +103,42 @@ EditorComponent.propTypes = {
 const WriteAStory = () => {
   const userData = useContext(UserInfo);
   const location = useLocation();
-  const id = location.state.id;
-  const content = location.state.content;
+  const [storyId, setStoryId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const generateId = async () => {
+      try {
+        const generatedStoryId = await saveDraft(null, " ", [
+          ...location.state.content,
+        ]);
+        setStoryId(generatedStoryId);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error generating story ID", error);
+        setLoading(false);
+      }
+    };
+    if (!location.state.id && loading) {
+      generateId();
+    } else {
+      setStoryId(location.state.id);
+      setLoading(false);
+    }
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
-      <div id="writeHeader">
-        Draft in {userData["username"]}
-      </div>
+      <div id="writeHeader">Draft in {userData["username"]}</div>
       <div className="editor-component">
-        <EditorComponent className="editor" storyId={id} initialData={content} />
+        <EditorComponent
+          className="editor"
+          storyId={storyId}
+          initialData={location.state.content}
+        />
       </div>
     </>
   );
 };
-
 export default WriteAStory;

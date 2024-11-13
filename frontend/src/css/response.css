@@ -70,6 +70,8 @@
     background-color: green;
     border: 1px solid rgba(128, 128, 128, 0.6);
     color: white;
+    padding: 0px;
+    width: 40%;
 }
 
 .respond-button:disabled {
@@ -127,7 +129,6 @@
     margin-right: 15px;
 
 }
-
 .response-card-header {
     display: flex;
     flex-direction: row;

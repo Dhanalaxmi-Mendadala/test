@@ -4,19 +4,8 @@ import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
 import DropDown from "../components/svg/dropdown.svg";
 import PropTypes from 'prop-types';
-// import deleteDraft from '../API/deleteDraft'
-
 
 function Drafts() {
-  // const [someDrafts, setSomeDrafts] = useState([]);  //just declared 
-  // const [deleteDraftFlag, setDeleteDraftFlag] = useState(false);
-  // function togglePopup() {
-  //   setDeleteDraftFlag(!deleteDraftFlag)
-  // }
-  // function togglePopup() {
-  //   setDeleteDraftFlag(false)
-  // }
-
   const { stories, deleteDraft } = useContext(StoryData);
   const drafts = stories.drafts;
   return (
@@ -38,19 +27,17 @@ function Drafts() {
     </>
   );
 }
-
-const DraftContainer = ({ draft, deleteDraft }) => {  // togglePopup  (use it in this line in parameter)
+const DraftContainer = ({ draft, deleteDraft }) => 
+{
   const navigator = useNavigate();
   const [dropDownFlag, setDropDownFLag] = useState(false);
   function toggleDropDown() {
     setDropDownFLag(!dropDownFlag);
   }
-
   const [deleteDraftFlag, setDeleteDraftFlag] = useState(false);
   function togglePopup() {
     setDeleteDraftFlag(!deleteDraftFlag)
   }
-
 
   useEffect(() => {
     return () => {
@@ -58,10 +45,6 @@ const DraftContainer = ({ draft, deleteDraft }) => {  // togglePopup  (use it in
       setDropDownFLag(false);
     }
   }, []);
-  // const [id, setId] = useState(draft['id']);
-  // // console.log(setId)
-  // console.log(typeof id, 'id')
-  // console.log(typeof togglePopup, 'id')
   console.log(draft, 'at individual draft container')
   return (
     <>
@@ -93,7 +76,7 @@ const DraftContainer = ({ draft, deleteDraft }) => {  // togglePopup  (use it in
       </div>
       {
         deleteDraftFlag &&
-        <DeleteDraft togglePopup={togglePopup} id={draft['id']} deleteDraft={deleteDraft} /> //togglePopup = {togglePopup}  (use this before id)
+        <DeleteDraft togglePopup={togglePopup} id={draft['id']} deleteDraft={deleteDraft} />
       }
     </>
   );
@@ -102,8 +85,7 @@ DraftContainer.propTypes = {
   draft: PropTypes.object.isrequired,
   deleteDraft: PropTypes.bool.isrequired
 }
-
-function DeleteDraft({ togglePopup, id, deleteDraft }) {  //togglePopup and id (use  this is in parameter)
+function DeleteDraft({ togglePopup, id, deleteDraft }) {
   console.log(id, 'deleted id recived at pop up')
   return (
     <>
@@ -117,7 +99,7 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {  //togglePopup and id (
             deleteDraft(id);
             togglePopup();
           }}>Delete Draft</button>
-          <button className="cancel" onClick={togglePopup}>Cancel</button>   {/*    (use it in this line)*/}
+          <button className="cancel" onClick={togglePopup}>Cancel</button>
         </div>
       </div>
     </>
@@ -131,3 +113,5 @@ DeleteDraft.propTypes = {
 
 
 export default Drafts;
+
+
