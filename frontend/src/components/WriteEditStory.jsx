@@ -6,10 +6,10 @@ import saveDraft from "../API/saveDraft";
 import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
+import publishStory from "../API/publishStory"
 import { useLocation, useNavigate } from "react-router-dom";
-import { publishStory } from "../API/publishStory";
 
-const EditorComponent = (props) => {
+const EditorComponent = ({ storyId, initialdata }) => {
   const editorRef = useRef(null);
   // const [currentDraft, setCurrentDraft] = useState(null);
   const [savingDraft, setSavingDraft] = useState(false);
@@ -17,7 +17,7 @@ const EditorComponent = (props) => {
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
-    blocks: props['initialData']
+    blocks: initialdata,
   };
   useEffect(() => {
     if (!editor) {
@@ -29,17 +29,11 @@ const EditorComponent = (props) => {
           header: {
             class: Header,
             inlineToolbar: true,
-            config: {
-              level: 1,
-              placeholder: "Title",
-            },
+            config: { level: 1, placeholder: "Title" },
           },
           paragraph: {
             inlineToolbar: true,
-            config: {
-              level: 1,
-              placeholder: "Tell your Story",
-            },
+            config: { placeholder: "Tell your Story" },
           },
           delimiter: Delimiter,
         },
@@ -50,17 +44,14 @@ const EditorComponent = (props) => {
     }
     const autosaveInterval = setInterval(async () => {
       const content = await editor.save();
-      const firstHeader = content.blocks.find(
-        (block) => block.type === "header"
-      );
+      const title = content.blocks[0]?.type==="header"&&content.blocks[0].data.text.length!==0?content.blocks[0].data.text:'Untitled Story';
 
       if (content) {
-        const title = firstHeader.data.text || "Untitled Story";
-        await saveDraft(props.storyId, title, content.blocks);
+        await saveDraft(storyId, title, content.blocks);
         console.log("Autosaved:", title);
         setSavingDraft(false);
       }
-    }, 1500);
+    }, 5000);
 
     return () => {
       if (editor && typeof editor.destroy === "function") {
@@ -68,7 +59,7 @@ const EditorComponent = (props) => {
         editor.destroy();
       }
     };
-  }, [props.storyId]);
+  }, [storyId]);
 
   const navigatior = useNavigate();
 
@@ -89,15 +80,14 @@ const EditorComponent = (props) => {
       />
 
       <button id="publish" onClick={() => {
-        // setClicked(true)
-        handlePublish(props.storyId)
+        handlePublish(storyId)
       }}>Publish</button>
     </>
   );
 };
 EditorComponent.propTypes = {
   storyId: PropTypes.number.isRequired,
-  initialData: PropTypes.array.isRequired
+  initialdata: PropTypes.array.isRequired,
 };
 
 const WriteAStory = () => {
@@ -135,7 +125,7 @@ const WriteAStory = () => {
         <EditorComponent
           className="editor"
           storyId={storyId}
-          initialData={location.state.content}
+          initialdata={location.state.content}
         />
       </div>
     </>

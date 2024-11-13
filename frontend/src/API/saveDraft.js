@@ -1,4 +1,5 @@
 async function putStory(story) {
+  console.log("IN PUT Your Story", story)
   try {
     const response = await fetch('http://localhost:8000/story', {
       method: 'PUT',
@@ -14,14 +15,23 @@ async function putStory(story) {
 };
 
 const saveDraft = async (id, storyTitle, story) => {
+  console.log(id,"savedraft intial called");
   const object = {
-    storyId: id,
+    storyId:id,
     title: storyTitle,
     content: story,
   };
+  console.log(object,"Your Save Draft object Data");
   const response = await putStory(object);
-  return response.storyId;
+  if (response) {
+    console.log(response,"Your success response");
+    return response.storyId;
+  }
+  else{
+    console.log("called again",id);
+    console.log("something",response);
+  }
 }
 
-
+export {putStory};
 export default saveDraft;

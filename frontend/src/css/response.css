@@ -24,11 +24,14 @@
     width: 100%;
     border-bottom: 1px solid grey;
 }
+.responses-heading p {
+    font-size: 30px;
+}
 
 .action-buttons {
     width: 40%;
     position: absolute;
-    top: 25%;
+    top: 24%;
     left: 63%;
 }
 
@@ -63,13 +66,15 @@
     margin-left: 10px;
     border-radius: 25px;
     margin-top: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .respond-button {
-    width: 70px;
     background-color: green;
     border: 1px solid rgba(128, 128, 128, 0.6);
     color: white;
+    padding: 0px;
+    width: 40%;
 }
 
 .respond-button:disabled {
@@ -127,7 +132,6 @@
     margin-right: 15px;
 
 }
-
 .response-card-header {
     display: flex;
     flex-direction: row;

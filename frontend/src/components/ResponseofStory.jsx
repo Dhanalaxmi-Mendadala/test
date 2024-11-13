@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Heading = ({ responseCount, closePopUp }) => {
   return (<div className="responses-heading">
     <h2 className="heading-wiht-count">{`Responses (${responseCount})`}</h2>
-    <h1 onClick={() => closePopUp(false)}>&times;</h1>
+    <p onClick={() => closePopUp(false)}>&times;</p>
   </div>)
 }
 Heading.propTypes = {
@@ -20,8 +20,8 @@ Heading.propTypes = {
 const ResponseInput = ({ storyId, reRender }) => {
   const [response, setResponse] = useState('');
   return (
-    <>
-      <input style={{ height: '40px' }} placeholder="write your response here" value={response} rows={5} cols={20}
+    <div className="response-field">
+      <textarea  placeholder="write your response here" value={response} rows={5} cols={20}
         onChange={(e) => setResponse(e.target.value)} />
       <div className="action-buttons">
         <button className="cancel-button" onClick={() => setResponse('')}>Clear</button>
@@ -33,7 +33,7 @@ const ResponseInput = ({ storyId, reRender }) => {
         }
         >Respond</button>
       </div >
-    </>
+    </div>
   )
 }
 ResponseInput.propTypes = {

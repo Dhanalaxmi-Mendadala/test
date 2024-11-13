@@ -1,4 +1,4 @@
-export const publishStory = async (storyId) => {
+ const publishStory = async (storyId) => {
   try {
     const response = await fetch(`http://localhost:8000/story/${storyId}/publish`, {
       method: 'POST',
@@ -12,3 +12,4 @@ export const publishStory = async (storyId) => {
     return null;
   }
 };
+export default publishStory;
