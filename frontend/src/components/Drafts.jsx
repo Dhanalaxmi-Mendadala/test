@@ -16,7 +16,6 @@ function Drafts() {
           <p>No Drafts yet,please create</p>
         ) : (
           <div className="all-drafts-unit">
-            {" "}
             {drafts.map((draft, i) => (
               <div className="draft-unit" key={i}>
                 <DraftContainer draft={draft} deleteDraft={deleteDraft}></DraftContainer>
@@ -90,7 +89,8 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {
   console.log(id, 'deleted id recived at pop up')
   return (
     <>
-      <div className="delete-draft-container">
+    <div className="delete-draft-outer" onClick={togglePopup}>
+      <div className="delete-draft-container" onClick={(e)=>e.stopPropagation()}>
         <p className="cancel" id="close" onClick={togglePopup} >&times;</p>
         <div className="heading-container">
           <h3 className="confirmation-heading">Are You Sure?</h3>
@@ -102,6 +102,7 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {
           }}>Delete Draft</button>
           <button className="cancel" onClick={togglePopup}>Cancel</button>
         </div>
+      </div>
       </div>
     </>
   )
