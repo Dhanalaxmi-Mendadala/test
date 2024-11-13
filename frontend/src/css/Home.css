@@ -40,7 +40,7 @@ body{
     justify-content: space-between;
     gap: 25px;
 }
-.heading-search-container button {
+.heading-search-container .search-container {
     width: 200px;
     border-radius: 24px;
     height: 40px;
@@ -48,5 +48,6 @@ body{
     text-align: left;
     padding-left: 10px;
     display: flex;
+    /* border: 2px solid #07f71300; */
     gap: 10px;
 }

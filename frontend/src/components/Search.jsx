@@ -2,10 +2,12 @@ import { useState } from "react";
 import PropTypes from 'prop-types'
 import searchData from "../API/search";
 import StoryCard from "./StoryCard";
+import '../css/search.css'
 
 const SearchInput = ({ setResults, searchTerm, setSearchTerm }) => {
-  return (<div>
-    <input type="text" value={searchTerm} onInput={(e) => {
+  return (
+   <div className="input-container">
+    <input type="text" value={searchTerm} placeholder="Search A Story" onInput={(e) => {
       setSearchTerm(e.target.value)
     }} onKeyDown={(e) => {
       if (e.key === 'Enter') {
@@ -16,7 +18,8 @@ const SearchInput = ({ setResults, searchTerm, setSearchTerm }) => {
         makeSearch();
       }
     }} />
-  </div>)
+ </div>
+  )
 }
 SearchInput.propTypes = {
   setResults: PropTypes.func.isRequired,
@@ -26,7 +29,7 @@ SearchInput.propTypes = {
 
 const SearchResults = ({ results, searchTerm }) => {
   if (results.length === 0 && searchTerm)
-    return <div className="default-serach-output">no Results found for {searchTerm}</div>
+    return <div className="default-serach-output">Searching {searchTerm}</div>
   return (
     <div className="search-results">
       {results.map((storyData, i) =>

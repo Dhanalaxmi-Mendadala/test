@@ -23,12 +23,12 @@ const Header = () => {
        <div className="heading-search-container">
        <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
     {
-    location.pathname !== '/search' && <button className="search" onClick={() => navigate("/search")}>
+    location.pathname !== '/search' && <button className="search-container" onClick={() => navigate("/search")}>
       <img src= {search1} style={{
         height:'20px',
         width:'20px',
       }}></img>
-      Search</button>}
+      <span className="search">Search</span></button>}
        </div>
         {
           location.pathname !== "/addstory" && (
