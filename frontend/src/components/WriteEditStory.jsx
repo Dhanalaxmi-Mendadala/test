@@ -6,8 +6,7 @@ import saveDraft from "../API/saveDraft";
 import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
-import publishStory from "../API/publishStory"
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PublishDraft from "./publishDraftPopup";
 const EditorComponent = ({ storyId, initialdata }) => {
   

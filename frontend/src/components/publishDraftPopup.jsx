@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../css/publishPopup.css";
 import publishStory from "../API/publishStory";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 function PublishDraft({ draftId, openPopup }) {
     const navigate=useNavigate();
     const [tags, addTags] = useState([]);
@@ -22,7 +23,7 @@ function PublishDraft({ draftId, openPopup }) {
     return <div className="publish-outer" onClick={() => openPopup(false)}>
         <div className="publish-popup" onClick={(e) => e.stopPropagation()}>
             <p onClick={() => openPopup(false)}>&times;</p>
-            <div><p>Tags:</p><ol>{tags.map((tag) => <li>{tag}</li>)}</ol></div>
+            <div><p>Tags:</p><ol>{tags.map((tag,i) => <li key={i}>{tag}</li>)}</ol></div>
             <span>Tags:</span>
             <input type="text" value={tagName} onInput={(e) => { setTagName(e.target.value) }} />
             <button onClick={() => {
@@ -40,5 +41,9 @@ function PublishDraft({ draftId, openPopup }) {
             }}>Publish</button>
         </div>
     </div>
+}
+PublishDraft.propTypes={
+    draftId:PropTypes.number.isRequired,
+    openPopup:PropTypes.func.isRequired
 }
 export default PublishDraft;
