@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
 function Publish() {
-  const stories = useContext(StoryData);
+  const {stories} = useContext(StoryData);
   const navigator = useNavigate();
   console.log(stories);
   const published = stories.published;
