@@ -16,6 +16,7 @@ import makeClap from '../API/makeClap'
 import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
+import view from '../components/svg/view.svg'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -143,6 +144,15 @@ const StoryPage = () => {
                     height: '20px'
                   }} /></p>
                 <span className='response-count'>{responsesCount}</span>
+              </div>
+              <div className='views-container' title='Views'>
+                <p className='views' 
+                > <img src={view}
+                  style={{
+                    width: '20px',
+                    height: '20px'
+                  }} /></p>
+                <span className='views-count'>{storyData['views']}</span>
               </div>
             </div>
             <div className='all-links-container'>
