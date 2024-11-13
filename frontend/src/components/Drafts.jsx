@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
+import parse from 'html-react-parser';
 import DropDown from "../components/svg/dropdown.svg";
 import PropTypes from 'prop-types';
 
@@ -50,7 +51,7 @@ const DraftContainer = ({ draft, deleteDraft }) =>
     <>
       <div className="draft-data-container">
         <div className="draft-data">
-          <h2 className="draft-title">{draft["title"]}</h2>
+          <h2 className="draft-title">{parse(draft["title"])}</h2>
           <p>
             Last modified <GenerateTime time={draft["last_modified"]} />
           </p>

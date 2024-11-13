@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
+import parse from 'html-react-parser';
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
 import { useEffect, useState } from 'react'
@@ -121,7 +122,7 @@ const StoryPage = () => {
       {openResponse && <ResponseofStory storyId={storyData['id']} setopenResponse={setopenResponse} responseState={{ responsesCount, setResponsesCount }} />}
       {
         storyData ? <main>
-          <h1 className='main-title'>{storyData.title || 'Title'}</h1>
+          <h1 className='main-title'>{parse(storyData.title) || 'Title'}</h1>
           <div className='story-author-details-container' onClick={() => {
             navigateTo(`/profile/${storyData.authorId}`)
           }}>
