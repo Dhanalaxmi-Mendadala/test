@@ -1,19 +1,17 @@
-const deleteDraft = (id) => {
-    console.log(id,'delete draft called')
-    fetch(`http://localhost:8000/draft`, {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-            draftId : id
-        })
+const deleteDraft = async (id) => {
+  console.log(id, 'delete recieved for final API call')
+  try {
+    const response = await fetch(`http://localhost:8000/draft`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ draftId: id })
     })
-    .then((data) => {
-        console.log(data)
-        return data.json()
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+    const data = await response.json();
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
 }
+
 export default deleteDraft
