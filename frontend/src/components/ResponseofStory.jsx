@@ -20,8 +20,8 @@ Heading.propTypes = {
 const ResponseInput = ({ storyId, reRender }) => {
   const [response, setResponse] = useState('');
   return (
-    <>
-      <input style={{ height: '40px' }} placeholder="write your response here" value={response} rows={5} cols={20}
+    <div className="response-field">
+      <textarea  placeholder="write your response here" value={response} rows={5} cols={20}
         onChange={(e) => setResponse(e.target.value)} />
       <div className="action-buttons">
         <button className="cancel-button" onClick={() => setResponse('')}>Clear</button>
@@ -33,7 +33,7 @@ const ResponseInput = ({ storyId, reRender }) => {
         }
         >Respond</button>
       </div >
-    </>
+    </div>
   )
 }
 ResponseInput.propTypes = {

@@ -27,7 +27,7 @@ function MyStories() {
   const deleteDraftAndUpdate = (draftId) => {
     deleteDraft(draftId);
     getStoriesData();
-    getStoriesData(); // to ensure the data has updated at database
+    getStoriesData();
   };
 
   useEffect(() => {
