@@ -13,9 +13,9 @@ function LogoutPopUp({ logoutFlag, close }) {
           <p className="confirmationHeading">Are You Sure?</p>
           <div className="buttonsContainer">
             <button className="logout" onClick={() => {
-              mainLogout();
-              navigateTo('/');
-              window.location.reload();
+              mainLogout()
+                .then(navigateTo('/'))
+                .then(window.location.reload());
             }}>Logout</button>
             <button className="cancel" onClick={close}>Cancel</button>
           </div>
