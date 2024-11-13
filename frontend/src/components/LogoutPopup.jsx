@@ -1,9 +1,10 @@
 import '../css/logoutPop.css'
 import mainLogout from "../API/logout";
 import PropTypes from "prop-types";
+import { useNavigate } from 'react-router-dom';
 
 function LogoutPopUp({ logoutFlag, close }) {
-
+const navigate=useNavigate();
   return (
     <>
      <div className={logoutFlag ? "logout-outer" : "hidden"} onClick={close}>
@@ -12,8 +13,7 @@ function LogoutPopUp({ logoutFlag, close }) {
         <p className="confirmationHeading">Are You Sure?</p>
         <div className="buttonsContainer">
           <button className="logout" onClick={() => {
-            mainLogout()
-            window.location.reload();
+            mainLogout().then(navigate("/")).then(window.location.reload())
           }}>Logout</button>
           <button className="cancel" onClick={close}>Cancel</button>
         </div>

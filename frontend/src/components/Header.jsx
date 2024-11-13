@@ -16,7 +16,7 @@ const Header = () => {
 function close () {
   setLogoutFlag(false)
 }
-  console.log(location, "heheee😀");
+
   return (
    <>
     <header className="main-header">

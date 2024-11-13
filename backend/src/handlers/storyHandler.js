@@ -73,6 +73,7 @@ const publish = (req, res) => {
 };
 
 const updateStory = (req, res) => {
+  console.log(req.body);
   const { title, storyId, content } = req.body;
   if (!storyId) {
     return req.app.locals.db

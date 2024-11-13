@@ -12,7 +12,7 @@ function DropdownItem(props) {
   return (
     <div className="dropdownItem" onClick={props.onClick}>
       <Link to={props.path} className="drop-down-nav-name">
-      <img src={props.img} className="drop-down-icon" />
+        <img src={props.img} className="drop-down-icon" />
         {props.name}
       </Link>
     </div>
@@ -37,7 +37,7 @@ const ProfileMenu = ({ logoutFunction }) => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <div className="profile-menu">
       <img
@@ -49,12 +49,15 @@ const ProfileMenu = ({ logoutFunction }) => {
       {isOpen && (
         <div className="dropdown-menu" onClick={toggleMenu}>
           <div id="profile">
-            <img className="profile-icon" src={profileUrl || "../assets/github.png"}/>
+            <img className="profile-icon" src={profileUrl || "../assets/github.png"} />
             <Link to="profile" className="profile-name">{userName || "Guest"}</Link>
           </div>
           <DropdownItem img={profile} name="Profile" path={`profile/${userInfo['id']}`} />
           <DropdownItem img={story} path="yourStories/drafts" name="My Stories" />
-          <DropdownItem img={logout} name="Logout" onClick={logoutFunction} />
+          <div className="dropdownItem" onClick={logoutFunction}>
+            <img src={logout} className="drop-down-icon" />
+            Logout
+          </div>
         </div>
       )}
     </div>
