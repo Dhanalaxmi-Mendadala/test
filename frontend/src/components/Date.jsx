@@ -7,11 +7,20 @@ const GenerateTime = ({ time }) => {
   const relativeTime = timeDifference > 7 ? publishedTime.format('MMM D YYYY') : publishedTime.fromNow();
   console.log(relativeTime)
   return (
-    <p>{relativeTime}</p>
+    <span className="last-submitted-time">{relativeTime}</span>
   )
 }
 GenerateTime.propTypes = {
   time: PropTypes.string.isRequired
 }
 
+const RelativeTime = ({ time }) => {
+  const publishedTime = moment(time);
+  return <>{publishedTime.fromNow()}</>
+}
+RelativeTime.propTypes = {
+  time: PropTypes.string.isRequired
+}
+
+export { RelativeTime }
 export default GenerateTime;

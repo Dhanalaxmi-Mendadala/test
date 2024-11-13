@@ -10,37 +10,38 @@ const Header = () => {
   const navigate = useNavigate();
 
   const [logoutFlag, setLogoutFlag] = useState(false);
-  function logoutFunction () {
+  function logoutFunction() {
     setLogoutFlag(!logoutFlag);
   }
-function close () {
-  setLogoutFlag(false)
-}
-
+  function close() {
+    setLogoutFlag(false)
+  }
+  console.log(location, "heheee😀");
   return (
-   <>
-    <header className="main-header">
-      <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
-      {
-        location.pathname !== "/addstory" && (
-          <button className="write-button" onClick={() => navigate("/addstory", {
-            state: {
-              id: null,
-              content: [
-                { type: "header", data: { text: "", level: 1 }, placeholder: "Title" },
-                {
-                  type: "paragraph",
-                  data: { text: "", level: 3, placeholder: "Tell  Story" },
-                },
-              ],
-            }
-          })}>Write</button>
-        )
-      }
-      <ProfileMenu logoutFunction = {logoutFunction} />
-    </header >
-    <LogoutPopUp close = {close} logoutFlag = {logoutFlag} />
-   </>
+    <>
+      <header className="main-header">
+        <h1 className="title" onClick={() => navigate("/")}> Medium</h1>
+        {location.pathname !== '/search' && <button onClick={() => navigate("/search")}>Search</button>}
+        {
+          location.pathname !== "/addstory" && (
+            <button className="write-button" onClick={() => navigate("/addstory", {
+              state: {
+                id: null,
+                content: [
+                  { type: "header", data: { text: "", level: 1 }, placeholder: "Title" },
+                  {
+                    type: "paragraph",
+                    data: { text: "", level: 3, placeholder: "Tell  Story" },
+                  },
+                ],
+              }
+            })}>Write</button>
+          )
+        }
+        <ProfileMenu logoutFunction={logoutFunction} />
+      </header >
+      <LogoutPopUp close={close} logoutFlag={logoutFlag} />
+    </>
   );
 };
 
