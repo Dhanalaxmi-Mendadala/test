@@ -70,7 +70,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
     }
   }
 
-
   return (
     <>
       <div
@@ -78,7 +77,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
         id="editorjs"
         style={{ border: "1px solid #ccc", padding: "10px" }}
       />
-
       <button id="publish" onClick={() => {
         handlePublish(storyId)
       }}>Publish</button>

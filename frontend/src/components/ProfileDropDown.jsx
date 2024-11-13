@@ -58,7 +58,7 @@ const ProfileMenu = ({ logoutFunction }) => {
 
           <div className="dropdownItem" onClick={logoutFunction}>
             <img src={logout} className="drop-down-icon" id="logout-icon"/>
-            <span className="logout">Logout</span>
+            <span className="logout-button">Logout</span>
           </div>
         </div>
       )}
