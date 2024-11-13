@@ -87,7 +87,7 @@ const EditorComponent = ({ storyId, initialdata }) => {
 };
 EditorComponent.propTypes = {
   storyId: PropTypes.number.isRequired,
-  initialData: PropTypes.array.isRequired,
+  initialdata: PropTypes.array.isRequired,
 };
 
 const WriteAStory = () => {
