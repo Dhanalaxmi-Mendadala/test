@@ -251,14 +251,18 @@ class Database {
     return { authorBased, tagBased, contentBased };
   }
 
-  async search(keyword) {
+  async search(keyword, userId) {
     if (keyword === undefined) {
       throw { error: 'invalid keyword' };
     }
     const results = await this.getMatchingStories(keyword);
     for (const type in results) {
       for (const story of results[type]) {
-        story.tags = await this.getTags(story.id);
+        const storyDetails = await this.getPublishedStoryDetails(
+          story.id,
+          userId
+        );
+        Object.assign(story, storyDetails);
       }
     }
     return results;

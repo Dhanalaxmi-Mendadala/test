@@ -42,7 +42,7 @@ const allowAuthorized = (req, res, next) => {
 
 const search = (req, res) => {
   req.app.locals.db
-    .search(req.query.keyword)
+    .search(req.query.keyword, req?.session?.id)
     .then(({ authorBased, tagBased, contentBased }) => {
       authorBased = parseStoriesContent(authorBased);
       tagBased = parseStoriesContent(tagBased);
