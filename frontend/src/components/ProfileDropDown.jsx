@@ -55,9 +55,10 @@ const ProfileMenu = ({ logoutFunction }) => {
           </div>
           <DropdownItem img={profile} name="Profile" path={`profile/${userInfo['id']}`} />
           <DropdownItem img={story} path="yourStories/drafts" name="My Stories" />
+
           <div className="dropdownItem" onClick={logoutFunction}>
-            <img src={logout} className="drop-down-icon" />
-            <span className={logout}>logout</span>
+            <img src={logout} className="drop-down-icon" id="logout-icon"/>
+            <span className="logout-button">Logout</span>
           </div>
         </div>
       )}

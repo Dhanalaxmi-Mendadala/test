@@ -7,7 +7,6 @@ import { Outlet } from "react-router-dom"
 import '../css/DeleteDraft.css'
 import deleteDraft from "../API/deleteDraft"
 
-
 export const StoryData = createContext(null);
 function MyStories() {
   const [stories, setStories] = useState(false);
