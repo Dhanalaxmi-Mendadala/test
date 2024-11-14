@@ -22,8 +22,8 @@ function PublishDraft({ draftId, openPopup }) {
     //       };
     return <div className="publish-outer" onClick={() => openPopup(false)}>
         <div className="publish-popup" onClick={(e) => e.stopPropagation()}>
-            <p onClick={() => openPopup(false)}>&times;</p>
-            <div><p>Tags:</p><ol>{tags.map((tag,i) => <li key={i}>{tag}</li>)}</ol></div>
+            <p onClick={() => openPopup(false)} className="publish-popup-close">&times;</p>
+            <div><p className="tags-name">Tags:</p><ol className="tags-container">{tags.map((tag,i) => <li className="tags" key={i}>{tag}</li>)}</ol></div>
             <span>Tags:</span>
             <input type="text" value={tagName} onInput={(e) => { setTagName(e.target.value) }} />
             <button onClick={() => {

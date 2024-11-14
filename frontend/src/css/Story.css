@@ -174,3 +174,10 @@ main {
   pointer-events: none;
   opacity: .3;
 }
+.views-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 42px;
+  margin: 0px 0px 0px 20px;
+}

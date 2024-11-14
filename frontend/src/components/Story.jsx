@@ -17,7 +17,7 @@ import makeClap from '../API/makeClap'
 import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
-import view from '../components/svg/view.svg'
+import view from '../components/svg/view3.svg'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -65,6 +65,7 @@ const StoryPage = () => {
   const { id } = useParams();
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
+  console.log(storyData, 'storyDataaa')
   const [openResponse, setopenResponse] = useState(false);
   const [clapStatus, setClapStatus] = useState({});
   const [responsesCount, setResponsesCount] = useState(null);
