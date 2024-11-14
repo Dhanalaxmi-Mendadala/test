@@ -35,33 +35,31 @@ SearchInput.propTypes = {
 }
 
 const SearchResults = ({ results, searchTerm }) => {
-  if (results.length === 0 && searchTerm)
-    return (
-    <div className="default-search-output">
-      <span className="results-for">Results for </span>
-      <span className="content-searched"> {searchTerm}</span>
-    </div>
-    )
-  return (
+  console.log(results)
+  if (searchTerm) return (
     <div className="search-results">
+      <div className="default-search-output">
+        <span className="results-for">Searching..</span>
+        <span className="content-searched"> {searchTerm}</span>
+      </div>
       {
         results.length !== 0 ?
-      results.map((storyData, i) =>
-        <StoryCard key={i}
-          storyData={storyData}
-          username={storyData['author']}
-          userAvatar={`https://avatars.githubusercontent.com/u/${storyData['author_id']}?v=4`}
-          userId={storyData['author_id']} />) : 
-       <div className="no-results-data-main-container">
-         <div className="no-results-data-container">
-        <p>Make sure all words are spelled correctly.</p>
-        <p>Try different keywords.</p>
-        <p>Try more general keywords.</p>
-        </div>
-       </div>
+          results.map((storyData, i) =>
+            <StoryCard key={i}
+              storyData={storyData}
+              username={storyData['author']}
+              userAvatar={storyData['avatar_url']}
+              userId={storyData['author_id']} />) :
+          <div className="no-results-data-main-container">
+            <div className="no-results-data-container">
+              <p>Make sure all words are spelled correctly.</p>
+              <p>Try different keywords.</p>
+              <p>Try more general keywords.</p>
+            </div>
+          </div>
       }
-    </div> 
-  ) 
+    </div>
+  )
 }
 SearchResults.propTypes = {
   results: PropTypes.object.isRequired,
@@ -69,12 +67,14 @@ SearchResults.propTypes = {
 }
 
 const Search = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
       <SearchInput setResults={setResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <SearchResults results={results} searchTerm={searchTerm} />
+      {
+        results && <SearchResults results={results} searchTerm={searchTerm} />
+      }
     </>)
 }
 
