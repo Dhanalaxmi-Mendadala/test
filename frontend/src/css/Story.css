@@ -32,16 +32,18 @@ main {
   height: fit-content;
   padding: 3px;
   align-items: center;
-  text-transform: capitalize;
   position: relative;
   cursor: pointer;
 }
 
+.story-author-name::first-letter {
+  text-transform: capitalize;
+} 
 .story-author-details-container:hover {
   :last-child:first-child::after {
       text-transform: uppercase;
       text-decoration: underline;
-    }
+    } 
   }
 
 
