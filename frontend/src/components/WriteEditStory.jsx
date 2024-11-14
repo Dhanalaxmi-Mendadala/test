@@ -9,7 +9,8 @@ import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
 import PublishDraft from "./publishDraftPopup";
-import CodeTool from "@editorjs/code";
+import List from '@editorjs/list'
+import Image from '@editorjs/image'
 
 const EditorComponent = ({ storyId, initialdata }) => {
   
@@ -35,7 +36,9 @@ const EditorComponent = ({ storyId, initialdata }) => {
             inlineToolbar: true,
             config: { placeholder: "Tell your Story" },
           },
-          code : CodeTool,
+          code : Code,
+          list: List,
+          image: Image,
           delimiter: Delimiter,
         },
         onReady: () => {

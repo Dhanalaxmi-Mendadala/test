@@ -15,7 +15,7 @@ function PublishDraft({ draftId, openPopup }) {
         </p>
         <div className="publish-your-story">Publish Your Story</div>
         <div className="tags-input-main-container">
-         <label for = 'input-label'>Tags:</label>
+         <label htmlFor = 'input-label'>Tags:</label>
           <input
             id="input-label"
             type="text"
