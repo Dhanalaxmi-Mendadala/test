@@ -178,6 +178,9 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 42px;
+  width: fit-content;
   margin: 0px 0px 0px 20px;
+}
+.views {
+  margin-right: 4px;
 }
