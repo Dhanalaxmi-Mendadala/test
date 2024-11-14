@@ -116,6 +116,7 @@ a {
     margin-bottom: 5px;
     padding-left: 3px;
     padding: 10px;
+
 }
 .delete-draft {
     color: red;
@@ -150,4 +151,14 @@ a {
     width: 130px;
     text-align: center;
 }
-
+.delete-draft-container .buttons-container button{
+    width: 120px;
+}
+.delete-draft-container .buttons-container .delete-draft-button{
+   color: red;
+   border-color: rgba(255, 0, 0, 0.219);
+}
+.delete-draft-container .buttons-container .delete-draft-cancel{
+    color: black;
+    border-color: rgba(0,0,0,0.219);
+}

@@ -3,11 +3,14 @@ import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Delimiter from "@editorjs/delimiter";
 import saveDraft from "../API/saveDraft";
+import Code from '@editorjs/code';
 import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
 import PublishDraft from "./publishDraftPopup";
+import CodeTool from "@editorjs/code";
+
 const EditorComponent = ({ storyId, initialdata }) => {
   
   const editorRef = useRef(null);
@@ -32,6 +35,7 @@ const EditorComponent = ({ storyId, initialdata }) => {
             inlineToolbar: true,
             config: { placeholder: "Tell your Story" },
           },
+          code : CodeTool,
           delimiter: Delimiter,
         },
         onReady: () => {

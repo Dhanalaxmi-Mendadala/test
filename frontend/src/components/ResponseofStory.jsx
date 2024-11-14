@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Heading = ({ responseCount, closePopUp }) => {
   return (<div className="responses-heading">
     <h2 className="heading-wiht-count">{`Responses (${responseCount})`}</h2>
-    <p onClick={() => closePopUp(false)}>&times;</p>
+    <p className="response-close" onClick={() => closePopUp(false)}>&times;</p>
   </div>)
 }
 Heading.propTypes = {

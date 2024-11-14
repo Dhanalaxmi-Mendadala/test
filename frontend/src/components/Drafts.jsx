@@ -100,7 +100,7 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {
             deleteDraft(id);
             togglePopup();
           }}>Delete Draft</button>
-          <button className="cancel" onClick={togglePopup}>Cancel</button>
+          <button className="delete-draft-cancel" onClick={togglePopup}>Cancel</button>
         </div>
       </div>
       </div>
