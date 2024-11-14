@@ -58,12 +58,12 @@ body{
     margin-top: 150px;
 }
 .loading {
-    border: 5px solid grey;
-    height: 100px;
-    width: 100px;
+    border: 5px solid rgba(102, 92, 92, 0.077);
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     border-top: 5px solid black;
-    animation: rotate 1s infinite;
+    animation: rotate 1s linear infinite;
 }
 .loading-container p {
     margin-top: 10px;
