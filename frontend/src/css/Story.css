@@ -176,5 +176,8 @@ main {
 }
 .views-container {
   display: flex;
-  margin-left: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 42px;
+  margin: 0px 0px 0px 20px;
 }

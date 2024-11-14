@@ -39,7 +39,7 @@ const SearchResults = ({ results, searchTerm }) => {
   if (searchTerm) return (
     <div className="search-results">
       <div className="default-search-output">
-        <span className="results-for">Searching..</span>
+        <span className="results-for">Results for </span>
         <span className="content-searched"> {searchTerm}</span>
       </div>
       {
