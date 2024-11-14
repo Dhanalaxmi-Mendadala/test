@@ -116,7 +116,14 @@ const Profile = () => {
 
   if (userData['error']) return <div className="">Error in fetching..</div>
   if (loading) {
-    return <div>Loading....</div>
+    return (
+      <>
+      <div className="loading-container">
+        <div className="loading"></div>
+        <p>Loading..</p>
+      </div>
+      </>
+    )
   }
   console.log(userData, "profile page");
   return (

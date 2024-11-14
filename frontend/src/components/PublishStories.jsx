@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
+import parse from 'html-react-parser';
 import GenerateTime from "./Date";
 function Publish() {
-  const stories = useContext(StoryData);
+  const {stories} = useContext(StoryData);
   const navigator = useNavigate();
   console.log(stories);
   const published = stories.published;
@@ -14,7 +15,7 @@ function Publish() {
           <div className="a-story-unit" key={i} onClick={() => {
             navigator(`/storypage/${aStory['id']}`)
           }}>
-            <p className="a-story-title">{aStory['title']}</p>
+            <p className="a-story-title">{parse(aStory['title'])}</p>
             <p>Published <GenerateTime time={aStory['published_at']} /></p>
           </div>
         )

@@ -1,16 +1,16 @@
-/* Styles for the outer overlay */
 #response-outer {
     height: 100vh;
-    width: 100vw; 
+    width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     justify-content: flex-end;
-    align-items: center; 
+    align-items: center;
     z-index: 3;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.39);
 }
+
 .heading-unit {
     margin-top: 15px;
     margin-right: 4%;
@@ -23,13 +23,17 @@
     width: 100%;
     border-bottom: 1px solid grey;
 }
+.responses-heading p {
+    font-size: 30px;
+}
 
-.action-buttons{
+.action-buttons {
     width: 40%;
     position: absolute;
-    top: 25%;
+    top: 24%;
     left: 63%;
 }
+
 .response-field textarea {
     width: 100%;
     height: 75%;
@@ -38,9 +42,11 @@
     font-size: largex;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 .response-field textarea:focus {
     outline: none;
 }
+
 .response-field {
     padding: 5px;
     margin-top: 20px;
@@ -52,7 +58,9 @@
     flex-direction: column;
     box-shadow: -3px 3px 10px rgba(180, 180, 180, 0.477);
 }
-.cancel-button, .respond-button {
+
+.cancel-button,
+.respond-button {
     height: 30px;
     margin-left: 10px;
     border-radius: 25px;
@@ -60,74 +68,87 @@
 }
 
 .respond-button {
-   width: 70px;
-   background-color: green;
-   border: 1px solid rgba(128, 128, 128, 0.6);
-   color: white;
+    background-color: green;
+    border: 1px solid rgba(128, 128, 128, 0.6);
+    color: white;
+    padding: 0px;
+    width: 40%;
 }
+
 .respond-button:disabled {
     opacity: 0.3;
 }
-.cancel-button{
+
+.cancel-button {
     width: 50px;
     background-color: transparent;
     border: none;
 }
 
 #response {
-    width: 30%; 
+    width: 30%;
     padding: 10px;
     height: 100%;
     border: 2px solid white;
-    background-color:white; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 20px rgba(228, 203, 203, 0.5); 
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(228, 203, 203, 0.5);
     position: relative;
-    overflow-y: auto; 
+    overflow: hidden auto;
 }
 
 #response h1 {
     margin: 0;
-    padding: 0; 
+    padding: 0;
     color: black;
 }
 
 #response div {
     font-size: 15px;
-    color: black; 
+    color: black;
 }
 
 #response h1:last-child {
-    cursor: pointer; 
-    font-size: 2rem; 
+    cursor: pointer;
+    font-size: 2rem;
     margin-left: auto;
 }
 
-.response-card{
+.response-card {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.052);
     padding: 10px;
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.response-card img{
+.response-card img {
     height: 35px;
     width: 35px;
     border-radius: 50%;
     margin-right: 15px;
-    
+
 }
 .response-card-header {
     display: flex;
     flex-direction: row;
 }
+
 .response-details {
     display: flex;
     flex-direction: column;
 }
-.responses-unit{
+
+.response-details:hover{
+    cursor: pointer;
+}
+
+.response-details:hover > :first-child{
+    text-decoration: underline;
+}
+
+.responses-unit {
     display: flex;
     flex-direction: column;
     margin-left: 3%;
@@ -136,17 +157,21 @@
     scroll-behavior: smooth;
     width: 93%;
 }
-.user-response{
+
+.user-response {
     margin-top: 10px;
     cursor: default;
 }
+
 .response-time {
     font-size: 12px;
 }
+
 .responded-user {
     font-size: 16px;
     cursor: pointer;
 }
+
 .responded-user::first-letter {
     text-transform: capitalize;
 }

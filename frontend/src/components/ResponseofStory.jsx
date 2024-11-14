@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import getResponses from "../API/getResponse";
 import { RelativeTime } from "./Date";
 import { postResponse } from "../API/postResponse";
+import { useNavigate } from "react-router-dom";
 
 const Heading = ({ responseCount, closePopUp }) => {
   return (<div className="responses-heading">
     <h2 className="heading-wiht-count">{`Responses (${responseCount})`}</h2>
-    <h1 onClick={() => closePopUp(false)}>&times;</h1>
+    <p onClick={() => closePopUp(false)}>&times;</p>
   </div>)
 }
 Heading.propTypes = {
@@ -19,8 +20,8 @@ Heading.propTypes = {
 const ResponseInput = ({ storyId, reRender }) => {
   const [response, setResponse] = useState('');
   return (
-    <>
-      <input style={{ height: '40px' }} placeholder="write your response here" value={response} rows={5} cols={20}
+    <div className="response-field">
+      <textarea  placeholder="write your response here" value={response} rows={5} cols={20}
         onChange={(e) => setResponse(e.target.value)} />
       <div className="action-buttons">
         <button className="cancel-button" onClick={() => setResponse('')}>Clear</button>
@@ -32,7 +33,7 @@ const ResponseInput = ({ storyId, reRender }) => {
         }
         >Respond</button>
       </div >
-    </>
+    </div>
   )
 }
 ResponseInput.propTypes = {
@@ -42,16 +43,19 @@ ResponseInput.propTypes = {
 }
 
 const ResponseCard = ({ data }) => {
+  const navigateTo = useNavigate();
   return <div className="response-card" >
     <div className="response-card-header">
       <div className="responded-user-image">
         <img src={data['avatar_url']} alt="" />
       </div>
-      <div className="response-details">
-      <p className="responded-user">{data['username']}</p>
-      <p className="response-time">{
-        <RelativeTime time={data['responded_at']} />}
-      </p>
+      <div className="response-details" onClick={() => {
+        navigateTo(`/profile/${data['id']}`)
+      }}>
+        <p className="responded-user">{data['username']}</p>
+        <p className="response-time">{
+          <RelativeTime time={data['responded_at']} />}
+        </p>
       </div>
     </div>
     <div className="user-response">
@@ -74,8 +78,16 @@ const AllResponse = ({ storyId, status }) => {
     }
     fetchResponses();
   }, [status]);
-  if (loading) return <p>Responses are loading</p>
-
+  if (loading) {
+    return (
+      <>
+      <div className="loading-container">
+        <div className="loading"></div>
+        <p>Loading..</p>
+      </div>
+      </>
+    )   
+  }
   return (<div className="responses-unit">
     {responses.length ?
       responses.map((data, i) => <ResponseCard data={data} key={i} />) :

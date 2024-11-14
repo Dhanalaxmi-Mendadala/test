@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 
 function DropdownItem(props) {
   return (
-      <Link to={props.path} className="drop-down-nav-name">
-    <div className="dropdownItem" onClick={props.onClick}>
-      <img src={props.img} className="drop-down-icon" id= {props.id}/>
-        <span className= {props.name}>{props.name}</span>
-    </div>
-      </Link>
+    <Link to={props.path} className="drop-down-nav-name">
+      <div className="dropdownItem" onClick={props.onClick}>
+        <img src={props.img} className="drop-down-icon" id={props.id} />
+        <span className={props.name}>{props.name}</span>
+      </div>
+    </Link>
   );
 }
 
@@ -38,7 +38,7 @@ const ProfileMenu = ({ logoutFunction }) => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <div className="profile-menu">
       <img
@@ -50,12 +50,16 @@ const ProfileMenu = ({ logoutFunction }) => {
       {isOpen && (
         <div className="dropdown-menu" onClick={toggleMenu}>
           <div id="profile">
-            <img className="profile-icon" src={profileUrl || "../assets/github.png"}/>
+            <img className="profile-icon" src={profileUrl || "../assets/github.png"} />
             <Link to="profile" className="profile-name">{userName || "Guest"}</Link>
           </div>
           <DropdownItem img={profile} name="Profile" path={`profile/${userInfo['id']}`} />
           <DropdownItem img={story} path="yourStories/drafts" name="My Stories" />
-          <DropdownItem img={logout} name="Logout" onClick={logoutFunction} />
+
+          <div className="dropdownItem" onClick={logoutFunction}>
+            <img src={logout} className="drop-down-icon" id="logout-icon"/>
+            <span className="logout-button">Logout</span>
+          </div>
         </div>
       )}
     </div>

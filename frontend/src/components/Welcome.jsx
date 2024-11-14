@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../css/Welcome.css";
 import CLIENT_ID from "../../clientInfo.jsx";
 import PropTypes from "prop-types";
+import IntroPicture from "../components/svg/welcome-image.webp"
 
 function Header({ click }) {
   return (
@@ -9,7 +10,7 @@ function Header({ click }) {
       <h1>Medium</h1>
       <nav>
         <p id="signin" onClick={() => click(true)}>
-          Signin
+          Get Started
         </p>
       </nav>
     </header>
@@ -25,12 +26,18 @@ function WelcomePage() {
     <div>
       <Header click={setClicked} />
       {clicked && <SignInPage click={setClicked}></SignInPage>}
+      <div>
       <main id="welcomeBody">
+        <div className="intro">
         <h2>
           Human <br /> Stories & Ideas
         </h2>
         <p>A place to read, write, and deepen your understanding</p>
+        </div>
+        <img src={IntroPicture} alt="welcome-image"/>
       </main>
+      <button className="start-button">Start Reading</button>
+      </div>
       <Footer></Footer>
     </div>
   );
@@ -58,7 +65,7 @@ function SignInPage({ click }) {
         <p className="close" onClick={() => click(false)}>
           &times;
         </p>
-        <h2 className="welcomeBack">Welcome</h2>
+        <h2 className="welcomeBack">Sign In</h2>
         <p className="signInGitHub">
           <img src="../../assets/github.png"></img>
           <a href={githubAuthUrl}>Sign in with GitHub</a>

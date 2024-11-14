@@ -189,12 +189,7 @@ const addTags = (id, tags) =>
 const getTags = id => `SELECT tag from tags where story_id = ${id}`;
 
 const authorBasedSearch = keyword =>
-  `SELECT t1.id,
-    t1.title,
-    t1.content,
-    t2.published_at,
-    t3.username author,
-    t3.id author_id
+  `SELECT t1.id
   FROM stories t1 
   JOIN published_stories t2 ON t1.id = t2.story_id 
   JOIN users t3 ON t1.created_by = t3.id
@@ -202,12 +197,7 @@ const authorBasedSearch = keyword =>
   ORDER BY published_at DESC`;
 
 const tagBasedSearch = keyword =>
-  `SELECT t1.id,
-    t1.title,
-    t1.content,
-    t2.published_at,
-    t3.username author,
-    t3.id author_id
+  `SELECT t1.id
   FROM stories t1 
   JOIN published_stories t2 ON t1.id = t2.story_id 
   JOIN users t3 ON t1.created_by = t3.id
@@ -217,12 +207,7 @@ const tagBasedSearch = keyword =>
   ORDER BY published_at DESC`;
 
 const contentBasedSearch = keyword =>
-  `SELECT t1.id,
-    t1.title,
-    t1.content,
-    t2.published_at,
-    t3.username author,
-    t3.id author_id
+  `SELECT t1.id
   FROM stories t1 
   JOIN published_stories t2 ON t1.id = t2.story_id 
   JOIN users t3 ON t1.created_by = t3.id

@@ -56,8 +56,10 @@ const clap = (req, res) => {
 };
 
 const publish = (req, res) => {
+  console.log(req.body,"Your Request");
   const { storyId } = req.params;
   const { tags } = req.body;
+  console.log(tags,"Yoyr Tags");
   const coverImage = req.files?.coverImage || {};
   const storeLocation = `${__dirname}/../../database/images/${coverImage.name}`;
   coverImage.mv && coverImage.mv(storeLocation);
@@ -73,6 +75,7 @@ const publish = (req, res) => {
 };
 
 const updateStory = (req, res) => {
+  console.log(req.body);
   const { title, storyId, content } = req.body;
   if (!storyId) {
     return req.app.locals.db
