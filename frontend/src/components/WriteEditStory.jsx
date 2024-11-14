@@ -36,7 +36,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
             inlineToolbar: true,
             config: { placeholder: "Tell your Story" },
           },
-          embed: Embed,
           code : Code,
           list: List,
           delimiter: Delimiter,

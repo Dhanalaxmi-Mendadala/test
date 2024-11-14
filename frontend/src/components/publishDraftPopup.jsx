@@ -15,19 +15,19 @@ function PublishDraft({ draftId, openPopup }) {
         </p>
         <div className="publish-your-story">Publish Your Story</div>
         <div className="tags-input-main-container">
-         <label htmlFor = 'input-label'>Tags:</label>
+         <label htmlFor = 'input-label'>Tag name:</label>
           <input
             id="input-label"
             type="text"
             className="tags-input"
-            placeholder="Enter Tags"
+            placeholder="Enter Tag"
             value={tagName}
             onInput={(e) => {
               setTagName(e.target.value);
             }}
           />
         </div>
-        <p className="tags-name">Story Tags:</p>
+        <p className="tags-name">Given Tags:</p>
         <div className="tags-main-container">
           <ol className="tags-list-container">
             {tags.map((tag, i) => (
@@ -63,6 +63,7 @@ function PublishDraft({ draftId, openPopup }) {
                 <span>{filename&&filename.name}</span>
             </div> */}
             <button
+            disabled={tags.length === 0}
               className="tags-publish-button"
               onClick={async () => {
                 await publishStory(draftId, tags);

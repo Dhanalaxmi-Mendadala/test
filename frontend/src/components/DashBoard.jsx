@@ -4,6 +4,7 @@ import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
 import fetchCoverPage from "../API/fetchCoverPage"
 import StoryCard from "./StoryCard"
+import getResponses from "../API/getResponse"
 
 
 const StoryComponent = ({ currentStory }) => {
@@ -37,7 +38,13 @@ StoryComponent.propTypes = {
 const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
-  console.log(someContext, stories, 'dashboard')
+  console.log(someContext, stories, 'dashboard');
+  const storyIds = stories.map((currentStory) => currentStory['id']);
+  const renewedData = storyIds.map(async (storyId) => {
+    const data = await getResponses(storyId);
+    return data['story'];
+  })
+  console.log(storyIds, renewedData, 'colllection of all story ids');
   return (
     stories.length !== 0 ? <div className="user-dashboard">
       {stories.map((currentStory, i) =>
