@@ -1,0 +1,20 @@
+.publish-outer{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 7;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.publish-popup{
+    height:fit-content;
+    width:fit-content;
+    margin: auto;
+    background-color: white;
+    padding:15px;
+    z-index: 8;
+}

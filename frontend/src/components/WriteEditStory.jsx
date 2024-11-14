@@ -6,14 +6,11 @@ import saveDraft from "../API/saveDraft";
 import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
-import publishStory from "../API/publishStory"
-import { useLocation, useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import PublishDraft from "./publishDraftPopup";
 const EditorComponent = ({ storyId, initialdata }) => {
+  
   const editorRef = useRef(null);
-  // const [currentDraft, setCurrentDraft] = useState(null);
-  const [savingDraft, setSavingDraft] = useState(false);
-  console.log(savingDraft)
   let editor = null;
   const initialData = {
     time: new Date().getTime(),
@@ -45,14 +42,12 @@ const EditorComponent = ({ storyId, initialdata }) => {
     const autosaveInterval = setInterval(async () => {
       const content = await editor.save();
       const title = content.blocks[0]?.type==="header"&&content.blocks[0].data.text.length!==0?content.blocks[0].data.text:'Untitled Story';
-
+  
       if (content) {
         await saveDraft(storyId, title, content.blocks);
         console.log("Autosaved:", title);
-        setSavingDraft(false);
       }
     }, 5000);
-
     return () => {
       if (editor && typeof editor.destroy === "function") {
         clearInterval(autosaveInterval);
@@ -61,15 +56,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
     };
   }, [storyId]);
 
-  const navigatior = useNavigate();
-
-  const handlePublish = async (draftId) => {
-    if (draftId) {
-      await publishStory(draftId);
-      navigatior('/yourstories/published');
-    }
-  }
-
   return (
     <>
       <div
@@ -77,9 +63,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
         id="editorjs"
         style={{ border: "1px solid #ccc", padding: "10px" }}
       />
-      <button id="publish" onClick={() => {
-        handlePublish(storyId)
-      }}>Publish</button>
     </>
   );
 };
@@ -93,6 +76,7 @@ const WriteAStory = () => {
   const location = useLocation();
   const [storyId, setStoryId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [openPublishDiv,setOpenPublishDiv]=useState(false);
   useEffect(() => {
     const generateId = async () => {
       try {
@@ -125,6 +109,10 @@ const WriteAStory = () => {
   }
   return (
     <>
+      
+      <button id="publish" onClick={() =>setOpenPublishDiv(true)}>Publish</button>
+      {console.log}
+      {openPublishDiv&&<PublishDraft draftId={storyId}  openPopup={setOpenPublishDiv}/>}
       <div id="writeHeader">Draft in {userData["username"]}</div>
       <div className="editor-component">
         <EditorComponent

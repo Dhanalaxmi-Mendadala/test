@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
+import parse from 'html-react-parser';
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
 import { useEffect, useState } from 'react'
@@ -16,6 +17,7 @@ import makeClap from '../API/makeClap'
 import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
+import view from '../components/svg/view3.svg'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -63,6 +65,7 @@ const StoryPage = () => {
   const { id } = useParams();
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
+  console.log(storyData, 'storyDataaa')
   const [openResponse, setopenResponse] = useState(false);
   const [clapStatus, setClapStatus] = useState({});
   const [responsesCount, setResponsesCount] = useState(null);
@@ -120,7 +123,7 @@ const StoryPage = () => {
       {openResponse && <ResponseofStory storyId={storyData['id']} setopenResponse={setopenResponse} responseState={{ responsesCount, setResponsesCount }} />}
       {
         storyData ? <main>
-          <h1 className='main-title'>{storyData.title || 'Title'}</h1>
+          <h1 className='main-title'>{parse(storyData.title) || 'Title'}</h1>
           <div className='story-author-details-container' onClick={() => {
             navigateTo(`/profile/${storyData.authorId}`)
           }}>
@@ -150,6 +153,15 @@ const StoryPage = () => {
                     height: '20px'
                   }} /></p>
                 <span className='response-count'>{responsesCount}</span>
+              </div>
+              <div className='views-container' title='Views'>
+                <p className='views' 
+                > <img src={view}
+                  style={{
+                    width: '20px',
+                    height: '20px'
+                  }} /></p>
+                <span className='views-count'>{storyData['views']}</span>
               </div>
             </div>
             <div className='all-links-container'>
