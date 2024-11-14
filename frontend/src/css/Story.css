@@ -174,3 +174,7 @@ main {
   pointer-events: none;
   opacity: .3;
 }
+.views-container {
+  display: flex;
+  margin-left: 20px;
+}

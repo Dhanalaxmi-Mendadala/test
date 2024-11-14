@@ -35,10 +35,11 @@ SearchInput.propTypes = {
 }
 
 const SearchResults = ({ results, searchTerm }) => {
+  console.log(results)
   if (searchTerm) return (
     <div className="search-results">
       <div className="default-search-output">
-        <span className="results-for">Results for </span>
+        <span className="results-for">Searching..</span>
         <span className="content-searched"> {searchTerm}</span>
       </div>
       {
@@ -47,7 +48,7 @@ const SearchResults = ({ results, searchTerm }) => {
             <StoryCard key={i}
               storyData={storyData}
               username={storyData['author']}
-              userAvatar={`https://avatars.githubusercontent.com/u/${storyData['author_id']}?v=4`}
+              userAvatar={storyData['avatar_url']}
               userId={storyData['author_id']} />) :
           <div className="no-results-data-main-container">
             <div className="no-results-data-container">
@@ -71,7 +72,9 @@ const Search = () => {
   return (
     <>
       <SearchInput setResults={setResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      {results && <SearchResults results={results} searchTerm={searchTerm} />}
+      {
+        results && <SearchResults results={results} searchTerm={searchTerm} />
+      }
     </>)
 }
 
