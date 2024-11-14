@@ -19,7 +19,9 @@ import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
 import view from '../components/svg/view3.svg'
 import copied from '../components/svg/copied.svg'
-
+import List from '@editorjs/list';
+import CodeTool from '@editorjs/code';
+import Embed from '@editorjs/embed'
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -46,6 +48,9 @@ const StoryContent = (props) => {
               level: 1,
             },
           },
+          embed: Embed,
+          code : CodeTool,
+          list: List,
           delimiter: Delimiter,
         },
       })

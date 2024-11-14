@@ -9,11 +9,10 @@ import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
 import PublishDraft from "./publishDraftPopup";
-import List from '@editorjs/list'
-import Image from '@editorjs/image'
+import List from '@editorjs/list';
+import Embed from '@editorjs/embed'
 
 const EditorComponent = ({ storyId, initialdata }) => {
-  
   const editorRef = useRef(null);
   let editor = null;
   const initialData = {
@@ -27,6 +26,7 @@ const EditorComponent = ({ storyId, initialdata }) => {
         data: initialData,
         autofocus: "true",
         tools: {
+          embed: { class: Embed, config: { services: { youtube: true, vimeo: true, codepen: true ,},},},
           header: {
             class: Header,
             inlineToolbar: true,
@@ -36,9 +36,9 @@ const EditorComponent = ({ storyId, initialdata }) => {
             inlineToolbar: true,
             config: { placeholder: "Tell your Story" },
           },
+          embed: Embed,
           code : Code,
           list: List,
-          image: Image,
           delimiter: Delimiter,
         },
         onReady: () => {
@@ -118,7 +118,6 @@ const WriteAStory = () => {
     <>
       
       <button id="publish" onClick={() =>setOpenPublishDiv(true)}>Publish</button>
-      {console.log}
       {openPublishDiv&&<PublishDraft draftId={storyId}  openPopup={setOpenPublishDiv}/>}
       <div id="writeHeader">Draft in {userData["username"]}</div>
       <div className="editor-component">
