@@ -111,7 +111,6 @@ const WriteAStory = () => {
     <>
       
       <button id="publish" onClick={() =>setOpenPublishDiv(true)}>Publish</button>
-      {console.log}
       {openPublishDiv&&<PublishDraft draftId={storyId}  openPopup={setOpenPublishDiv}/>}
       <div id="writeHeader">Draft in {userData["username"]}</div>
       <div className="editor-component">
