@@ -21,7 +21,7 @@ const StoryCard = ({ storyData, userAvatar, username, userId }) => {
     <div className="story-details">
       <h3 className="story-title">{parse(storyData.title) || 'Title'}</h3>
       <p className="story-description">
-        {storyDescription || 'Story decription'}
+        {parse(storyDescription) || 'Story decription'}
       </p>
       <img src={storyData['imageUrl']} className="story-cover-image" />
     </div>
