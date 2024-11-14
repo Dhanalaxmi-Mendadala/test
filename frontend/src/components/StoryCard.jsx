@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import GenerateTime from "./Date"
 import PropTypes from 'prop-types'
-
+import parse from 'html-react-parser';
 
 const StoryCard = ({ storyData, userAvatar, username, userId }) => {
   const navigate = useNavigate();
 
   const isContent = storyData['content'];
-  const storyDescription = (isContent !== undefined) ? storyData['content']['0']['data']['text'] : '';
-
+  const storyDescription = isContent ? storyData.content?.[0]?.data?.text ?? '' : '';
   return (<div className="story-component" onClick={() => {
     navigate(`/storypage/${storyData['id']}`)
   }}>
@@ -20,7 +19,7 @@ const StoryCard = ({ storyData, userAvatar, username, userId }) => {
       <h4 className="author-name">{username || 'Author'}</h4>
     </div>
     <div className="story-details">
-      <h3 className="story-title">{storyData.title || 'Title'}</h3>
+      <h3 className="story-title">{parse(storyData.title) || 'Title'}</h3>
       <p className="story-description">
         {storyDescription || 'Story decription'}
       </p>

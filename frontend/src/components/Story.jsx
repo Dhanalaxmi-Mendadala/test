@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
+import parse from 'html-react-parser';
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
 import { useEffect, useState } from 'react'
@@ -9,13 +10,14 @@ import Header from "@editorjs/header"
 import Delimiter from "@editorjs/delimiter"
 import unClaped from "../components/svg/notclicked1.svg"
 import claped from "../components/svg/clicked-clap.svg"
-import copyLink from "../components/svg/copyLink.svg"
+import copyLink from "../components/svg/copyLink2.svg"
 import response from "../components/svg/responses.svg"
 import fetchCoverPage from '../API/fetchCoverPage'
 import makeClap from '../API/makeClap'
 import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
+import view from '../components/svg/view.svg'
 
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
@@ -91,7 +93,14 @@ const StoryPage = () => {
   }, [id]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+    <>
+    <div className='loading-container'>
+      <div className='loading'></div>
+      <p>Loading...</p>
+    </div>
+    </>
+    );
   }
 
   const handldeClap = () => {
@@ -113,7 +122,7 @@ const StoryPage = () => {
       {openResponse && <ResponseofStory storyId={storyData['id']} setopenResponse={setopenResponse} responseState={{ responsesCount, setResponsesCount }} />}
       {
         storyData ? <main>
-          <h1 className='main-title'>{storyData.title || 'Title'}</h1>
+          <h1 className='main-title'>{parse(storyData.title) || 'Title'}</h1>
           <div className='story-author-details-container' onClick={() => {
             navigateTo(`/profile/${storyData.authorId}`)
           }}>
@@ -144,12 +153,21 @@ const StoryPage = () => {
                   }} /></p>
                 <span className='response-count'>{responsesCount}</span>
               </div>
+              <div className='views-container' title='Views'>
+                <p className='views' 
+                > <img src={view}
+                  style={{
+                    width: '20px',
+                    height: '20px'
+                  }} /></p>
+                <span className='views-count'>{storyData['views']}</span>
+              </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container' onClick={copyLinkToClipboard}>
+              <div className='copy-link-container' title='Copy Link' onClick={copyLinkToClipboard}>
                 <img src={copyLink} style={{
                   height: '20px',
-                  width: '20px'
+                  width: '20px',
                 }}></img>
               </div>
             </div>

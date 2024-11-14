@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Heading = ({ responseCount, closePopUp }) => {
   return (<div className="responses-heading">
     <h2 className="heading-wiht-count">{`Responses (${responseCount})`}</h2>
-    <h1 onClick={() => closePopUp(false)}>&times;</h1>
+    <p onClick={() => closePopUp(false)}>&times;</p>
   </div>)
 }
 Heading.propTypes = {
@@ -78,8 +78,16 @@ const AllResponse = ({ storyId, status }) => {
     }
     fetchResponses();
   }, [status]);
-  if (loading) return <p>Responses are loading</p>
-
+  if (loading) {
+    return (
+      <>
+      <div className="loading-container">
+        <div className="loading"></div>
+        <p>Loading..</p>
+      </div>
+      </>
+    )   
+  }
   return (<div className="responses-unit">
     {responses.length ?
       responses.map((data, i) => <ResponseCard data={data} key={i} />) :

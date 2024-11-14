@@ -16,7 +16,7 @@
   width: 200px;
   position: absolute;
   top: 0px;
-  right: 11px;
+  right: -15px;
   flex-direction: column;
    background-color: rgb(255, 255, 255);
   border: 1px solid #ccc;
@@ -63,7 +63,7 @@
 a{
   text-decoration: none;
   font-family:  Helvetica;
-  font-size: 14px;
+  font-size: 15px;
   color: black;
 }
 .profile-icon1 {
@@ -90,4 +90,9 @@ a{
 #logout-icon {
   width: 27px;
   margin-right: 5px;
+}
+.logout-button {
+  color: grey;
+  font-family: sans-serif;
+  font-size: 15px;
 }
