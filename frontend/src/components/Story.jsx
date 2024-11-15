@@ -18,7 +18,10 @@ import copyLinkToClipboard from '../utilites/copyLink'
 import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
 import view from '../components/svg/view3.svg'
-
+import copied from '../components/svg/copied.svg'
+import List from '@editorjs/list';
+import CodeTool from '@editorjs/code';
+import Embed from '@editorjs/embed'
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -45,6 +48,9 @@ const StoryContent = (props) => {
               level: 1,
             },
           },
+          embed: Embed,
+          code : CodeTool,
+          list: List,
           delimiter: Delimiter,
         },
       })
@@ -70,6 +76,15 @@ const StoryPage = () => {
   const [clapStatus, setClapStatus] = useState({});
   const [responsesCount, setResponsesCount] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [copiedFlag, setCopiedFlag] = useState(false);
+  function copiedFunction () {
+    setCopiedFlag(true)
+    copyLinkToClipboard()
+  setTimeout(() => {
+    setCopiedFlag(false)
+   }, 2000) 
+}
+
   const navigateTo = useNavigate();
   useEffect(() => {
     const getStoryData = async () => {
@@ -117,7 +132,6 @@ const StoryPage = () => {
     );
   }
   console.log(storyData, storyData['cover_image_name'], storyData['imageUrl'], 'completed fetching story data', clapStatus)
-
   return (
     <>
       {openResponse && <ResponseofStory storyId={storyData['id']} setopenResponse={setopenResponse} responseState={{ responsesCount, setResponsesCount }} />}
@@ -165,11 +179,18 @@ const StoryPage = () => {
               </div>
             </div>
             <div className='all-links-container'>
-              <div className='copy-link-container' title='Copy Link' onClick={copyLinkToClipboard}>
-                <img src={copyLink} style={{
+              <div className='copy-link-container' title='Copy Link'>
+              <div className= {copiedFlag ? 'copied-container' : 'copiedHidden'} >
+              <p className='copied'>Copied</p>
+              <img className='copied-image' src= {copied} style={{
+                  height: '20px',
+                  width: '30px',
+                }}></img>
+              </div>
+                <img className='copy-link-image'  src={copyLink} style={{
                   height: '20px',
                   width: '20px',
-                }}></img>
+                }} onClick={copiedFunction}></img>
               </div>
             </div>
           </div>
