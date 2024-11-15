@@ -181,7 +181,7 @@ const StoryPage = () => {
             <div className='all-links-container'>
               <div className='copy-link-container' title='Copy Link'>
               <div className= {copiedFlag ? 'copied-container' : 'copiedHidden'} >
-              <p className='copied'>Copied</p>
+              <p className='copied'>Link Copied</p>
               <img className='copied-image' src= {copied} style={{
                   height: '20px',
                   width: '30px',
