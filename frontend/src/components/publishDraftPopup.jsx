@@ -7,6 +7,7 @@ function PublishDraft({ draftId, openPopup }) {
   const navigate = useNavigate();
   const [tags, addTags] = useState([]);
   const [tagName, setTagName] = useState("");
+  const [filename, setfilename] = useState(null);
   return (
     <div className="publish-outer" onClick={() => openPopup(false)}>
       <div className="publish-popup" onClick={(e) => e.stopPropagation()}>
@@ -58,15 +59,15 @@ function PublishDraft({ draftId, openPopup }) {
             >
               Clear
             </button>
-            {/* <div>
-                <span>Cover-Image</span>:<input type="file" accept="image/*"onChange={(e)=>{handleFileChange(e)}} />
+            <div>
+                <span>Cover-Image</span>:<input type="file" accept="image/*"onChange={(e)=>{setfilename(e.target.files[0])}} />
                 <span>{filename&&filename.name}</span>
-            </div> */}
+            </div>
             <button
             disabled={tags.length === 0}
               className="tags-publish-button"
               onClick={async () => {
-                await publishStory(draftId, tags);
+                await publishStory(draftId, tags, filename);
                 navigate(`/storypage/${draftId}`);
               }}
             >
