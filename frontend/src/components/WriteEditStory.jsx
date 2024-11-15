@@ -10,7 +10,6 @@ import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
 import PublishDraft from "./publishDraftPopup";
 import List from '@editorjs/list';
-import Embed from '@editorjs/embed'
 
 const EditorComponent = ({ storyId, initialdata }) => {
   const editorRef = useRef(null);
@@ -26,7 +25,6 @@ const EditorComponent = ({ storyId, initialdata }) => {
         data: initialData,
         autofocus: "true",
         tools: {
-          embed: { class: Embed, config: { services: { youtube: true, vimeo: true, codepen: true ,},},},
           header: {
             class: Header,
             inlineToolbar: true,
