@@ -89,7 +89,7 @@
 }
 #welcomeFooter {
     background-color: #F7F4ED;
-    padding: 30px;
+    padding: 29px;
     height: 20%;
 }
 #welcomeFooter nav {
@@ -133,9 +133,6 @@ cursor: pointer;
 background-color: white;
 /* padding: 2px; */
 }
-.signInGitHub:hover {
-    background-color: rgba(148, 148, 148, 0.397);
-}
 .signInGitHub img {
     height:38px;
     width: 42px;
@@ -157,9 +154,7 @@ font-family: sans-serif;
     cursor: pointer;
     border: 5;
 }
-.close:hover {
-    background-color: rgba(128, 128, 128, 0.495);
-}
+
 .hidden {
     display: none;
 }

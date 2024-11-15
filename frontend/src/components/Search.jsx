@@ -49,7 +49,7 @@ const SearchResults = ({ results, searchTerm }) => {
               storyData={storyData}
               username={storyData['author']}
               userAvatar={storyData['avatar_url']}
-              userId={storyData['author_id']} />) :
+              userId={storyData['authorId']} />) :
           <div className="no-results-data-main-container">
             <div className="no-results-data-container">
               <p>Make sure all words are spelled correctly.</p>

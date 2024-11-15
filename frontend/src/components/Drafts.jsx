@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoryData } from "./MyStories";
 import GenerateTime from "./Date";
@@ -34,17 +34,17 @@ const DraftContainer = ({ draft, deleteDraft }) =>
   function toggleDropDown() {
     setDropDownFLag(!dropDownFlag);
   }
-  const [deleteDraftFlag, setDeleteDraftFlag] = useState(false);
+  const [popup, setpopup] = useState(false);
   function togglePopup() {
-    setDeleteDraftFlag(!deleteDraftFlag)
+    setpopup(!popup)
   }
 
-  useEffect(() => {
-    return () => {
-      setDeleteDraftFlag(false);
-      setDropDownFLag(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setpopup(false);
+  //     setDropDownFLag(false);
+  //   }
+  // }, []);
   console.log(draft, 'at individual draft container')
   return (
     <>
@@ -75,8 +75,8 @@ const DraftContainer = ({ draft, deleteDraft }) =>
         </div>
       </div>
       {
-        deleteDraftFlag &&
-        <DeleteDraft togglePopup={togglePopup} id={draft['id']} deleteDraft={deleteDraft} />
+        popup &&
+        <DeleteDraft togglePopup={togglePopup}  id={draft['id']} deleteDraft={deleteDraft} />
       }
     </>
   );
@@ -85,7 +85,7 @@ DraftContainer.propTypes = {
   draft: PropTypes.object.isrequired,
   deleteDraft: PropTypes.bool.isrequired
 }
-function DeleteDraft({ togglePopup, id, deleteDraft }) {
+function DeleteDraft({ togglePopup,toggleDropDown ,id, deleteDraft }) {
   console.log(id, 'deleted id recived at pop up')
   return (
     <>
@@ -99,6 +99,7 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {
           <button className="delete-draft-button" onClick={() => {
             deleteDraft(id);
             togglePopup();
+            toggleDropDown();
           }}>Delete Draft</button>
           <button className="cancel" onClick={togglePopup}>Cancel</button>
         </div>
@@ -110,7 +111,8 @@ function DeleteDraft({ togglePopup, id, deleteDraft }) {
 DeleteDraft.propTypes = {
   togglePopup: PropTypes.object.isrequired,
   deleteDraft: PropTypes.func.isrequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  toggleDropDown:PropTypes.func.isRequired,
 }
 
 

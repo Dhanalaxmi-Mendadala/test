@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
+import SimpleEmbed from './simpleEmbed.jsx';
 import PublishDraft from "./publishDraftPopup";
 const EditorComponent = ({ storyId, initialdata }) => {
   
@@ -32,6 +33,10 @@ const EditorComponent = ({ storyId, initialdata }) => {
             inlineToolbar: true,
             config: { placeholder: "Tell your Story" },
           },
+          embed:{
+            class:SimpleEmbed,
+            inlineToolbar:true,
+          },
           delimiter: Delimiter,
         },
         onReady: () => {
@@ -54,7 +59,7 @@ const EditorComponent = ({ storyId, initialdata }) => {
         editor.destroy();
       }
     };
-  }, [storyId]);
+  }, [storyId,initialdata]);
 
   return (
     <>
