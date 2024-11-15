@@ -73,7 +73,7 @@ const AllResponse = ({ storyId, status }) => {
   useEffect(() => {
     const fetchResponses = async () => {
       const storyResponses = await getResponses(storyId);
-      setResponses(storyResponses);
+      setResponses(storyResponses['responses']);
       setLoading(false);
     }
     fetchResponses();
