@@ -5,6 +5,7 @@ import { UserInfo } from "./Home"
 import fetchCoverPage from "../API/fetchCoverPage"
 import StoryCard from "./StoryCard"
 import getResponses from "../API/getResponse"
+import Loader from "./Loader"
 
 
 const StoryComponent = ({ currentStory }) => {
@@ -53,7 +54,13 @@ const DashBoard = () => {
     });
   }, []);
 
-  if(loading) return <p>loading...</p>
+  if(loading) {
+    return (
+      <>
+      <Loader />
+      </>
+    )
+  }
 
   return (
     storiesData.length !== 0 ? <div className="user-dashboard">
