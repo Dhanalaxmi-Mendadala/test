@@ -34,6 +34,9 @@ const SearchDiv = ({ results }) => {
 </div>
 </div>
 }
+SearchDiv.propTypes = {
+  results: PropTypes.object.isRequired
+}
     const SearchInput = ({setResults, searchTerm, setSearchTerm}) => {
   return (
     <div className="input-main-container">
