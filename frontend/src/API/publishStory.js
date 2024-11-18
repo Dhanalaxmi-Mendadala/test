@@ -1,6 +1,6 @@
- const publishStory = async (storyId,tags) => {
-  const formData = new FormData(); 
-   formData.append('tags', tags.join(',')); 
+const publishStory = async (storyId, tags = []) => {
+  const formData = new FormData();
+  formData.append('tags', tags.join(','));
   //  if (coverImage) { formData.append('coverImage', coverImage); }
   console.log(formData);
   try {

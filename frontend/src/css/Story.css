@@ -160,15 +160,18 @@ main {
 .all-links-container {
   display: flex;
 }
-
 .copy-link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   cursor: pointer;
 }
-
+.copied-image {
+  margin-right: 20px;
+}
 .hidden {
   display: none;
 }
-
 .disable {
   cursor: not-allowed;
   pointer-events: none;
@@ -176,11 +179,14 @@ main {
 }
 .views-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: fit-content;
-  margin: 0px 0px 0px 20px;
+  margin-left: 20px;
 }
-.views {
-  margin-right: 4px;
+.views-count {
+  margin-left: 3px;
+}
+.copiedHidden {
+  display: none;
+}
+.copied-container {
+  display: flex;
 }

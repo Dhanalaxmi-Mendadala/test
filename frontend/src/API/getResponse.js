@@ -13,7 +13,7 @@ async function getResponses(storyId) {
     }
     const data = await response.json();
     console.log(data, "recieved responses");
-    return data['responses'];
+    return data;
   } catch (error) {
     console.error("Error fetching responss:", error);
     return null;

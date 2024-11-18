@@ -7,25 +7,25 @@ import searchImage from '../components/svg/1.svg'
 
 const SearchInput = ({ setResults, searchTerm, setSearchTerm }) => {
   return (
- <div className="input-main-container">
-    <div className="input-container">
-  <img src= {searchImage} style={{
-      width: '20px',
-      height: '20px'
-    }}></img>
-    <input type="text" value={searchTerm} placeholder="Search A Story" onInput={(e) => {
-      setSearchTerm(e.target.value)
-    }} onKeyDown ={(e) => {
-      if (e.key === 'Enter') {
-        const makeSearch = async () => {
-          const data = await searchData(searchTerm);
-          setResults(data['contentBased']);
-        };
-        makeSearch();
-      }
-    }} />
- </div>
- </div>
+    <div className="input-main-container">
+      <div className="input-container">
+        <img src={searchImage} style={{
+          width: '20px',
+          height: '20px'
+        }}></img>
+        <input type="text" value={searchTerm} placeholder="Search A Story" onInput={(e) => {
+          setSearchTerm(e.target.value)
+        }} onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            const makeSearch = async () => {
+              const data = await searchData(searchTerm);
+              setResults(data['contentBased']);
+            };
+            makeSearch();
+          }
+        }} />
+      </div>
+    </div>
   )
 }
 SearchInput.propTypes = {
@@ -39,7 +39,7 @@ const SearchResults = ({ results, searchTerm }) => {
   if (searchTerm) return (
     <div className="search-results">
       <div className="default-search-output">
-        <span className="results-for">Searching..</span>
+        <span className="results-for">Results for </span>
         <span className="content-searched"> {searchTerm}</span>
       </div>
       {
