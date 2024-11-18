@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import "../css/WriteEditStory.css";
 import { UserInfo } from "./Home";
 import { useLocation } from "react-router-dom";
+// import SimpleEmbed from './simpleEmbed.jsx';
 import PublishDraft from "./publishDraftPopup";
 import List from '@editorjs/list';
 
@@ -58,7 +59,7 @@ const EditorComponent = ({ storyId, initialdata }) => {
         editor.destroy();
       }
     };
-  }, [storyId]);
+  }, [storyId,initialdata]);
 
   return (
     <>

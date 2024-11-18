@@ -105,7 +105,8 @@ DeleteDraft.propTypes = {
   makePopup: PropTypes.func.isrequired,
   makeDropDown: PropTypes.func.isrequired,
   deleteDraft: PropTypes.func.isrequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  toggleDropDown:PropTypes.func.isRequired,
 }
 
 

@@ -77,14 +77,15 @@ const UserStories = ({ userData }) => {
     <h2 className="profile-user-name">{userData["username"]}</h2>
     {
       userData['stories'].length ?
-        userData['stories'].map((story, i) =>
-        <div className="stories-container" key={i}>
+        userData['stories'].map((story, i) =>{
+          console.log(story,"In Profile");
+       return <div className="stories-container" key={i}>
           <StoryCard storyData={story}
             key={i}
             username={userData['username']}
             userAvatar={userData['avatar_url']}
             userId={userData['id']} />
-        </div>  
+        </div>  }
         )
         :
         <p>No stories yet</p>
