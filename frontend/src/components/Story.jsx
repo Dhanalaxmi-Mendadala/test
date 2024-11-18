@@ -1,10 +1,9 @@
-import { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../css/Story.css'
-import parse from 'html-react-parser';
+import parse from 'html-react-parser'
 import PropTypes from 'prop-types'
 import fetchStory from '../API/fetchStory.js'
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import EditorJS from '@editorjs/editorjs'
 import Header from "@editorjs/header"
 import Delimiter from "@editorjs/delimiter"
@@ -19,9 +18,14 @@ import ResponseofStory from './ResponseofStory.jsx'
 import GenerateTime from './Date.jsx'
 import view from '../components/svg/view3.svg'
 import copied from '../components/svg/copied.svg'
-import List from '@editorjs/list';
-import CodeTool from '@editorjs/code';
+import List from '@editorjs/list'
+import CodeTool from '@editorjs/code'
 import Embed from '@editorjs/embed'
+import { followAuthor } from '../API/follow.js'
+import { unFollowAuthor } from '../API/unFollow.js'
+
+
+
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -49,7 +53,7 @@ const StoryContent = (props) => {
             },
           },
           embed: Embed,
-          code : CodeTool,
+          code: CodeTool,
           list: List,
           delimiter: Delimiter,
         },
@@ -67,25 +71,49 @@ StoryContent.propTypes = {
   contentData: PropTypes.array.isRequired,
 };
 
+
 const StoryPage = () => {
   const { id } = useParams();
   const [error, setError] = useState(false);
   const [storyData, setStoryData] = useState({});
-  console.log(storyData, 'storyDataaa')
   const [openResponse, setopenResponse] = useState(false);
   const [clapStatus, setClapStatus] = useState({});
   const [responsesCount, setResponsesCount] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copiedFlag, setCopiedFlag] = useState(false);
-  function copiedFunction () {
+  const [userInfo, setUserInfo] = useState({});
+  const navigateTo = useNavigate();
+  
+  function copiedFunction() {
     setCopiedFlag(true)
     copyLinkToClipboard()
-  setTimeout(() => {
-    setCopiedFlag(false)
-   }, 2000) 
-}
+    setTimeout(() => {
+      setCopiedFlag(false)
+    }, 2000)
+  }
 
-  const navigateTo = useNavigate();
+  const Follow = () => {
+    return (
+      <div className="follow-unit cursor" onClick={() => {
+        followAuthor(storyData['authorId'])
+        setUserInfo({ ...userInfo, isFollowing: 1 });
+      }}>
+        <p className="follow-tag">Follow</p>
+      </div>
+    )
+  }
+
+  const UnFollow = () => {
+    return (
+      <div className="unfollow-unit cursor" onClick={() => {
+        unFollowAuthor(storyData['authorId']);
+        setUserInfo({ ...userInfo, isFollowing: 0 });
+
+      }}>
+        <p className="unfollow-tag" >Unfollow</p>
+      </div>
+    )
+  }
   useEffect(() => {
     const getStoryData = async () => {
       setLoading(true);
@@ -102,20 +130,21 @@ const StoryPage = () => {
           clapsCount: story['clapsCount'],
         });
         setResponsesCount(story['responsesCount']);
+        setUserInfo({ authenticated: data.isUserAuth, isFollowing: data.isFollowing });
       }
       setLoading(false);
     };
     getStoryData();
-  }, [id]);
+  }, [id, storyData['is_following']]);
 
   if (loading) {
     return (
-    <>
-    <div className='loading-container'>
-      <div className='loading'></div>
-      <p>Loading...</p>
-    </div>
-    </>
+      <>
+        <div className='loading-container'>
+          <div className='loading'></div>
+          <p>Loading...</p>
+        </div>
+      </>
     );
   }
 
@@ -144,10 +173,18 @@ const StoryPage = () => {
             <div><img className='story-author-image' src={storyData['avatar_url']}></img></div>
             <div className='story-author-account-info-container'>
               <p className='story-author-name'>{storyData.author}</p>
+              {
+                !storyData['isAuthor'] && (userInfo['isFollowing'] ?
+                  <UnFollow /> : <Follow />)
+              }
               <div>Published at <GenerateTime time={storyData.published_at} /></div>
               <p className='story-author-published'>{storyData.publications || ''}</p>
             </div>
           </div>
+          {
+            !storyData['isAuthor'] && (userInfo['isFollowing'] ?
+              <UnFollow /> : <Follow />)
+          }
           <div className='all-actions-container'>
             <div className='claps-response-cotainer'>
               <div className={`claps-container ${storyData['isAuthor'] && 'disable'}`} title='Claps' >
@@ -169,7 +206,7 @@ const StoryPage = () => {
                 <span className='response-count'>{responsesCount}</span>
               </div>
               <div className='views-container' title='Views'>
-                <p className='views' 
+                <p className='views'
                 > <img src={view}
                   style={{
                     width: '20px',
@@ -180,14 +217,14 @@ const StoryPage = () => {
             </div>
             <div className='all-links-container'>
               <div className='copy-link-container' title='Copy Link'>
-              <div className= {copiedFlag ? 'copied-container' : 'copiedHidden'} >
-              <p className='copied'>Link Copied</p>
-              <img className='copied-image' src= {copied} style={{
-                  height: '20px',
-                  width: '30px',
-                }}></img>
-              </div>
-                <img className='copy-link-image'  src={copyLink} style={{
+                <div className={copiedFlag ? 'copied-container' : 'copiedHidden'} >
+                  <p className='copied'>Link Copied</p>
+                  <img className='copied-image' src={copied} style={{
+                    height: '20px',
+                    width: '30px',
+                  }}></img>
+                </div>
+                <img className='copy-link-image' src={copyLink} style={{
                   height: '20px',
                   width: '20px',
                 }} onClick={copiedFunction}></img>
