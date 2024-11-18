@@ -58,14 +58,14 @@ const ProfileStats = ({ userData }) => {
            Following {userData["following"].length}
          </p>
     </div>
-    <div className="user-stats">
+    {/* <div className="user-stats">
       {currenInfo === 'followers' ?
         (userData['followers'].length ? <List data={userData['followers']} /> : <p style={{
           marginTop: '10px',
           fontSize: '20px',
         }}>Nobody is following you</p>) :
         (userData['following'].length ? <List data={userData['following']} /> : <p>you are not following anyone</p>)}
-    </div>
+    </div> */}
   </div>
 }
 ProfileStats.propTypes = {

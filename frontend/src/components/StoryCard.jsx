@@ -9,7 +9,7 @@ const StoryCard = ({ storyData, userAvatar, username, userId }) => {
   const isContent = storyData['content'];
   const storyDescription = isContent ? storyData.content?.[0]?.data?.text ?? '' : '';
   return (<div className="story-component" onClick={() => {
-    navigate(`/storypage/${storyData['id']}`)
+    navigate(`/story/${storyData['id']}`)
   }}>
     <div className="author-details" title={username} onClick={(event) => {
       event.stopPropagation();

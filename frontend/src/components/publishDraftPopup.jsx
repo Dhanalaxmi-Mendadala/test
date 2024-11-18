@@ -63,11 +63,11 @@ function PublishDraft({ draftId, openPopup }) {
                 <span>{filename&&filename.name}</span>
             </div> */}
             <button
-            disabled={tags.length === 0}
+            // disabled={tags.length === 0}
               className="tags-publish-button"
               onClick={async () => {
                 await publishStory(draftId, tags);
-                navigate(`/storypage/${draftId}`);
+                navigate(`/story/${draftId}`);
               }}
             >
               Publish
