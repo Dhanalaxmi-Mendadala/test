@@ -15,6 +15,9 @@ function PublishDraft({ draftId, openPopup }) {
           &times;
         </p>
         <div className="publish-your-story">Publish Your Story</div>
+    <div className="cover-image">
+        <span className="cover-image-name">CoverImage</span>:<input type="file" accept="image/*" className = "cover-image-button" style={{color:`{${filename}?"blue":"red"}`}}onChange={(e)=>{setfilename(e.target.files[0])}}/>
+    </div>
         <div className="tags-input-main-container">
          {tags.length<5&&<> <label htmlFor = 'input-label'>Tag name:</label>
         <input
@@ -57,12 +60,9 @@ function PublishDraft({ draftId, openPopup }) {
                 addTags([]);
               }}
             >
-              Clear
+              Clear Tags
             </button>
-            <div>
-                <span>Cover-Image</span>:<input type="file" accept="image/*"onChange={(e)=>{setfilename(e.target.files[0])}} />
-                <span>{filename&&filename.name}</span>
-            </div>
+           
             <button
             // disabled={tags.length === 0}
               className="tags-publish-button"

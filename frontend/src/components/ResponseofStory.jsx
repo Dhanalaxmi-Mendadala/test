@@ -80,12 +80,7 @@ const AllResponse = ({ storyId, status }) => {
   }, [status]);
   if (loading) {
     return (
-      <>
-      <div className="loading-container">
-        <div className="loading"></div>
-        <p>Loading..</p>
-      </div>
-      </>
+      <loader/>
     )   
   }
   return (<div className="responses-unit">

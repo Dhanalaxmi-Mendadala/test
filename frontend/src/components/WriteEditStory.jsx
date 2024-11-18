@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 // import SimpleEmbed from './simpleEmbed.jsx';
 import PublishDraft from "./publishDraftPopup";
 import List from '@editorjs/list';
+import Loader from "./Loader";
 
 const EditorComponent = ({ storyId, initialdata }) => {
   const editorRef = useRef(null);
@@ -104,12 +105,7 @@ const WriteAStory = () => {
   }, []);
   if (loading) {
     return (
-      <>
-      <div className="loading-container">
-        <div className="loading"></div>
-        <p>Loading...</p>
-      </div>
-      </>
+      <Loader/>
     )
   }
   return (
