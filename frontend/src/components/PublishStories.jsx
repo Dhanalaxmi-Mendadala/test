@@ -13,7 +13,7 @@ function Publish() {
       <div className='all-published-unit' > {
         published.map((aStory, i) =>
           <div className="a-story-unit" key={i} onClick={() => {
-            navigator(`/storypage/${aStory['id']}`)
+            navigator(`/story/${aStory['id']}`)
           }}>
             <p className="a-story-title">{parse(aStory['title'])}</p>
             <p>Published <GenerateTime time={aStory['published_at']} /></p>

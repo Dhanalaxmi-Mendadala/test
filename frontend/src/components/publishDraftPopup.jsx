@@ -15,6 +15,10 @@ function PublishDraft({ draftId, openPopup }) {
           &times;
         </p>
         <div className="publish-your-story">Publish Your Story</div>
+        <div>
+        <span>Cover-Image</span>:<input type="file" accept="image/*"onChange={(e)=>{setfilename(e.target.files[0])}} />
+        <span>{filename&&filename.name}</span>
+    </div>
         <div className="tags-input-main-container">
          <label htmlFor = 'input-label'>Tag name:</label>
           <input
@@ -59,16 +63,13 @@ function PublishDraft({ draftId, openPopup }) {
             >
               Clear
             </button>
-            <div>
-                <span>Cover-Image</span>:<input type="file" accept="image/*"onChange={(e)=>{setfilename(e.target.files[0])}} />
-                <span>{filename&&filename.name}</span>
-            </div>
+           
             <button
-            disabled={tags.length === 0}
+            // disabled={tags.length === 0}
               className="tags-publish-button"
               onClick={async () => {
                 await publishStory(draftId, tags, filename);
-                navigate(`/storypage/${draftId}`);
+                navigate(`/story/${draftId}`);
               }}
             >
               Publish
