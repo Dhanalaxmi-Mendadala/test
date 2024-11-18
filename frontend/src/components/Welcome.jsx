@@ -27,16 +27,17 @@ function WelcomePage() {
       <Header click={setClicked} />
       {clicked && <SignInPage click={setClicked}></SignInPage>}
       <div>
-      <main id="welcomeBody">
-        <div className="intro">
-        <h2>
-          Human <br /> Stories & Ideas
-        </h2>
-        <p>A place to read, write, and deepen your understanding</p>
-        </div>
-        <img src={IntroPicture} alt="welcome-image"/>
-      </main>
-      <button className="start-button">Start Reading</button>
+        <main id="welcomeBody">
+          <div className="intro">
+            <h2>
+              Human <br /> Stories & Ideas
+            </h2>
+            <p>A place to read, write, and deepen your understanding</p>
+          </div>
+          <img src={IntroPicture} alt="welcome-image" />
+        </main>
+        <button onClick={() => setClicked(true)}
+          className="start-button">Start Reading</button>
       </div>
       <Footer></Footer>
     </div>

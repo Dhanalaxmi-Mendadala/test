@@ -18,15 +18,15 @@ const StoryComponent = ({ currentStory }) => {
       })
       console.log(storyData, imageUrl, 'added the image')
     }
-    addImage(currentStory['coverImageName']);
+    console.log(currentStory,currentStory['cover_image_name'],"In story card");
+    addImage(currentStory['cover_image_name']);
   }, []);
 
-  console.log(storyData['content'], 'single story')
 
   return (
     <StoryCard storyData={storyData}
       username={storyData['author']}
-      userAvatar={storyData['author_avatar_url']}
+      userAvatar={storyData['avatar_url']}
       userId={storyData.authorId} />
   )
 }
@@ -39,16 +39,27 @@ const DashBoard = () => {
   const someContext = useContext(UserInfo);
   const stories = someContext['stories']
   console.log(someContext, stories, 'dashboard');
+  const [storiesData, setstoriesData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const storyIds = stories.map((currentStory) => currentStory['id']);
-  const renewedData = storyIds.map(async (storyId) => {
-    const data = await getResponses(storyId);
-    return data['story'];
-  })
-  console.log(storyIds, renewedData, 'colllection of all story ids');
+  useEffect(() => {
+    const renewedData = storyIds.map(async (storyId) => {
+      const data = await getResponses(storyId);
+      return data['story'];
+    });
+    Promise.all(renewedData).then((data) => {
+    setstoriesData(data);
+    setLoading(false);
+    });
+  }, []);
+
+  if(loading) return <p>loading...</p>
+
   return (
-    stories.length !== 0 ? <div className="user-dashboard">
-      {stories.map((currentStory, i) =>
-        <StoryComponent key={i} currentStory={currentStory} />)
+    storiesData.length !== 0 ? <div className="user-dashboard">
+      {storiesData.map((currentStory, i) => { 
+        return <StoryComponent key={i} currentStory={currentStory} />
+      })
       }
     </div> : <div id='Authors'>Please follow Authors to see the stories</div>
   )
