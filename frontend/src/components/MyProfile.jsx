@@ -4,6 +4,7 @@ import { fetchProfile } from "../API/Profile";
 import { Link, useParams } from "react-router-dom";
 import StoryCard from "./StoryCard";
 import PropTypes from 'prop-types'
+import Loader from "./Loader";
 
 const Item = ({ personDetail }) => {
   return <div className="follower-data">
@@ -58,14 +59,14 @@ const ProfileStats = ({ userData }) => {
            Following {userData["following"].length}
          </p>
     </div>
-    {/* <div className="user-stats">
+    <div className="user-stats">
       {currenInfo === 'followers' ?
         (userData['followers'].length ? <List data={userData['followers']} /> : <p style={{
           marginTop: '10px',
           fontSize: '20px',
         }}>Nobody is following you</p>) :
         (userData['following'].length ? <List data={userData['following']} /> : <p>you are not following anyone</p>)}
-    </div> */}
+    </div>
   </div>
 }
 ProfileStats.propTypes = {
@@ -117,12 +118,7 @@ const Profile = () => {
   if (userData['error']) return <div className="">Error in fetching..</div>
   if (loading) {
     return (
-      <>
-      <div className="loading-container">
-        <div className="loading"></div>
-        <p>Loading..</p>
-      </div>
-      </>
+        <Loader/>
     )
   }
   console.log(userData, "profile page");

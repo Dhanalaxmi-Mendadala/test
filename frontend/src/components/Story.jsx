@@ -22,6 +22,7 @@ import copied from '../components/svg/copied.svg'
 import List from '@editorjs/list';
 import CodeTool from '@editorjs/code';
 import Embed from '@editorjs/embed'
+import Loader from './Loader.jsx';
 const StoryContent = (props) => {
   const editorContainer = useRef(null);
   let editor = null;
@@ -110,13 +111,8 @@ const StoryPage = () => {
 
   if (loading) {
     return (
-    <>
-    <div className='loading-container'>
-      <div className='loading'></div>
-      <p>Loading...</p>
-    </div>
-    </>
-    );
+      <Loader />
+    )
   }
 
   const handldeClap = () => {

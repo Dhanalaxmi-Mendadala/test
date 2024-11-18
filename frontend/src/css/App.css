@@ -40,3 +40,22 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  border-radius: 50%;
+  border: 5px solid grey;
+  height: 150px;
+  width: 150px;
+  border-top: 5px solid black;
+  animation: 1s rotate infinite;
+}
+@keyframes rotate {
+  100% {
+    rotate: 360deg;
+  }
+}

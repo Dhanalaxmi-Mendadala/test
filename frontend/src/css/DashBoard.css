@@ -79,10 +79,15 @@
 }
 
 .story-cover-image {
-  height: 80px;
+  height: 100px;
+  width:220px;
+  min-width: 150px;
   position: absolute;
   right: 10px;
-  top: 40px;
+  top: 18px;
+  padding: 8px;
+  border: none;
+  margin-right: 19px;
 }
 
 .published-time {

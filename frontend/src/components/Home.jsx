@@ -3,6 +3,7 @@ import Header from "./Header";
 import "../css/Home.css";
 import { Outlet } from "react-router-dom";
 import fetchUserDashboard from "../API/userDashboard";
+import Loader from "./Loader";
 export const UserInfo = createContext(null);
 
 const HomePage = () => {
@@ -21,12 +22,7 @@ const HomePage = () => {
   }
   if(loading){
     return (
-    <>
-    <div className="loading-container">
-      <div className="loading"></div>
-      <p>Loading..</p>
-    </div>
-    </>
+    <Loader/>
   )}
   return (
     <>
