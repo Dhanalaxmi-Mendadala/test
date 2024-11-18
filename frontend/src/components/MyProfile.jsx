@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../css/MyProfile.css";
 import { fetchProfile } from "../API/Profile";
 import { Link, useParams } from "react-router-dom";
 import StoryCard from "./StoryCard";
 import PropTypes from 'prop-types'
-import Loader from "./Loader";
+import { UserInfo } from "./Home";
+import { followAuthor } from "../API/follow";
+import { unFollowAuthor } from "../API/unFollow";
 
 const Item = ({ personDetail }) => {
   return <div className="follower-data">
@@ -30,7 +32,40 @@ List.propTypes = {
   data: PropTypes.array.isRequired
 }
 
-const ProfileCard = ({ userData }) => {
+const FollowButton = ({ setFollowStatus, authorId }) => {
+  return (
+    (
+      <div className="unfollow-unit cursor" onClick={() => {
+        followAuthor(authorId);
+        setFollowStatus(true);
+      }}>
+        <button className="follow-button">Follow</button>
+      </div>
+    )
+  )
+}
+FollowButton.propTypes = {
+  setFollowStatus: PropTypes.func.isRequired,
+  authorId: PropTypes.number.isRequired
+}
+
+const UnFollowButton = ({ setFollowStatus, authorId }) => {
+  return (
+    <div className="unfollow-unit cursor" onClick={() => {
+      unFollowAuthor(authorId);
+      setFollowStatus(false);
+    }}>
+      < button className="unfollow-button" >Unfollow</button >
+    </div>
+  )
+}
+UnFollowButton.propTypes = {
+  setFollowStatus: PropTypes.func.isRequired,
+  authorId: PropTypes.number.isRequired
+}
+
+const ProfileCard = ({ userData, myId, followStatus, setFollowStatus }) => {
+  console.log(myId, userData['id'], myId !== userData['id'])
   return <div className="profile-section">
     <img
       src={userData["avatar_url"]}
@@ -39,25 +74,30 @@ const ProfileCard = ({ userData }) => {
       style={{ height: "100px", width: "100px" }}
     />
     <h2 className="user-name">{userData["username"]}</h2>
-    <p className="followers-count">{userData["followers"].length +
-      (userData["followers"].length > 1 ? ' followers' : ' follower')}</p>
+    {myId !== userData['id'] &&
+      (followStatus ?
+        <UnFollowButton setFollowStatus={setFollowStatus} authorId={userData['id']} /> :
+        <FollowButton setFollowStatus={setFollowStatus} authorId={userData['id']} />)}
   </div>
 }
 ProfileCard.propTypes = {
-  userData: PropTypes.object.isRequired
+  userData: PropTypes.object.isRequired,
+  setFollowStatus: PropTypes.func.isRequired,
+  myId: PropTypes.number.isRequired,
+  followStatus: PropTypes.bool.isRequired,
 }
+
 const ProfileStats = ({ userData }) => {
   const [currenInfo, setCurrentInfo] = useState('followers');
   console.log(currenInfo, 'currentInfooo')
   return <div className="profile-stats">
     <div className="user-follow-and-followers-container">
-    <p className="followers" onClick={() => setCurrentInfo('followers')}>
-        Followers {userData["followers"].length}
+      <p className="followers" onClick={() => setCurrentInfo('followers')}>
+        {(userData["followers"].length > 1 ? ' Followers ' : ' Follower ') + userData["followers"].length}
       </p>
-      <div className="profile-stats-line" ></div>
-           <p className="following" onClick={() => setCurrentInfo('following')}>
-           Following {userData["following"].length}
-         </p>
+      <p className="following" onClick={() => setCurrentInfo('following')}>
+        Following {userData["following"].length}
+      </p>
     </div>
     <div className="user-stats">
       {currenInfo === 'followers' ?
@@ -78,15 +118,16 @@ const UserStories = ({ userData }) => {
     <h2 className="profile-user-name">{userData["username"]}</h2>
     {
       userData['stories'].length ?
-        userData['stories'].map((story, i) =>{
-          console.log(story,"In Profile");
-       return <div className="stories-container" key={i}>
-          <StoryCard storyData={story}
-            key={i}
-            username={userData['username']}
-            userAvatar={userData['avatar_url']}
-            userId={userData['id']} />
-        </div>  }
+        userData['stories'].map((story, i) => {
+          console.log(story, "In Profile");
+          return <div className="stories-container" key={i}>
+            <StoryCard storyData={story}
+              key={i}
+              username={userData['username']}
+              userAvatar={userData['avatar_url']}
+              userId={userData['id']} />
+          </div>
+        }
         )
         :
         <p>No stories yet</p>
@@ -97,16 +138,25 @@ UserStories.propTypes = {
   userData: PropTypes.object.isRequired
 }
 
+const checkFollowing = (followersData, myId) => {
+  const variable = followersData.filter(element => element.id === myId);
+  console.log(variable, followersData, 'sortded tmy profike followerd')
+  return variable.length === 0 ? false : true;
+};
+
 const Profile = () => {
   const { id } = useParams();
+  const myData = useContext(UserInfo);
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true)
+  const [followStatus, setFollowStatus] = useState(false);
   useEffect(() => {
     const getProfile = async () => {
       try {
         const data = await fetchProfile(id);
         setLoading(false);
         setUserData(data);
+        setFollowStatus(checkFollowing(userData['followers'], myData['id']));
         console.log(data, "abcd", 1, 2, 3);
       }
       catch {
@@ -114,12 +164,17 @@ const Profile = () => {
       }
     };
     getProfile();
-  }, [id]);
-
+  }, [id, followStatus]);
+  console.log(myData, followStatus, 'myData')
   if (userData['error']) return <div className="">Error in fetching..</div>
   if (loading) {
     return (
-        <Loader/>
+      <>
+        <div className="loading-container">
+          <div className="loading"></div>
+          <p>Loading..</p>
+        </div>
+      </>
     )
   }
   console.log(userData, "profile page");
@@ -129,7 +184,7 @@ const Profile = () => {
         <UserStories userData={userData} />
       </div>
       <div className="profile">
-        <ProfileCard userData={userData} />
+        <ProfileCard userData={userData} myId={myData['id']} followStatus={followStatus} setFollowStatus={setFollowStatus} />
         <ProfileStats userData={userData} />
       </div>
     </div>

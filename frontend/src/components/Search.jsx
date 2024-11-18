@@ -13,7 +13,7 @@ const SearchInput = ({ setResults, searchTerm, setSearchTerm }) => {
           width: '20px',
           height: '20px'
         }}></img>
-        <input type="text" value={searchTerm} placeholder="Search A Story" onInput={(e) => {
+        <input type="text" value={searchTerm} placeholder="Search A Story"  autoFocus={true} onInput={(e) => {
           setSearchTerm(e.target.value)
         }} onKeyDown={(e) => {
           if (e.key === 'Enter') {
