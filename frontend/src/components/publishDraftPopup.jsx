@@ -68,7 +68,7 @@ function PublishDraft({ draftId, openPopup }) {
               className="tags-publish-button"
               onClick={async () => {
                 await publishStory(draftId, tags, filename);
-                navigate(`/storypage/${draftId}`);
+                navigate(`/story/${draftId}`);
               }}
             >
               Publish
