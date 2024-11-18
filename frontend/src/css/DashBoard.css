@@ -58,6 +58,9 @@
   line-height: 35px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.published-time{
+margin-left:10px;
+}
 
 .story-description {
   font-size: 16px;
@@ -90,15 +93,17 @@
   margin-right: 19px;
 }
 
-.published-time {
-  font-weight: lighter;
-  margin: 10px;
-  padding-left: 20px;
-}
+
 
 .story-meta-data {
   grid-row: span;
   color: rgba(0, 0, 0, 0.574);
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width:120px;
+  align-content: center;
+  margin-left: 30px;
   margin-top: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -19,8 +19,8 @@ function PublishDraft({ draftId, openPopup }) {
         <span className="cover-image-name">CoverImage</span>:<input type="file" accept="image/*" className = "cover-image-button" style={{color:`{${filename}?"blue":"red"}`}}onChange={(e)=>{setfilename(e.target.files[0])}}/>
     </div>
         <div className="tags-input-main-container">
-         <label htmlFor = 'input-label'>Tag name:</label>
-          <input
+         {tags.length<5&&<> <label htmlFor = 'input-label'>Tag name:</label>
+        <input
             id="input-label"
             type="text"
             className="tags-input"
@@ -29,7 +29,7 @@ function PublishDraft({ draftId, openPopup }) {
             onInput={(e) => {
               setTagName(e.target.value);
             }}
-          />
+          /></>}
         </div>
         <p className="tags-name">Given Tags:</p>
         <div className="tags-main-container">
@@ -43,7 +43,7 @@ function PublishDraft({ draftId, openPopup }) {
         </div>
         <div className="tags-data">
           <div className="tags-buttons-container">
-            <button
+          {tags.length < 5&&<button
               className="tags-add-tag-button"
               onClick={() => {
                 tags.length < 5 &&
@@ -53,7 +53,7 @@ function PublishDraft({ draftId, openPopup }) {
               }}
             >
               Add tag
-            </button>
+            </button>}
             <button
               className="tags-clear-button"
               onClick={() => {

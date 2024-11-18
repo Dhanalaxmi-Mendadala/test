@@ -190,3 +190,6 @@ main {
 .copied-container {
   display: flex;
 }
+.cursor {
+  cursor: pointer;
+}
