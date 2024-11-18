@@ -7,7 +7,7 @@ import IntroPicture from "../components/svg/welcome-image.webp"
 function Header({ click }) {
   return (
     <header id="welcomeHeader">
-      <h1>Medium</h1>
+      <h1>Wordflow</h1>
       <nav>
         <p id="signin" onClick={() => click(true)}>
           Get Started
