@@ -83,7 +83,7 @@ const StoryPage = () => {
   const [copiedFlag, setCopiedFlag] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const navigateTo = useNavigate();
-  
+
   function copiedFunction() {
     setCopiedFlag(true)
     copyLinkToClipboard()
@@ -108,7 +108,6 @@ const StoryPage = () => {
       <div className="unfollow-unit cursor" onClick={() => {
         unFollowAuthor(storyData['authorId']);
         setUserInfo({ ...userInfo, isFollowing: 0 });
-
       }}>
         <p className="unfollow-tag" >Unfollow</p>
       </div>
@@ -182,7 +181,8 @@ const StoryPage = () => {
             </div>
           </div>
           {
-            !storyData['isAuthor'] && (userInfo['isFollowing'] ?
+            !storyData['isAuthor'] && 
+            (userInfo['isFollowing'] ?
               <UnFollow /> : <Follow />)
           }
           <div className='all-actions-container'>
