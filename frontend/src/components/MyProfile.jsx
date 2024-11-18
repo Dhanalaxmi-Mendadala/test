@@ -127,9 +127,7 @@ const UserStories = ({ userData }) => {
               userAvatar={userData['avatar_url']}
               userId={userData['id']} />
           </div>
-        }
-        )
-        :
+        }) :
         <p>No stories yet</p>
     }
   </div>
@@ -154,10 +152,10 @@ const Profile = () => {
     const getProfile = async () => {
       try {
         const data = await fetchProfile(id);
-        setLoading(false);
         setUserData(data);
-        setFollowStatus(checkFollowing(userData['followers'], myData['id']));
+        setFollowStatus(checkFollowing(data['followers'], myData['id']));
         console.log(data, "abcd", 1, 2, 3);
+        setLoading(false);
       }
       catch {
         console.log("Error");
