@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 import '../css/DashBoard.css'
 import { UserInfo } from "./Home"
-import fetchCoverPage from "../API/fetchCoverPage"
 import StoryCard from "./StoryCard"
 import getResponses from "../API/getResponse"
 import Loader from "./Loader"
@@ -11,8 +10,8 @@ import Loader from "./Loader"
 const StoryComponent = ({ currentStory }) => {
   const [storyData, setStoryData] = useState(currentStory);
   useEffect(() => {
-    const addImage = async (url) => {
-      const imageUrl = await fetchCoverPage(url);
+    const addImage = async () => {
+    const imageUrl = await fetch('http://localhost:7000/api/image/4',);
       setStoryData({
         ...storyData,
         imageUrl: imageUrl

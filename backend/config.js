@@ -3,5 +3,5 @@ module.exports = {
   CLIENT_SECRET: '9eabbeb35b105a7769046436823846aa7012d031',
   SECRET_MSG: 'path',
   DB_NAME: './database/medium.db',
-  FRONT_END_URL: 'http://localhost:5173',
+  FRONT_END_URL: 'http://localhost:8000',
 };

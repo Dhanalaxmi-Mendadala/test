@@ -26,7 +26,6 @@ function MyStories() {
   const deleteDraftAndUpdate = (draftId) => {
     deleteDraft(draftId);
     getStoriesData();
-    getStoriesData();
   };
 
   useEffect(() => {
