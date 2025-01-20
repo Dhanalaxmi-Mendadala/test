@@ -12,7 +12,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:8000',
+      url: 'https://test-production-47a1.up.railway.app',
       description: 'Medium backend server',
     },
   ],
