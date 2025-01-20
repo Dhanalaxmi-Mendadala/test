@@ -3,5 +3,5 @@ module.exports = {
   CLIENT_SECRET: '9eabbeb35b105a7769046436823846aa7012d031',
   SECRET_MSG: 'path',
   DB_NAME: './database/medium.db',
-  FRONT_END_URL: 'http://localhost:8000',
+  FRONT_END_URL: 'https://test-production-47a1.up.railway.app',
 };
