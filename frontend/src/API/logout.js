@@ -1,6 +1,6 @@
 const mainLogout = async () => {
   try {
-    fetch('http://localhost:8000/user/logout', {
+    fetch('http://localhost:8000/api/user/logout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

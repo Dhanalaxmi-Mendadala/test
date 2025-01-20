@@ -1,6 +1,6 @@
 async function makeClap(STORY_ID) {
   try {
-    const response = await fetch(`http://localhost:8000/story/${STORY_ID}/clap`, {
+    const response = await fetch(`http://localhost:8000/api/story/${STORY_ID}/clap`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

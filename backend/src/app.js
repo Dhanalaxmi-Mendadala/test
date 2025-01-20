@@ -45,32 +45,32 @@ app.use((req, _, next) => {
 });
 
 // Add all the APIs below
-app.use('/coverImage', express.static(`${__dirname}/../database/images`));
+app.use('/api/coverImage', express.static(`${__dirname}/../database/images`));
 app.get(
   '/post-login',
   handler.hasQueryParams(['code']),
   loginHandler.handleLogin
 );
-app.get('/isLoggedIn', loginHandler.handlerIsLoggedIn);
+app.get('/api/isLoggedIn', loginHandler.handlerIsLoggedIn);
 app.get(
-  '/search',
+  '/api/search',
   handler.hasQueryParams(['keyword']),
   handler.allowAuthorized,
   handler.search
 );
 app.delete(
-  '/draft',
+  '/api/draft',
   handler.allowAuthorized,
   handler.hasFields(['draftId']),
   storyHandler.deleteDraft
 );
 app.get(
-  '/draft/:draftId',
+  '/api/draft/:draftId',
   handler.hasPathParams(['draftId']),
   handler.allowAuthorized,
   storyHandler.getDraft
 );
-app.use('/story', storyRouter);
-app.use('/user', userRouter);
+app.use('/api/story', storyRouter);
+app.use('/api/user', userRouter);
 
 module.exports = app;

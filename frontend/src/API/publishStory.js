@@ -4,7 +4,7 @@ const publishStory = async (storyId, tags, coverImage) => {
    if (coverImage) { formData.append('coverImage', coverImage); }
   console.log(formData);
   try {
-    const response = await fetch(`http://localhost:8000/story/${storyId}/publish`, {
+    const response = await fetch(`http://localhost:8000/api/story/${storyId}/publish`, {
       method: 'POST',
       credentials: 'include',
       body: formData,

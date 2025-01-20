@@ -1,6 +1,6 @@
 async function getStories() {
   try {
-    const response = await fetch("http://localhost:8000/user/stories", {
+    const response = await fetch("http://localhost:8000/api/user/stories", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

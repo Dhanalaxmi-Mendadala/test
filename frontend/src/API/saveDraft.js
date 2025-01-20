@@ -1,7 +1,7 @@
 async function putStory(story) {
   console.log("IN PUT Your Story", story)
   try {
-    const response = await fetch('http://localhost:8000/story', {
+    const response = await fetch('http://localhost:8000/api/story', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
