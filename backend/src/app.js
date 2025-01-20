@@ -26,7 +26,7 @@ app.use(requestLogger('dev'));
 app.use(express.static('public'));
 app.use(
   cors({
-    origin: FRONT_END_URL,
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
