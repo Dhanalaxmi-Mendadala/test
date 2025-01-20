@@ -1,7 +1,7 @@
 async function fetchStory(STORY_ID) {
     console.log(STORY_ID,"IN Story Fetching");
     try {
-        const response = await fetch(`http://localhost:8000/api/story/${STORY_ID}`, {
+        const response = await fetch(`/api/story/${STORY_ID}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

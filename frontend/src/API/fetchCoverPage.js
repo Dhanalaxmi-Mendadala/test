@@ -2,7 +2,7 @@ const fetchCoverPage =  async(coverImageName) => {
   if (coverImageName === 'NULL') return null;
 console.log(coverImageName)
   try {
-    const response = await fetch(`http://localhost:8000/api/coverImage/${coverImageName}`, {
+    const response = await fetch(`/api/coverImage/${coverImageName}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'image/png'

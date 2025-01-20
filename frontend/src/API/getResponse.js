@@ -1,6 +1,6 @@
 async function getResponses(storyId) {
   try {
-    const response = await fetch(`http://localhost:8000/api/story/${storyId}/responses`, {
+    const response = await fetch(`/api/story/${storyId}/responses`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

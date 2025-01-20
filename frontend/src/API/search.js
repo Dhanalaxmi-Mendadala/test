@@ -1,6 +1,6 @@
 async function searchData(keyword) {
   try {
-    const response = await fetch(`http://localhost:8000/api/search?keyword=${keyword}`, {
+    const response = await fetch(`/api/search?keyword=${keyword}`, {
       method: 'GET',
       headers: { 'Content-Type': 'json' },
       mode: 'cors',

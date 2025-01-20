@@ -1,6 +1,6 @@
 async function fetching() {
   try {
-    const response = await fetch('http://localhost:8000/api/isLoggedIn', {
+    const response = await fetch('/api/isLoggedIn', {
       method: 'GET',
       headers: { 'Content-Type': 'json' },
       mode: 'cors',

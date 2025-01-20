@@ -1,6 +1,6 @@
 const fetchUserDashboard = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user/dashboard", {
+      const response = await fetch("/api/user/dashboard", {
         credentials: "include",
       });
       const data = await response.json();

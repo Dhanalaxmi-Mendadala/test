@@ -1,6 +1,6 @@
 export const unFollowAuthor = async (authorId) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/user/unfollow`, {
+      const response = await fetch(`/api/user/unfollow`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

@@ -1,6 +1,6 @@
 export const postResponse = async (storyId, userResponse) => {
   try {
-    const response = await fetch(`http://localhost:8000/api/story/${storyId}/response`, {
+    const response = await fetch(`/api/story/${storyId}/response`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
